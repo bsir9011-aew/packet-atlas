@@ -1,11 +1,12 @@
-import { JourneyControls } from './controls/JourneyControls'
-import { AssumptionBar } from './layers/AssumptionBar'
-import { LayerHighlightPanel } from './layers/LayerHighlightPanel'
-import { RightPanelTabs } from './layout/RightPanelTabs'
-import { GlobalJourneyMap } from './map/GlobalJourneyMap'
 import { httpsExampleScenario } from './scenarios/httpsExample'
 import { useAtlasStore } from './store/atlasStore'
+import { GlobalJourneyMap } from './map/GlobalJourneyMap'
 import { RouteTimeline } from './timeline/RouteTimeline'
+import { PacketInspector } from './inspector/PacketInspector'
+import { AssumptionBar } from './layers/AssumptionBar'
+import { EncapsulationStack } from './layers/EncapsulationStack'
+import { DevicePerspectivePanel } from './layers/DevicePerspectivePanel'
+import { JourneyControls } from './navigation/JourneyControls'
 import './packetAtlas.css'
 
 export function PacketAtlasPage() {
@@ -15,10 +16,10 @@ export function PacketAtlasPage() {
     httpsExampleScenario.stages[0]
 
   return (
-    <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
+    <div className="atlas-shell">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v0.6</p>
+          <p className="eyebrow">Packet Atlas v0.4</p>
           <h1>{httpsExampleScenario.title}</h1>
           <p>{httpsExampleScenario.description}</p>
         </div>
@@ -31,16 +32,19 @@ export function PacketAtlasPage() {
       </header>
 
       <AssumptionBar scenario={httpsExampleScenario} />
-      <LayerHighlightPanel scenario={httpsExampleScenario} />
       <JourneyControls scenario={httpsExampleScenario} />
 
-      <main className="atlas-layout atlas-layout--v05 atlas-layout--v06">
-        <section className="map-column map-column--v05">
+      <main className="atlas-layout">
+        <section className="map-column">
           <GlobalJourneyMap scenario={httpsExampleScenario} />
           <RouteTimeline scenario={httpsExampleScenario} />
         </section>
 
-        <RightPanelTabs scenario={httpsExampleScenario} stage={activeStage} />
+        <aside className="inspector-column">
+          <PacketInspector stage={activeStage} />
+          <DevicePerspectivePanel scenario={httpsExampleScenario} stage={activeStage} />
+          <EncapsulationStack stage={activeStage} />
+        </aside>
       </main>
     </div>
   )
