@@ -6,7 +6,6 @@ import { GlobalJourneyMap } from './map/GlobalJourneyMap'
 import { httpsExampleScenario } from './scenarios/httpsExample'
 import { useAtlasStore } from './store/atlasStore'
 import { RouteTimeline } from './timeline/RouteTimeline'
-import { StageDeepDiveCards } from './deep-dive/StageDeepDiveCards'
 import './packetAtlas.css'
 
 export function PacketAtlasPage() {
@@ -19,7 +18,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v0.7</p>
+          <p className="eyebrow">Packet Atlas v0.6</p>
           <h1>{httpsExampleScenario.title}</h1>
           <p>{httpsExampleScenario.description}</p>
         </div>
@@ -39,7 +38,6 @@ export function PacketAtlasPage() {
         <section className="map-column map-column--v05">
           <GlobalJourneyMap scenario={httpsExampleScenario} />
           <RouteTimeline scenario={httpsExampleScenario} />
-          <StageDeepDiveCards scenario={httpsExampleScenario} stage={activeStage} />
         </section>
 
         <RightPanelTabs scenario={httpsExampleScenario} stage={activeStage} />
