@@ -8,9 +8,6 @@ import { RouteTimeline } from './timeline/RouteTimeline'
 import { StageDeepDiveCards } from './deep-dive/StageDeepDiveCards'
 import { ProtocolMiniDiagram } from './protocol-diagram/ProtocolMiniDiagram'
 import './packetAtlas.css'
-import { Ipv6NeighborDiscoveryPanel } from './ipv6/Ipv6NeighborDiscoveryPanel'
-import { PathScopeFilter } from './path-scope/PathScopeFilter'
-import { SearchJumpPalette } from './search/SearchJumpPalette'
 import { PacketFieldExplorer } from './fields/PacketFieldExplorer'
 import { ScenarioLearningPanel } from './learning/ScenarioLearningPanel'
 import { ScenarioVariantPanel } from './variants/ScenarioVariantPanel'
@@ -29,9 +26,6 @@ import { NatStateTableView } from './nat/NatStateTableView'
 import { StatefulFirewallView } from './firewall/StatefulFirewallView'
 import { DnsResolutionModesPanel } from './dns/DnsResolutionModesPanel'
 import { HttpVersionVariantPanel } from './http/HttpVersionVariantPanel'
-import { CinematicTraceMode } from './cinematic/CinematicTraceMode'
-import { PacketBytesHexPane } from './bytes/PacketBytesHexPane'
-import { DeviceCutawayView } from './device-cutaway/DeviceCutawayView'
 
 export function PacketAtlasPage() {
   const selectedScenarioId = useAtlasStore((state) => state.selectedScenarioId)
@@ -45,7 +39,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v3.5</p>
+          <p className="eyebrow">Packet Atlas v2.8</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>
@@ -57,15 +51,7 @@ export function PacketAtlasPage() {
         </div>
       </header>
 
-      <SearchJumpPalette />
-
-      <PathScopeFilter />
-
-      <Ipv6NeighborDiscoveryPanel />
-
       <AssumptionBar scenario={activeScenario} />
-
-      <CinematicTraceMode scenario={activeScenario} stage={activeStage} />
 
       <ScenarioSelector scenario={activeScenario} />
 
@@ -106,8 +92,6 @@ export function PacketAtlasPage() {
         <RightPanelTabs scenario={activeScenario} stage={activeStage} />
             <DnsResolutionModesPanel scenario={activeScenario} stage={activeStage} />
             <HttpVersionVariantPanel scenario={activeScenario} stage={activeStage} />
-            <PacketBytesHexPane stage={activeStage} />
-            <DeviceCutawayView stage={activeStage} />
       </main>
     </div>
   )

@@ -8,9 +8,6 @@ import { RouteTimeline } from './timeline/RouteTimeline'
 import { StageDeepDiveCards } from './deep-dive/StageDeepDiveCards'
 import { ProtocolMiniDiagram } from './protocol-diagram/ProtocolMiniDiagram'
 import './packetAtlas.css'
-import { Ipv6NeighborDiscoveryPanel } from './ipv6/Ipv6NeighborDiscoveryPanel'
-import { PathScopeFilter } from './path-scope/PathScopeFilter'
-import { SearchJumpPalette } from './search/SearchJumpPalette'
 import { PacketFieldExplorer } from './fields/PacketFieldExplorer'
 import { ScenarioLearningPanel } from './learning/ScenarioLearningPanel'
 import { ScenarioVariantPanel } from './variants/ScenarioVariantPanel'
@@ -45,7 +42,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v3.5</p>
+          <p className="eyebrow">Packet Atlas v3.1</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>
@@ -56,12 +53,6 @@ export function PacketAtlasPage() {
           <small>many lenses</small>
         </div>
       </header>
-
-      <SearchJumpPalette />
-
-      <PathScopeFilter />
-
-      <Ipv6NeighborDiscoveryPanel />
 
       <AssumptionBar scenario={activeScenario} />
 

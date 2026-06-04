@@ -1,0 +1,17 @@
+import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
+
+export type DnsResolutionModeId = 'udp53' | 'tcp53-fallback' | 'cache-hit' | 'nxdomain' | 'timeout' | 'doh-preview'
+export type DnsResolutionMode = { id: DnsResolutionModeId; label: string; path: string[]; visibleNameTo: string; stopsBefore: string | null; effect: string; warning: string }
+
+export const dnsResolutionModes: DnsResolutionMode[] = [
+  { id: 'udp53', label: 'Classic UDP/53', path: ['Browser asks OS resolver', 'Client sends UDP query to resolver', 'Resolver returns A/AAAA answer', 'TCP/TLS can start'], visibleNameTo: 'Local host, DNS resolver, network path that can observe UDP/53', stopsBefore: null, effect: 'Happy-path name resolution. The name becomes an IP address.', warning: 'DNS success does not mean the website itself is reachable.' },
+  { id: 'tcp53-fallback', label: 'TCP/53 fallback', path: ['UDP answer is too large or truncated', 'Client retries over TCP/53', 'Resolver returns full response', 'Connection to web edge can continue'], visibleNameTo: 'Resolver and network devices that allow TCP/53', stopsBefore: null, effect: 'Same logical question, different transport behavior.', warning: 'Blocking TCP/53 can break legitimate DNS responses.' },
+  { id: 'cache-hit', label: 'Local cache hit', path: ['Browser/OS checks cache', 'Existing answer is still valid', 'No external DNS packet is needed', 'TCP/TLS starts immediately'], visibleNameTo: 'Mostly the local host; external resolver sees nothing new', stopsBefore: null, effect: 'The DNS stage is logically present but no new query leaves the machine.', warning: 'No DNS packet does not always mean no DNS decision.' },
+  { id: 'nxdomain', label: 'NXDOMAIN', path: ['Client asks resolver', 'Resolver answers: name does not exist', 'No web IP is produced', 'TCP/TLS/HTTP never start'], visibleNameTo: 'Client and resolver', stopsBefore: 'tcp-handshake', effect: 'The journey stops at name resolution.', warning: 'NXDOMAIN is different from timeout: the resolver answered, but negatively.' },
+  { id: 'timeout', label: 'DNS timeout', path: ['Client sends query', 'No useful response returns', 'Client retries or waits', 'Browser fails before transport connection'], visibleNameTo: 'Client; maybe firewall/router if they drop traffic', stopsBefore: 'dns-response', effect: 'The name is unresolved because the answer never arrives.', warning: 'Timeout can be network filtering, resolver outage, routing or local firewall.' },
+  { id: 'doh-preview', label: 'DoH preview', path: ['Browser sends HTTPS request to DoH endpoint', 'DNS question is carried inside HTTPS', 'Network sees DoH server IP, not classic UDP/53 query', 'Browser receives DNS answer inside HTTPS'], visibleNameTo: 'Browser and DoH provider; classic UDP/53 observers do not see the plain query', stopsBefore: null, effect: 'DNS becomes application traffic over HTTPS.', warning: 'DoH changes who can observe the query; it does not remove DNS logic.' },
+]
+
+export function getDnsStages(scenario: JourneyScenario): JourneyStage[] { return scenario.stages.filter((stage) => stage.stageKind.includes('dns') || stage.id.includes('dns')) }
+export function getDnsMode(id: string): DnsResolutionMode { return dnsResolutionModes.find((mode) => mode.id === id) ?? dnsResolutionModes[0] }
+export function dnsModeTouchesStage(mode: DnsResolutionMode, stage: JourneyStage): boolean { return getDnsStages({ stages: [stage] } as JourneyScenario).length > 0 || Boolean(mode.stopsBefore && stage.id === mode.stopsBefore) }
