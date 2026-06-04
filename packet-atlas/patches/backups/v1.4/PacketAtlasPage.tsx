@@ -13,13 +13,6 @@ import { PacketFieldExplorer } from './fields/PacketFieldExplorer'
 import { ScenarioLearningPanel } from './learning/ScenarioLearningPanel'
 import { ScenarioVariantPanel } from './variants/ScenarioVariantPanel'
 import { DeviceVisibilityMatrix } from './visibility/DeviceVisibilityMatrix'
-import { VariantFlowDiff } from './diff/VariantFlowDiff'
-import { FailureTraceNavigator } from './failure/FailureTraceNavigator'
-import { ObserverModePanel } from './observer/ObserverModePanel'
-import { EncapsulationTransformView } from './encapsulation/EncapsulationTransformView'
-import { ProtocolSequenceBoard } from './sequences/ProtocolSequenceBoard'
-import { WiresharkFieldTree } from './field-tree/WiresharkFieldTree'
-import { CaptureFixturePanel } from './captures/CaptureFixturePanel'
 
 export function PacketAtlasPage() {
   const selectedStageId = useAtlasStore((state) => state.selectedStageId)
@@ -31,7 +24,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v2.0</p>
+          <p className="eyebrow">Packet Atlas v1.3</p>
           <h1>{httpsExampleScenario.title}</h1>
           <p>{httpsExampleScenario.description}</p>
         </div>
@@ -46,12 +39,6 @@ export function PacketAtlasPage() {
       <AssumptionBar scenario={httpsExampleScenario} />
 
       <ScenarioVariantPanel scenario={httpsExampleScenario} />
-
-      <ObserverModePanel scenario={httpsExampleScenario} stage={activeStage} />
-
-      <VariantFlowDiff scenario={httpsExampleScenario} />
-
-      <FailureTraceNavigator scenario={httpsExampleScenario} />
       <LayerHighlightPanel scenario={httpsExampleScenario} />
       <JourneyControls scenario={httpsExampleScenario} />
 
@@ -66,10 +53,6 @@ export function PacketAtlasPage() {
             scenario={httpsExampleScenario}
           />
           <PacketFieldExplorer stage={activeStage} />
-          <EncapsulationTransformView stage={activeStage} />
-          <ProtocolSequenceBoard scenario={httpsExampleScenario} stage={activeStage} />
-          <WiresharkFieldTree stage={activeStage} />
-          <CaptureFixturePanel scenario={httpsExampleScenario} stage={activeStage} />
           <ScenarioLearningPanel scenario={httpsExampleScenario} activeStage={activeStage} />
         </section>
 

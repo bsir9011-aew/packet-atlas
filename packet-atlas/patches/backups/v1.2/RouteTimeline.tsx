@@ -1,6 +1,5 @@
 import type { JourneyScenario } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
-import { getScenarioVariant } from '../variants/scenarioVariants'
 
 type Props = {
   scenario: JourneyScenario
@@ -14,31 +13,22 @@ const directionIcon = {
 
 export function RouteTimeline({ scenario }: Props) {
   const selectedStageId = useAtlasStore((state) => state.selectedStageId)
-  const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
   const selectedLayerLens = useAtlasStore((state) => state.selectedLayerLens)
-  const selectedVariantId = useAtlasStore((state) => state.selectedVariantId)
-  const activeVariant = getScenarioVariant(selectedVariantId)
-
-  const visibleInLensCount = scenario.stages.filter((stage) =>
-    stage.layerFocus.includes(selectedLayerLens),
-  ).length
+  const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
 
   return (
-    <aside className="route-timeline route-timeline--v12">
+    <aside className="route-timeline route-timeline--v06">
       <div className="panel-heading">
         <span>Route Timeline</span>
         <small>
-          {scenario.stages.length} stages · {selectedLayerLens} lens ·{' '}
-          {visibleInLensCount} visible
+          {scenario.stages.length} stages · {selectedLayerLens} lens
         </small>
       </div>
 
       <div className="timeline-list">
         {scenario.stages.map((stage, index) => {
           const isActive = stage.id === selectedStageId
-          const isVisibleInLens = stage.layerFocus.includes(selectedLayerLens)
-          const isVariantImpact = activeVariant.affectedStageIds.includes(stage.id)
-          const isBreakStage = activeVariant.breakStageId === stage.id
+          const lensMatch = stage.layerFocus.includes(selectedLayerLens)
 
           return (
             <button
@@ -46,9 +36,7 @@ export function RouteTimeline({ scenario }: Props) {
               className={[
                 'timeline-item',
                 isActive ? 'timeline-item--active' : '',
-                isVisibleInLens ? 'timeline-item--lens' : 'timeline-item--dimmed',
-                isVariantImpact ? 'timeline-item--variant-impact' : '',
-                isBreakStage ? 'timeline-item--break-stage' : '',
+                lensMatch ? 'timeline-item--lens-match' : 'timeline-item--lens-dim',
               ]
                 .filter(Boolean)
                 .join(' ')}
@@ -62,15 +50,7 @@ export function RouteTimeline({ scenario }: Props) {
                   {directionIcon[stage.direction]} {stage.shortName}
                 </strong>
                 <small>{stage.copy.whichLayerLooksAtIt}</small>
-                <em>
-                  {isBreakStage
-                    ? 'break point in selected variant'
-                    : isVariantImpact
-                      ? 'affected by selected variant'
-                      : isVisibleInLens
-                        ? 'visible in active lens'
-                        : 'outside active lens'}
-                </em>
+                <em>{lensMatch ? 'visible in active lens' : 'outside active lens'}</em>
               </span>
             </button>
           )

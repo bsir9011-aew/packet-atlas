@@ -10,6 +10,7 @@ import {
 import '@xyflow/react/dist/style.css'
 import type { JourneyScenario } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
+import { getScenarioVariant } from '../variants/scenarioVariants'
 
 type Props = {
   scenario: JourneyScenario
@@ -21,27 +22,52 @@ const laneLabel: Record<string, string> = {
   internal: '↔ internal',
 }
 
+function getNodeBackground({
+  selected,
+  lensMatches,
+  variantImpacted,
+}: {
+  selected: boolean
+  lensMatches: boolean
+  variantImpacted: boolean
+}) {
+  if (variantImpacted && selected) return '#3b1f12'
+  if (variantImpacted) return '#2a170f'
+  if (selected) return '#0f2a3a'
+  if (lensMatches) return '#0b3448'
+  return '#111827'
+}
+
+function getNodeBorder({
+  selected,
+  lensMatches,
+  variantImpacted,
+}: {
+  selected: boolean
+  lensMatches: boolean
+  variantImpacted: boolean
+}) {
+  if (variantImpacted) return '2px solid #fb923c'
+  if (selected) return '2px solid #7dd3fc'
+  if (lensMatches) return '1px solid #38bdf8'
+  return '1px solid #334155'
+}
+
 export function GlobalJourneyMap({ scenario }: Props) {
   const selectedStageId = useAtlasStore((state) => state.selectedStageId)
-  const selectedLayerLens = useAtlasStore((state) => state.selectedLayerLens)
   const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
+  const selectedLayerLens = useAtlasStore((state) => state.selectedLayerLens)
+  const selectedVariantId = useAtlasStore((state) => state.selectedVariantId)
 
-  const lensMatchingStageIds = useMemo(
-    () =>
-      new Set(
-        scenario.stages
-          .filter((stage) => stage.layerFocus.includes(selectedLayerLens))
-          .map((stage) => stage.id),
-      ),
-    [scenario.stages, selectedLayerLens],
-  )
+  const activeVariant = getScenarioVariant(selectedVariantId)
 
   const nodes = useMemo<Node[]>(
     () =>
       scenario.stages.map((stage) => {
         const selected = stage.id === selectedStageId
-        const lensMatch = lensMatchingStageIds.has(stage.id)
-        const dimmed = !selected && !lensMatch
+        const lensMatches = stage.layerFocus.includes(selectedLayerLens)
+        const variantImpacted = activeVariant.affectedStageIds.includes(stage.id)
+        const isBreakStage = activeVariant.breakStageId === stage.id
 
         return {
           id: stage.id,
@@ -51,78 +77,105 @@ export function GlobalJourneyMap({ scenario }: Props) {
           },
           data: {
             label: (
-              <div className="stage-node stage-node--v06">
+              <div className="stage-node">
                 <div className="stage-node__top">
                   <span>{laneLabel[stage.direction]}</span>
                   <span>{stage.device.role}</span>
                 </div>
                 <strong>{stage.shortName}</strong>
                 <small>{stage.layerFocus.join(' / ')}</small>
-                <em className="stage-node__lens-badge">
-                  {lensMatch ? `${selectedLayerLens} lens` : 'outside lens'}
-                </em>
+                <div className="stage-node__badges">
+                  <em>{lensMatches ? `${selectedLayerLens} lens` : 'outside lens'}</em>
+                  {variantImpacted ? (
+                    <em className={isBreakStage ? 'stage-node__break' : 'stage-node__impact'}>
+                      {isBreakStage ? 'break point' : 'variant impact'}
+                    </em>
+                  ) : null}
+                </div>
               </div>
             ),
           },
           style: {
             width: 190,
             borderRadius: 16,
-            border: selected
-              ? '2px solid #7dd3fc'
-              : lensMatch
-                ? '1px solid #38bdf8'
-                : '1px solid #334155',
-            background: selected
-              ? '#0f2a3a'
-              : lensMatch
-                ? '#082f49'
-                : '#111827',
+            border: getNodeBorder({ selected, lensMatches, variantImpacted }),
+            background: getNodeBackground({ selected, lensMatches, variantImpacted }),
             color: '#e5e7eb',
-            opacity: dimmed ? 0.38 : 1,
-            boxShadow: selected
-              ? '0 0 0 4px rgba(125, 211, 252, 0.12)'
-              : lensMatch
-                ? '0 0 0 3px rgba(56, 189, 248, 0.06)'
+            opacity: lensMatches || selected || variantImpacted ? 1 : 0.36,
+            boxShadow:
+              selected || variantImpacted
+                ? variantImpacted
+                  ? '0 0 0 4px rgba(251, 146, 60, 0.14)'
+                  : '0 0 0 4px rgba(125, 211, 252, 0.12)'
                 : 'none',
-            transition:
-              'opacity 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease',
           },
         }
       }),
-    [scenario.stages, selectedStageId, selectedLayerLens, lensMatchingStageIds],
+    [
+      activeVariant.affectedStageIds,
+      activeVariant.breakStageId,
+      scenario.stages,
+      selectedLayerLens,
+      selectedStageId,
+    ],
+  )
+
+  const stageById = useMemo(
+    () => new Map(scenario.stages.map((stage) => [stage.id, stage])),
+    [scenario.stages],
   )
 
   const edges = useMemo<Edge[]>(
     () =>
       scenario.stages.flatMap((stage) =>
         stage.relations.previousIds.map((previousId) => {
-          const sourceInLens = lensMatchingStageIds.has(previousId)
-          const targetInLens = lensMatchingStageIds.has(stage.id)
-          const edgeInLens = sourceInLens || targetInLens
+          const previousStage = stageById.get(previousId)
+          const edgeMatchesLens =
+            stage.layerFocus.includes(selectedLayerLens) ||
+            previousStage?.layerFocus.includes(selectedLayerLens)
+          const edgeVariantImpacted =
+            activeVariant.affectedStageIds.includes(stage.id) ||
+            activeVariant.affectedStageIds.includes(previousId)
 
           return {
             id: `${previousId}->${stage.id}`,
             source: previousId,
             target: stage.id,
-            animated: edgeInLens && stage.direction !== 'internal',
+            animated: edgeMatchesLens || edgeVariantImpacted,
             markerEnd: {
               type: MarkerType.ArrowClosed,
             },
             style: {
-              stroke: edgeInLens ? '#38bdf8' : '#334155',
-              strokeWidth: edgeInLens ? 2.8 : 1.5,
-              opacity: edgeInLens ? 0.92 : 0.28,
+              strokeWidth: edgeVariantImpacted ? 3 : 2,
+              stroke: edgeVariantImpacted
+                ? '#fb923c'
+                : edgeMatchesLens
+                  ? '#38bdf8'
+                  : '#334155',
+              opacity: edgeMatchesLens || edgeVariantImpacted ? 1 : 0.28,
             },
           }
         }),
       ),
-    [scenario.stages, lensMatchingStageIds],
+    [
+      activeVariant.affectedStageIds,
+      scenario.stages,
+      selectedLayerLens,
+      stageById,
+    ],
   )
 
   return (
-    <div className="journey-map journey-map--v06">
-      <div className="journey-map__lens-overlay">
-        Highlighting: <b>{selectedLayerLens}</b>
+    <div className="journey-map journey-map--v12">
+      <div className="map-overlay-labels">
+        <span>
+          Highlighting: <b>{selectedLayerLens}</b>
+        </span>
+        {activeVariant.id !== 'happy-path' ? (
+          <span className="map-overlay-labels__variant">
+            Variant: <b>{activeVariant.shortLabel}</b>
+          </span>
+        ) : null}
       </div>
       <ReactFlow
         nodes={nodes}

@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest --run",
-    "capture:validate": "node scripts/validate-capture-fixtures.mjs"
+    "test": "vitest --run"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
