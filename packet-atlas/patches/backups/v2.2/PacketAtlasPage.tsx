@@ -3,6 +3,7 @@ import { AssumptionBar } from './layers/AssumptionBar'
 import { LayerHighlightPanel } from './layers/LayerHighlightPanel'
 import { RightPanelTabs } from './layout/RightPanelTabs'
 import { GlobalJourneyMap } from './map/GlobalJourneyMap'
+import { httpsExampleScenario } from './scenarios/httpsExample'
 import { useAtlasStore } from './store/atlasStore'
 import { RouteTimeline } from './timeline/RouteTimeline'
 import { StageDeepDiveCards } from './deep-dive/StageDeepDiveCards'
@@ -19,27 +20,20 @@ import { EncapsulationTransformView } from './encapsulation/EncapsulationTransfo
 import { ProtocolSequenceBoard } from './sequences/ProtocolSequenceBoard'
 import { WiresharkFieldTree } from './field-tree/WiresharkFieldTree'
 import { CaptureFixturePanel } from './captures/CaptureFixturePanel'
-import { getScenarioById } from './scenarios/scenarioRegistry'
-import { ScenarioSelector } from './scenario-selector/ScenarioSelector'
-import { FailureVariantBuilder } from './failure-builder/FailureVariantBuilder'
-import { NatStateTableView } from './nat/NatStateTableView'
-import { StatefulFirewallView } from './firewall/StatefulFirewallView'
 
 export function PacketAtlasPage() {
-  const selectedScenarioId = useAtlasStore((state) => state.selectedScenarioId)
-  const activeScenario = getScenarioById(selectedScenarioId)
   const selectedStageId = useAtlasStore((state) => state.selectedStageId)
   const activeStage =
-    activeScenario.stages.find((stage) => stage.id === selectedStageId) ??
-    activeScenario.stages[0]
+    httpsExampleScenario.stages.find((stage) => stage.id === selectedStageId) ??
+    httpsExampleScenario.stages[0]
 
   return (
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v2.6</p>
-          <h1>{activeScenario.title}</h1>
-          <p>{activeScenario.description}</p>
+          <p className="eyebrow">Packet Atlas v2.1</p>
+          <h1>{httpsExampleScenario.title}</h1>
+          <p>{httpsExampleScenario.description}</p>
         </div>
 
         <div className="header-badge">
@@ -49,45 +43,37 @@ export function PacketAtlasPage() {
         </div>
       </header>
 
-      <AssumptionBar scenario={activeScenario} />
+      <AssumptionBar scenario={httpsExampleScenario} />
 
-      <ScenarioSelector scenario={activeScenario} />
+      <ScenarioVariantPanel scenario={httpsExampleScenario} />
 
-      <ScenarioVariantPanel scenario={activeScenario} />
+      <ObserverModePanel scenario={httpsExampleScenario} stage={activeStage} />
 
-      <FailureVariantBuilder scenario={activeScenario} />
+      <VariantFlowDiff scenario={httpsExampleScenario} />
 
-      <NatStateTableView scenario={activeScenario} stage={activeStage} />
-
-      <StatefulFirewallView scenario={activeScenario} stage={activeStage} />
-
-      <ObserverModePanel scenario={activeScenario} stage={activeStage} />
-
-      <VariantFlowDiff scenario={activeScenario} />
-
-      <FailureTraceNavigator scenario={activeScenario} />
-      <LayerHighlightPanel scenario={activeScenario} />
-      <JourneyControls scenario={activeScenario} />
+      <FailureTraceNavigator scenario={httpsExampleScenario} />
+      <LayerHighlightPanel scenario={httpsExampleScenario} />
+      <JourneyControls scenario={httpsExampleScenario} />
 
       <main className="atlas-layout atlas-layout--v05 atlas-layout--v06">
         <section className="map-column map-column--v05">
-          <GlobalJourneyMap scenario={activeScenario} />
-          <RouteTimeline scenario={activeScenario} />
-          <DeviceVisibilityMatrix scenario={activeScenario} />
-          <StageDeepDiveCards scenario={activeScenario} stage={activeStage} />
+          <GlobalJourneyMap scenario={httpsExampleScenario} />
+          <RouteTimeline scenario={httpsExampleScenario} />
+          <DeviceVisibilityMatrix scenario={httpsExampleScenario} />
+          <StageDeepDiveCards scenario={httpsExampleScenario} stage={activeStage} />
           <ProtocolMiniDiagram
             stage={activeStage}
-            scenario={activeScenario}
+            scenario={httpsExampleScenario}
           />
           <PacketFieldExplorer stage={activeStage} />
           <EncapsulationTransformView stage={activeStage} />
-          <ProtocolSequenceBoard scenario={activeScenario} stage={activeStage} />
+          <ProtocolSequenceBoard scenario={httpsExampleScenario} stage={activeStage} />
           <WiresharkFieldTree stage={activeStage} />
-          <CaptureFixturePanel scenario={activeScenario} stage={activeStage} />
-          <ScenarioLearningPanel scenario={activeScenario} activeStage={activeStage} />
+          <CaptureFixturePanel scenario={httpsExampleScenario} stage={activeStage} />
+          <ScenarioLearningPanel scenario={httpsExampleScenario} activeStage={activeStage} />
         </section>
 
-        <RightPanelTabs scenario={activeScenario} stage={activeStage} />
+        <RightPanelTabs scenario={httpsExampleScenario} stage={activeStage} />
       </main>
     </div>
   )

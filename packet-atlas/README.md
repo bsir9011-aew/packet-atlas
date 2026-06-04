@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# Packet Atlas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Packet Atlas** is an interactive client-side atlas for following one data journey across many lenses: user intent, application protocol, TLS, transport, IP, link layer, devices, failure variants and capture fixtures.
 
-Currently, two official plugins are available:
+It is not a course platform, quiz app or Cyber Career clone. The product model is: **one journey, many observers, many layers**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Current baseline scenario
 
-## React Compiler
+`https://example.com` with frozen assumptions: IPv4, classic DNS over UDP/53, TCP, TLS 1.3, HTTP/1.1, no cache, no service worker, no connection reuse, NAT enabled, Ethernet access medium.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Main UI areas
 
-## Expanding the ESLint configuration
+- Scenario Variant panel
+- Flow Diff & Failure Trace
+- Failure Trace Navigator
+- Layer Highlight Mode
+- Global Journey Map
+- Route Timeline
+- Side Panel tabs: Inspector / Device / Stack
+- Observer Mode
+- Stage Deep Dive
+- Protocol Mini Diagrams
+- Packet Field Explorer
+- Device Visibility Matrix
+- Encapsulation Transform View
+- Protocol Sequence Boards
+- Wireshark-style Field Tree
+- Capture Fixture Panel
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Commands
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm test
+npm run capture:validate
+npm run validate:project
+npm run atlas:health
+npm run validate:all
+npm run dev -- --host 0.0.0.0
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Design guardrails
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Keep Packet Atlas as an atlas/simulator, not a learning habit platform.
+- Add protocol/device/flow visibility before adding generic study features.
+- Keep PCAP parsing offline; runtime consumes normalized fixtures.
+- Be explicit about scenario assumptions.
+- Treat colors as helpful, not as the only meaning carrier.

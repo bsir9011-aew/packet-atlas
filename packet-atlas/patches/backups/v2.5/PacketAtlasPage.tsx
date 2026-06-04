@@ -22,8 +22,6 @@ import { CaptureFixturePanel } from './captures/CaptureFixturePanel'
 import { getScenarioById } from './scenarios/scenarioRegistry'
 import { ScenarioSelector } from './scenario-selector/ScenarioSelector'
 import { FailureVariantBuilder } from './failure-builder/FailureVariantBuilder'
-import { NatStateTableView } from './nat/NatStateTableView'
-import { StatefulFirewallView } from './firewall/StatefulFirewallView'
 
 export function PacketAtlasPage() {
   const selectedScenarioId = useAtlasStore((state) => state.selectedScenarioId)
@@ -37,7 +35,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v05 atlas-shell--v06">
       <header className="atlas-header">
         <div>
-          <p className="eyebrow">Packet Atlas v2.6</p>
+          <p className="eyebrow">Packet Atlas v2.4</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>
@@ -56,10 +54,6 @@ export function PacketAtlasPage() {
       <ScenarioVariantPanel scenario={activeScenario} />
 
       <FailureVariantBuilder scenario={activeScenario} />
-
-      <NatStateTableView scenario={activeScenario} stage={activeStage} />
-
-      <StatefulFirewallView scenario={activeScenario} stage={activeStage} />
 
       <ObserverModePanel scenario={activeScenario} stage={activeStage} />
 

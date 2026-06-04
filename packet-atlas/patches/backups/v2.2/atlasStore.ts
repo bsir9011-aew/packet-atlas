@@ -2,13 +2,11 @@ import { create } from 'zustand'
 import type { LayerLens } from '../schema/journeyScenarioSchema'
 
 type AtlasState = {
-  selectedScenarioId: string
   selectedObserverId: string
   selectedVariantId: string
   selectedStageId: string
   selectedLayerLens: LayerLens
   setSelectedStageId: (stageId: string) => void
-  setSelectedScenarioId: (scenarioId: string) => void
   setSelectedLayerLens: (lens: LayerLens) => void
   setSelectedVariantId: (variantId: string) => void
   setSelectedObserverId: (observerId: string) => void
@@ -16,12 +14,10 @@ type AtlasState = {
 
 export const useAtlasStore = create<AtlasState>((set) => ({
   selectedStageId: 'url-intent',
-  selectedScenarioId: 'https-example-basic',
   selectedVariantId: 'happy-path',
   selectedObserverId: 'user',
   selectedLayerLens: 'human',
   setSelectedStageId: (stageId) => set({ selectedStageId: stageId }),
-  setSelectedScenarioId: (scenarioId) => set({ selectedScenarioId: scenarioId }),
   setSelectedLayerLens: (lens) => set({ selectedLayerLens: lens }),
   setSelectedVariantId: (variantId) => set({ selectedVariantId: variantId }),
   setSelectedObserverId: (observerId) => set({ selectedObserverId: observerId }),
