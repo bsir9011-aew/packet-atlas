@@ -19,9 +19,22 @@ type FixtureLike = {
   frames?: FixtureFrame[]
 }
 
-const fixtures = [
-  syntheticFixture as FixtureLike,
-  realPlaceholder as FixtureLike,
+type RealCaptureStagePlan = {
+  stageId: string
+  expectedFrameKind: string
+  requiredLayers?: string[]
+}
+
+type RealCaptureFixtureLike = FixtureLike & {
+  stageFramePlan?: RealCaptureStagePlan[]
+}
+
+const syntheticCaptureFixture = syntheticFixture as FixtureLike
+const realCapturePlaceholder = realPlaceholder as RealCaptureFixtureLike
+
+const fixtures: FixtureLike[] = [
+  syntheticCaptureFixture,
+  realCapturePlaceholder,
 ]
 
 export type CaptureInspectorProjection = {
@@ -55,16 +68,16 @@ export function getCaptureProjectionForStage(
     }
   }
 
-  const realPlan = (realPlaceholder as any).stageFramePlan?.find(
-    (plan: { stageId: string }) => plan.stageId === stage.id,
+  const realPlan = realCapturePlaceholder.stageFramePlan?.find(
+    (plan) => plan.stageId === stage.id,
   )
 
   if (realPlan) {
     return {
       mode: 'real-placeholder',
-      fixtureId: (realPlaceholder as FixtureLike).id,
+      fixtureId: realCapturePlaceholder.id,
       source: 'pending real capture',
-      note: (realPlaceholder as FixtureLike).note,
+      note: realCapturePlaceholder.note,
       stageId: stage.id,
       summary: `Real capture is planned for ${stage.shortName}: ${realPlan.expectedFrameKind}.`,
     }

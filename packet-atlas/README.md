@@ -2,42 +2,71 @@
 
 **Packet Atlas** is an interactive client-side atlas for following one data journey across many lenses: user intent, application protocol, TLS, transport, IP, link layer, devices, failure variants and capture fixtures.
 
-It is not a course platform, quiz app or Cyber Career clone. The product model is: **one journey, many observers, many layers**.
+It is not a course platform, quiz app or Cyber Career clone. The product model is:
 
-## Current baseline scenario
+> **one journey, many observers, many layers**
 
-`https://example.com` with frozen assumptions: IPv4, classic DNS over UDP/53, TCP, TLS 1.3, HTTP/1.1, no cache, no service worker, no connection reuse, NAT enabled, Ethernet access medium.
+## Current baseline scenarios
 
-## Main UI areas
+- `https://example.com` with frozen assumptions: IPv4, classic DNS over UDP/53, TCP, TLS 1.3, HTTP/1.1, no cache, no service worker, no connection reuse, NAT enabled, Ethernet access medium.
+- SSH session over TCP/22 with DNS, ARP/default gateway, TCP and SSH checkpoints.
 
-- Scenario Variant panel
-- Flow Diff & Failure Trace
-- Failure Trace Navigator
-- Layer Highlight Mode
-- Global Journey Map
-- Route Timeline
-- Side Panel tabs: Inspector / Device / Stack
-- Observer Mode
-- Stage Deep Dive
-- Protocol Mini Diagrams
-- Packet Field Explorer
-- Device Visibility Matrix
-- Encapsulation Transform View
-- Protocol Sequence Boards
-- Wireshark-style Field Tree
-- Capture Fixture Panel
+## Main workspaces
 
-## Commands
+- **Journey** — map, timeline, stage controls and active-stage inspector.
+- **Diagnostics** — failure variants, flow diff, failure trace, NAT and firewall state.
+- **Protocols** — DNS modes, HTTP versions, IPv6 neighbor discovery, Wi-Fi, TLS visibility, proxy termination, CDN edge and symbolic PHY.
+- **Internals** — observer visibility, device cutaway, packet fields, Wireshark-style tree, hex pane and component catalog.
+- **Capture** — synthetic fixtures, real-capture placeholders, capture-aware inspector and trace playback.
+
+## Quality commands
+
+```bash
+npm run verify        # standard local gate
+npm run verify:e2e    # standard gate + Playwright E2E
+npm run verify:full   # full gate + E2E + visual regression
+```
+
+Individual commands:
 
 ```bash
 npm run build
 npm test
+npm run lint
+npm run bundle:budget
+npm run scenario:manifest:validate
+npm run scenario:lint
 npm run capture:validate
-npm run validate:project
-npm run atlas:health
-npm run validate:all
+npm run capture:cross-validate
+npm run capture:map -- src/data/fixtures/https-example.synthetic.fixture.json
+npm run component:inventory
+npm run hygiene:audit
+npm run e2e
+npm run visual:test
+npm run visual:update
+```
+
+## Running in Codespaces
+
+```bash
 npm run dev -- --host 0.0.0.0
 ```
+
+## Capture model
+
+Packet Atlas does **not** parse PCAP/PCAPNG directly in the browser.
+
+The intended workflow is:
+
+```text
+pcapng
+→ TShark offline export
+→ normalized fixture JSON
+→ scenario stage/capture mapping
+→ capture-aware inspector
+```
+
+Synthetic fixtures are labeled as synthetic. Real captures remain marked as pending until actual TShark-normalized frames are attached.
 
 ## Design guardrails
 
@@ -46,3 +75,4 @@ npm run dev -- --host 0.0.0.0
 - Keep PCAP parsing offline; runtime consumes normalized fixtures.
 - Be explicit about scenario assumptions.
 - Treat colors as helpful, not as the only meaning carrier.
+- Do not commit local patch installers or generated patch backups.

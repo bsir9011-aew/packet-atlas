@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "0.0.0",
+  "version": "5.7.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "capture:validate": "node scripts/captures/validate-fixtures.mjs",
     "validate:project": "node scripts/validate-project-structure.mjs",
     "atlas:health": "node scripts/atlas-health.mjs",
-    "validate:all": "npm run build && npm test && npm run capture:validate && npm run validate:project",
+    "validate:all": "npm run verify",
     "bundle:budget": "node scripts/bundle-budget.mjs",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
@@ -33,7 +33,8 @@
     "capture:cross-validate": "node scripts/captures/cross-validate-scenario-fixtures.mjs",
     "visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots",
     "visual:test": "playwright test --config=playwright.visual.config.ts",
-    "capture:map": "node scripts/captures/map-fixture-to-stages.mjs"
+    "capture:map": "node scripts/captures/map-fixture-to-stages.mjs",
+    "verify:full": "node scripts/verify-packet-atlas.mjs --full"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

@@ -80,7 +80,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v4.6 stabilized</div>
+        <div className="workspace-shell__badge">v5.7 hardened</div>
       </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">

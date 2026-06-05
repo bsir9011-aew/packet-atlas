@@ -27,3 +27,11 @@ dist-ssr
 playwright-report/
 test-results/
 blob-report/
+
+# Packet Atlas local/generated files
+# Local patch installers and generated patch backups
+apply-v*.sh
+*.REPAIR.sh
+patches/backups/
+# Capture mapper generated outputs
+*.mapping.json

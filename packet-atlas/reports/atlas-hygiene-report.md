@@ -1,15 +1,15 @@
 # Packet Atlas hygiene audit
 
-Generated: 2026-06-05T07:51:42.332Z
+Generated: 2026-06-05T10:19:27.866Z
 
 ## Summary
 
-- TSX component files: 46
+- TSX component files: 44
 - TS model/helper files: 39
 - CSS files: 1
 - CSS total size: 101830 bytes
-- Duplicate basenames: 1
-- Learning-related leftovers: 1
+- Duplicate basenames: 0
+- Learning-related leftovers: 0
 
 ## Component inventory
 
@@ -22,7 +22,7 @@ Generated: 2026-06-05T07:51:42.332Z
 | keep | CdnEdgeVariantPanel | `src/features/packet-atlas/cdn-edge/CdnEdgeVariantPanel.tsx` | 4 |
 | keep | CinematicTraceMode | `src/features/packet-atlas/cinematic/CinematicTraceMode.tsx` | 4 |
 | keep | ComponentLab | `src/features/packet-atlas/component-lab/ComponentLab.tsx` | 4 |
-| keep | JourneyControls | `src/features/packet-atlas/controls/JourneyControls.tsx` | 5 |
+| keep | JourneyControls | `src/features/packet-atlas/controls/JourneyControls.tsx` | 4 |
 | keep | StageDeepDiveCards | `src/features/packet-atlas/deep-dive/StageDeepDiveCards.tsx` | 4 |
 | keep | DeviceCutawayView | `src/features/packet-atlas/device-cutaway/DeviceCutawayView.tsx` | 4 |
 | keep | VariantFlowDiff | `src/features/packet-atlas/diff/VariantFlowDiff.tsx` | 5 |
@@ -41,10 +41,8 @@ Generated: 2026-06-05T07:51:42.332Z
 | keep | EncapsulationStack | `src/features/packet-atlas/layers/EncapsulationStack.tsx` | 4 |
 | keep | LayerHighlightPanel | `src/features/packet-atlas/layers/LayerHighlightPanel.tsx` | 4 |
 | keep | RightPanelTabs | `src/features/packet-atlas/layout/RightPanelTabs.tsx` | 4 |
-| review | ScenarioLearningPanel | `src/features/packet-atlas/learning/ScenarioLearningPanel.tsx` | 1 |
 | keep | GlobalJourneyMap | `src/features/packet-atlas/map/GlobalJourneyMap.tsx` | 5 |
 | keep | NatStateTableView | `src/features/packet-atlas/nat/NatStateTableView.tsx` | 4 |
-| keep | JourneyControls | `src/features/packet-atlas/navigation/JourneyControls.tsx` | 5 |
 | keep | ObserverModePanel | `src/features/packet-atlas/observer/ObserverModePanel.tsx` | 4 |
 | keep | PacketAtlasPage | `src/features/packet-atlas/PacketAtlasPage.tsx` | 1 |
 | keep | PathScopeFilter | `src/features/packet-atlas/path-scope/PathScopeFilter.tsx` | 4 |
@@ -64,13 +62,11 @@ Generated: 2026-06-05T07:51:42.332Z
 
 ## Duplicate basenames
 
-- **JourneyControls.tsx**
-  - `src/features/packet-atlas/controls/JourneyControls.tsx`
-  - `src/features/packet-atlas/navigation/JourneyControls.tsx`
+- None detected.
 
 ## Learning leftovers
 
-- `src/features/packet-atlas/learning/ScenarioLearningPanel.tsx`
+- None detected.
 
 ## Recommendation
 
