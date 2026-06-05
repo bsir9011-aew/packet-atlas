@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "https-example-basic",
+  "title": "Opening https://example.com",
+  "scenarioModule": "src/features/packet-atlas/scenarios/httpsExample.ts",
+  "capabilities": [
+    "journey",
+    "diagnostics",
+    "protocols",
+    "internals",
+    "capture"
+  ],
+  "fixtureIds": [
+    "https-example-synthetic-fixture",
+    "https-basic-real-placeholder"
+  ],
+  "qualityProfile": {
+    "requiresScenarioLint": true,
+    "requiresCaptureCrossValidation": true,
+    "supportsRealCapture": true
+  }
+}

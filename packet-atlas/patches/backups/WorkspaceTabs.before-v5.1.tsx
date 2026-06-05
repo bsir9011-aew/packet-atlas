@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CaptureFixturePanel } from '../captures/CaptureFixturePanel'
-import { CaptureAwareInspector } from '../capture-inspector/CaptureAwareInspector'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
 import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
 import { ComponentLab } from '../component-lab/ComponentLab'
@@ -210,7 +209,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               note="Synthetic scenario first, real capture fixtures later. The browser does not parse PCAP directly."
             >
               <CaptureFixturePanel scenario={scenario} stage={stage} />
-              <CaptureAwareInspector stage={stage} />
             </PanelCluster>
 
             <PanelCluster

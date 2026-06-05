@@ -25,15 +25,7 @@
     "atlas:quality": "npm run validate:project && npm run scenario:lint",
     "capture:export": "node scripts/captures/tshark-export.mjs",
     "capture:normalize": "node scripts/captures/normalize-fixture.mjs",
-    "component:inventory": "node scripts/component-inventory.mjs",
-    "hygiene:audit": "node scripts/atlas-hygiene-audit.mjs",
-    "verify": "node scripts/verify-packet-atlas.mjs",
-    "verify:e2e": "node scripts/verify-packet-atlas.mjs --e2e",
-    "scenario:manifest:validate": "node scripts/validate-scenario-manifests.mjs",
-    "capture:cross-validate": "node scripts/captures/cross-validate-scenario-fixtures.mjs",
-    "visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots",
-    "visual:test": "playwright test --config=playwright.visual.config.ts",
-    "capture:map": "node scripts/captures/map-fixture-to-stages.mjs"
+    "component:inventory": "node scripts/component-inventory.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

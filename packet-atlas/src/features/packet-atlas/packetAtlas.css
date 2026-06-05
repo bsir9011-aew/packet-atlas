@@ -4029,3 +4029,169 @@ button {
   }
 }
 /* === Packet Atlas v4.1 Workspace Consolidation END === */
+
+/* === Packet Atlas v4.5 Symbolic PHY Signal Strip === */
+
+.signal-strip-panel {
+  border: 1px solid #1e293b;
+  background: rgba(15, 23, 42, 0.76);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.signal-strip-panel__body {
+  padding: 14px;
+}
+
+.signal-strip-canvas {
+  width: 100%;
+  height: 150px;
+  display: block;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  background: #020617;
+}
+
+.signal-strip-panel__body p {
+  margin: 10px 0 0;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* === Packet Atlas v4.6 Component Lab === */
+
+.component-lab {
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(2, 6, 23, 0.38);
+}
+
+.component-lab__intro {
+  padding: 14px 16px;
+  color: #cbd5e1;
+  border-bottom: 1px solid #1e293b;
+}
+
+.component-lab__intro p {
+  margin: 6px 0 0;
+  color: #94a3b8;
+}
+
+.component-lab__groups {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+}
+
+.component-lab__group {
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.55);
+  padding: 14px;
+}
+
+.component-lab__group h3 {
+  margin: 0 0 10px;
+}
+
+.component-lab__items {
+  display: grid;
+  gap: 8px;
+}
+
+.component-lab__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: rgba(2, 6, 23, 0.45);
+}
+
+.component-lab__item p {
+  margin: 4px 0 0;
+  color: #94a3b8;
+}
+
+.component-lab__item span {
+  color: #7dd3fc;
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+/* === Packet Atlas v5.1 Capture-aware Inspector === */
+
+.capture-aware-inspector {
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(2, 6, 23, 0.45);
+}
+
+.capture-aware-inspector__body {
+  padding: 14px 16px;
+}
+
+.capture-aware-inspector__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.capture-aware-inspector__grid > div {
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 10px;
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.capture-aware-inspector__grid span {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+.capture-aware-inspector__grid strong {
+  color: #e5e7eb;
+}
+
+.capture-aware-inspector__note {
+  color: #94a3b8;
+  margin-top: 12px;
+}
+
+/* === Packet Atlas v5.4 Accessibility === */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+button:focus-visible,
+[role='tab']:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

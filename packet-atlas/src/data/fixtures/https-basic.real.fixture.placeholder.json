@@ -1,0 +1,39 @@
+{
+  "id": "https-basic-real-placeholder",
+  "kind": "real-capture-placeholder",
+  "status": "pending-real-capture",
+  "note": "Replace this placeholder with a TShark-normalized fixture produced from docs/captures/https-basic-real-capture-recipe.md.",
+  "baselineAssumptions": {
+    "ipVersion": "ipv4",
+    "dnsMode": "udp53",
+    "transportMode": "tcp",
+    "tlsVersion": "1.3",
+    "httpMode": "1.1",
+    "cacheEnabled": false,
+    "serviceWorkerEnabled": false,
+    "natEnabled": true
+  },
+  "stageFramePlan": [
+    {
+      "stageId": "dns-query",
+      "expectedFrameKind": "dns-query",
+      "requiredLayers": ["frame", "eth", "ip", "udp", "dns"]
+    },
+    {
+      "stageId": "dns-response",
+      "expectedFrameKind": "dns-response",
+      "requiredLayers": ["frame", "eth", "ip", "udp", "dns"]
+    },
+    {
+      "stageId": "tcp-handshake",
+      "expectedFrameKind": "tcp-handshake",
+      "requiredLayers": ["frame", "eth", "ip", "tcp"]
+    },
+    {
+      "stageId": "tls-handshake",
+      "expectedFrameKind": "tls-handshake",
+      "requiredLayers": ["frame", "eth", "ip", "tcp", "tls"]
+    }
+  ],
+  "frames": []
+}

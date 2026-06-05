@@ -1,5 +1,3 @@
-import { useAtlasKeyboardNavigation } from './accessibility/useAtlasKeyboardNavigation'
-import { AtlasLiveRegion } from './accessibility/AtlasLiveRegion'
 import { AssumptionBar } from './layers/AssumptionBar'
 import { ScenarioSelector } from './scenario-selector/ScenarioSelector'
 import { getScenarioById } from './scenarios/scenarioRegistry'
@@ -16,16 +14,11 @@ export function PacketAtlasPage() {
     activeScenario.stages.find((stage) => stage.id === selectedStageId) ??
     activeScenario.stages[0]
 
-  useAtlasKeyboardNavigation(
-    activeScenario.stages.map((stage) => stage.id),
-    activeStage.id,
-  )
-
   return (
     <div className="atlas-shell atlas-shell--v41">
       <header className="atlas-header atlas-header--v41">
         <div>
-          <p className="eyebrow">Packet Atlas v5.6</p>
+          <p className="eyebrow">Packet Atlas v4.6</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>
@@ -44,7 +37,6 @@ export function PacketAtlasPage() {
       </div>
 
       <WorkspaceTabs scenario={activeScenario} stage={activeStage} />
-      <AtlasLiveRegion stage={activeStage} />
     </div>
   )
 }

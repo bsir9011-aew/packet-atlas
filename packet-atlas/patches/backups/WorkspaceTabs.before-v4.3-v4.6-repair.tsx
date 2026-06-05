@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { CaptureFixturePanel } from '../captures/CaptureFixturePanel'
-import { CaptureAwareInspector } from '../capture-inspector/CaptureAwareInspector'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
 import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
-import { ComponentLab } from '../component-lab/ComponentLab'
 import { DeviceCutawayView } from '../device-cutaway/DeviceCutawayView'
 import { VariantFlowDiff } from '../diff/VariantFlowDiff'
 import { DnsResolutionModesPanel } from '../dns/DnsResolutionModesPanel'
@@ -21,7 +19,6 @@ import { GlobalJourneyMap } from '../map/GlobalJourneyMap'
 import { NatStateTableView } from '../nat/NatStateTableView'
 import { ObserverModePanel } from '../observer/ObserverModePanel'
 import { PathScopeFilter } from '../path-scope/PathScopeFilter'
-import { SignalStripCanvas } from '../physical/SignalStripCanvas'
 import { ProtocolMiniDiagram } from '../protocol-diagram/ProtocolMiniDiagram'
 import { ProxyTerminationPanel } from '../proxy-termination/ProxyTerminationPanel'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
@@ -80,7 +77,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v4.6 stabilized</div>
+        <div className="workspace-shell__badge">v4.1 organized</div>
       </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
@@ -169,7 +166,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               <EncapsulationTransformView stage={stage} />
               <ProtocolSequenceBoard scenario={scenario} stage={stage} />
               <ProtocolMiniDiagram scenario={scenario} stage={stage} />
-              <SignalStripCanvas stage={stage} />
             </PanelCluster>
           </div>
         )}
@@ -193,13 +189,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               <WiresharkFieldTree stage={stage} />
               <PacketBytesHexPane stage={stage} />
             </PanelCluster>
-
-            <PanelCluster
-              title="Component catalog"
-              note="A lightweight inventory of core and experimental atlas components."
-            >
-              <ComponentLab />
-            </PanelCluster>
           </div>
         )}
 
@@ -210,7 +199,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               note="Synthetic scenario first, real capture fixtures later. The browser does not parse PCAP directly."
             >
               <CaptureFixturePanel scenario={scenario} stage={stage} />
-              <CaptureAwareInspector stage={stage} />
             </PanelCluster>
 
             <PanelCluster

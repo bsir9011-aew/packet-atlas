@@ -32,8 +32,7 @@
     "scenario:manifest:validate": "node scripts/validate-scenario-manifests.mjs",
     "capture:cross-validate": "node scripts/captures/cross-validate-scenario-fixtures.mjs",
     "visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots",
-    "visual:test": "playwright test --config=playwright.visual.config.ts",
-    "capture:map": "node scripts/captures/map-fixture-to-stages.mjs"
+    "visual:test": "playwright test --config=playwright.visual.config.ts"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

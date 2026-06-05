@@ -1,0 +1,21 @@
+{
+  "id": "https-example-synthetic-fixture",
+  "source": "synthetic",
+  "generatedAt": "static",
+  "note": "Educational synthetic fixture. Replace or compare with TShark-normalized fixture later.",
+  "frames": [
+    {
+      "frameNumber": 1,
+      "timeRelative": "0.000000",
+      "protocolStack": ["frame", "eth", "ip", "udp", "dns"],
+      "summary": {
+        "srcIp": "192.168.1.10",
+        "dstIp": "198.51.100.53",
+        "srcPort": "53001",
+        "dstPort": "53",
+        "highestProtocol": "dns"
+      },
+      "stageHint": "dns-query"
+    }
+  ]
+}

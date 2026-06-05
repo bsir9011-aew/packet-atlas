@@ -1,16 +1,3 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-echo "🧪 Applying Packet Atlas v4.3 — Scenario Quality Linter..."
-
-if [ ! -f package.json ] || [ ! -d src/features/packet-atlas ]; then
-  echo "❌ Run this from the app root: /workspaces/packet-atlas/packet-atlas"
-  exit 1
-fi
-
-mkdir -p scripts tests/unit
-
-cat > scripts/scenario-quality-lint.mjs <<'MJS'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -97,42 +84,3 @@ if (failures.length > 0) {
   process.exit(1)
 }
 console.log('✅ scenario quality ok')
-MJS
-
-node <<'NODE'
-const fs = require('fs')
-const pkgPath = 'package.json'
-const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'))
-pkg.scripts = pkg.scripts || {}
-pkg.scripts['scenario:lint'] = 'node scripts/scenario-quality-lint.mjs'
-pkg.scripts['atlas:quality'] = 'npm run validate:project && npm run scenario:lint'
-fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
-NODE
-
-cat > tests/unit/scenarioQualityLintScript.test.ts <<'TS'
-import { describe, expect, it } from 'vitest'
-import { existsSync, readFileSync } from 'node:fs'
-
-describe('scenario quality linter script', () => {
-  it('exists and checks protocol ordering', () => {
-    expect(existsSync('scripts/scenario-quality-lint.mjs')).toBe(true)
-    const script = readFileSync('scripts/scenario-quality-lint.mjs', 'utf8')
-    expect(script).toContain('DNS should happen before TCP')
-    expect(script).toContain('TLS should happen before HTTP request')
-    expect(script).toContain('scenario quality ok')
-  })
-})
-TS
-
-python3 <<'PY'
-from pathlib import Path
-p = Path('src/features/packet-atlas/PacketAtlasPage.tsx')
-if p.exists():
-    text = p.read_text()
-    for old in ['Packet Atlas v4.2', 'Packet Atlas v4.1', 'Packet Atlas v4.0']:
-        text = text.replace(old, 'Packet Atlas v4.3')
-    p.write_text(text)
-PY
-
-echo "✅ v4.3 applied — Scenario Quality Linter."
-echo "🧪 Run: npm run build && npm test && npm run scenario:lint"
