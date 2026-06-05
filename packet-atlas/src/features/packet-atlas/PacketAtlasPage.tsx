@@ -18,7 +18,7 @@ export function PacketAtlasPage() {
     <div className="atlas-shell atlas-shell--v41">
       <header className="atlas-header atlas-header--v41">
         <div>
-          <p className="eyebrow">Packet Atlas v4.1</p>
+          <p className="eyebrow">Packet Atlas v4.2</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>
