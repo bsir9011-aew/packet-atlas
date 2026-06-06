@@ -3,12 +3,29 @@ import path from 'node:path'
 
 const args = process.argv.slice(2)
 const allowPending = args.includes('--allow-pending')
-const positional = args.filter((arg) => !arg.startsWith('--'))
+
+function readArg(name, fallback) {
+  const index = args.indexOf(name)
+  return index >= 0 && args[index + 1] ? args[index + 1] : fallback
+}
+
+const positional = args.filter((arg, index) => {
+  if (arg.startsWith('--')) return false
+  const previous = args[index - 1]
+  return previous !== '--report'
+})
+
 const input =
   positional[0] ??
-  'src/data/fixtures/https-basic.real.fixture.placeholder.json'
-const reportPath =
-  positional[1] ?? 'reports/capture-fixture-readiness.json'
+  'src/data/fixtures/https-basic.real.fixture.json'
+
+const reportPath = readArg('--report', 'reports/capture-fixture-readiness.json')
+
+if (reportPath.startsWith('src/data/fixtures/')) {
+  console.error(`❌ Refusing to write readiness report inside fixture directory: ${reportPath}`)
+  console.error('Use --report reports/<name>.json instead.')
+  process.exit(1)
+}
 
 if (!fs.existsSync(input)) {
   console.error(`❌ fixture not found: ${input}`)

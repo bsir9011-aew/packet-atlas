@@ -1,37 +1,21 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Playwright artifacts
-playwright-report/
+# Logs\nlogs\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\npnpm-debug.log*\nlerna-debug.log*\n\nnode_modules\ndist\ndist-ssr\n*.local\n\n# Editor directories and files\n.vscode/*\n!.vscode/extensions.json\n.idea\n.DS_Store\n*.suo\n*.ntvs*\n*.njsproj\n*.sln\n*.sw?\n\n# Playwright artifacts\nplaywright-report/\ntest-results/\nblob-report/\n\n# Packet Atlas local/generated files\n# Local patch installers and generated patch backups\napply-v*.sh\n*.REPAIR.sh\npatches/backups/\n# Capture mapper generated outputs\n*.mapping.json\n\n# Packet Atlas capture artifacts generated locally\ncaptures/*.pcap\ncaptures/*.pcapng\nsrc/data/fixtures/*.raw.json\nsrc/data/fixtures/*.candidate.json\nsrc/data/fixtures/*.candidate.redacted.json\nsrc/data/fixtures/*.mapping.json\ncaptures/\nsrc/data/fixtures/*.clean.real.fixture.json\nreports/pcap-profile.json\nreports/real-candidate-validation.json\nreports/capture-privacy-audit.json\n
+# Packet Atlas local/dev artifacts
+node_modules/
+dist/
 test-results/
-blob-report/
-
-# Packet Atlas local/generated files
-# Local patch installers and generated patch backups
+playwright-report/
+patches/
 apply-v*.sh
 *.REPAIR.sh
-patches/backups/
-# Capture mapper generated outputs
-*.mapping.json
+# Packet Atlas capture artifacts generated locally
+/captures/
+/captures/*.pcap
+/captures/*.pcapng
+src/data/fixtures/*.raw.json
+src/data/fixtures/*.candidate.json
+src/data/fixtures/*.candidate.redacted.json
+src/data/fixtures/*.mapping.json
+src/data/fixtures/*.clean.real.fixture.json
+reports/pcap-profile.json
+reports/real-candidate-validation.json
+reports/capture-privacy-audit.json

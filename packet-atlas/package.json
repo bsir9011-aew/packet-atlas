@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "5.22.0",
+  "version": "5.23.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -38,7 +38,7 @@
     "capture:doctor": "node scripts/captures/capture-environment-doctor.mjs",
     "capture:plan": "node scripts/captures/create-controlled-capture-plan.mjs",
     "capture:readiness": "node scripts/captures/fixture-readiness.mjs --allow-pending",
-    "capture:readiness:strict": "node scripts/captures/fixture-readiness.mjs src/data/fixtures/https-basic.real.fixture.json",
+    "capture:readiness:strict": "node scripts/captures/fixture-readiness.mjs",
     "release:readiness": "node scripts/release-readiness.mjs",
     "capture:commands": "node scripts/captures/print-capture-commands.mjs",
     "capture:profile": "node scripts/captures/profile-pcap.mjs",
@@ -52,7 +52,8 @@
     "capture:coverage:compare": "node scripts/captures/compare-fixture-stage-coverage.mjs",
     "capture:evidence": "node scripts/captures/build-evidence-pack.mjs",
     "v6:readiness": "node scripts/v6-readiness-gate.mjs",
-    "v6:readiness:strict": "node scripts/v6-readiness-gate.mjs --strict"
+    "v6:readiness:strict": "node scripts/v6-readiness-gate.mjs --strict",
+    "capture:slice": "node scripts/captures/slice-clean-capture.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
