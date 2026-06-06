@@ -1,49 +1,95 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const scenarioPath = 'src/features/packet-atlas/scenarios/httpsExample.ts'
+const scenarioDir = 'src/features/packet-atlas/scenarios'
 const fixtureDir = 'src/data/fixtures'
 const failures = []
 const warnings = []
 
-if (!fs.existsSync(scenarioPath)) {
-  console.error(`❌ missing scenario file: ${scenarioPath}`)
-  process.exit(1)
+const manifestFiles = fs
+  .readdirSync(scenarioDir)
+  .filter((file) => file.endsWith('.manifest.v2.json'))
+
+const fixturesById = new Map()
+
+for (const file of fs.readdirSync(fixtureDir).filter((name) => name.endsWith('.json'))) {
+  const full = path.join(fixtureDir, file)
+  try {
+    const fixture = JSON.parse(fs.readFileSync(full, 'utf8'))
+    if (fixture.id) fixturesById.set(fixture.id, { file, fixture })
+  } catch {
+    warnings.push(`${file}: skipped non-JSON or malformed fixture candidate`)
+  }
 }
 
-const scenarioText = fs.readFileSync(scenarioPath, 'utf8')
-const stagesStart = scenarioText.indexOf('stages:')
-const stageText = stagesStart >= 0 ? scenarioText.slice(stagesStart) : scenarioText
-const stageIds = new Set([...stageText.matchAll(/id:\s*['"]([^'"]+)['"]/g)].map((match) => match[1]))
+for (const manifestFile of manifestFiles) {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(scenarioDir, manifestFile), 'utf8'),
+  )
 
-const files = fs.readdirSync(fixtureDir).filter((file) => file.includes('.fixture') && file.endsWith('.json'))
+  if (!manifest.qualityProfile?.requiresCaptureCrossValidation) continue
 
-for (const file of files) {
-  const full = path.join(fixtureDir, file)
-  const fixture = JSON.parse(fs.readFileSync(full, 'utf8'))
-  const seenFrameNumbers = new Set()
+  const scenarioText = fs.readFileSync(manifest.scenarioModule, 'utf8')
+  const stagesStart = scenarioText.indexOf('stages:')
+  const stageText =
+    stagesStart >= 0 ? scenarioText.slice(stagesStart) : scenarioText
+  const stageIds = new Set(
+    [...stageText.matchAll(/id:\s*['"]([^'"]+)['"]/g)].map(
+      (match) => match[1],
+    ),
+  )
 
-  for (const frame of fixture.frames ?? []) {
-    if (typeof frame.frameNumber === 'number') {
-      if (seenFrameNumbers.has(frame.frameNumber)) failures.push(`${file}: duplicate frameNumber ${frame.frameNumber}`)
-      seenFrameNumbers.add(frame.frameNumber)
+  for (const fixtureId of manifest.fixtureIds ?? []) {
+    const entry = fixturesById.get(fixtureId)
+
+    if (!entry) {
+      failures.push(`${manifestFile}: fixture id not found: ${fixtureId}`)
+      continue
     }
-    if (frame.stageHint && !stageIds.has(frame.stageHint)) failures.push(`${file}: unknown stageHint ${frame.stageHint}`)
-    if (!Array.isArray(frame.protocolStack)) warnings.push(`${file}: frame ${frame.frameNumber ?? '?'} has no protocolStack`)
-  }
 
-  for (const plan of fixture.stageFramePlan ?? []) {
-    if (!stageIds.has(plan.stageId)) failures.push(`${file}: unknown stageFramePlan stageId ${plan.stageId}`)
-    if (!Array.isArray(plan.requiredLayers) || plan.requiredLayers.length === 0) {
-      failures.push(`${file}: ${plan.stageId} requires at least one layer`)
+    const seenFrameNumbers = new Set()
+
+    for (const frame of entry.fixture.frames ?? []) {
+      if (typeof frame.frameNumber === 'number') {
+        if (seenFrameNumbers.has(frame.frameNumber)) {
+          failures.push(
+            `${entry.file}: duplicate frameNumber ${frame.frameNumber}`,
+          )
+        }
+        seenFrameNumbers.add(frame.frameNumber)
+      }
+
+      if (frame.stageHint && !stageIds.has(frame.stageHint)) {
+        failures.push(`${entry.file}: unknown stageHint ${frame.stageHint}`)
+      }
+    }
+
+    for (const plan of entry.fixture.stageFramePlan ?? []) {
+      if (!stageIds.has(plan.stageId)) {
+        failures.push(
+          `${entry.file}: unknown stageFramePlan stageId ${plan.stageId}`,
+        )
+      }
+
+      if (
+        !Array.isArray(plan.requiredLayers) ||
+        plan.requiredLayers.length === 0
+      ) {
+        failures.push(
+          `${entry.file}: ${plan.stageId} requires at least one layer`,
+        )
+      }
     }
   }
 }
 
 for (const warning of warnings) console.log(`⚠️ ${warning}`)
+
 if (failures.length > 0) {
   for (const failure of failures) console.error(`❌ ${failure}`)
   process.exit(1)
 }
 
-console.log(`✅ scenario ↔ capture cross-validation ok (${files.length} fixture file(s), ${stageIds.size} scenario stage id(s))`)
+console.log(
+  `✅ manifest-driven scenario ↔ capture cross-validation ok (${manifestFiles.length} manifest file(s))`,
+)

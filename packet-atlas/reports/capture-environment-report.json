@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-06-06T06:17:32.154Z",
+  "cwd": "/workspaces/packet-atlas/packet-atlas",
+  "platform": "linux",
+  "node": "v24.14.0",
+  "tools": {
+    "tshark": {
+      "command": "tshark",
+      "available": false,
+      "detail": "spawnSync tshark ENOENT"
+    },
+    "dumpcap": {
+      "command": "dumpcap",
+      "available": false,
+      "detail": "spawnSync dumpcap ENOENT"
+    },
+    "capinfos": {
+      "command": "capinfos",
+      "available": false,
+      "detail": "spawnSync capinfos ENOENT"
+    },
+    "editcap": {
+      "command": "editcap",
+      "available": false,
+      "detail": "spawnSync editcap ENOENT"
+    }
+  },
+  "interfaces": [],
+  "checks": [
+    {
+      "id": "tshark",
+      "status": "fail",
+      "message": "TShark is missing. Install Wireshark/TShark before real capture work."
+    },
+    {
+      "id": "interfaces",
+      "status": "warn",
+      "message": "No capture interfaces listed. Reading an existing PCAP can still work."
+    },
+    {
+      "id": "fixture-dir",
+      "status": "pass",
+      "message": "Normalized fixture directory exists."
+    },
+    {
+      "id": "capture-docs",
+      "status": "pass",
+      "message": "Capture documentation directory exists."
+    }
+  ],
+  "warnings": [
+    "A browser may use cache, DoH, HTTP/2 or HTTP/3 and invalidate the frozen baseline assumptions.",
+    "Capture only traffic and systems you are authorized to inspect.",
+    "The doctor checks readiness; it does not start packet capture."
+  ]
+}

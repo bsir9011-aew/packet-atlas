@@ -4,6 +4,10 @@ export const ScenarioManifestV2Schema = z.object({
   schemaVersion: z.literal(2),
   id: z.string().min(1),
   title: z.string().min(1),
+  shortTitle: z.string().min(1),
+  status: z.enum(['ready', 'draft', 'invalid']),
+  protocolFamily: z.string().min(1),
+  description: z.string().min(1),
   scenarioModule: z.string().min(1),
   capabilities: z.array(
     z.enum([

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "id": "ssh-connection-basic",
+  "title": "Opening an SSH session to example.com",
+  "shortTitle": "SSH session",
+  "status": "ready",
+  "protocolFamily": "SSH / TCP / DNS / ARP",
+  "description": "Remote shell connection journey over TCP/22 with SSH identity and authentication checkpoints.",
+  "scenarioModule": "src/features/packet-atlas/scenarios/sshConnectionScenario.ts",
+  "capabilities": [
+    "journey",
+    "diagnostics",
+    "protocols",
+    "internals"
+  ],
+  "fixtureIds": [],
+  "qualityProfile": {
+    "requiresScenarioLint": false,
+    "requiresCaptureCrossValidation": false,
+    "supportsRealCapture": false
+  }
+}

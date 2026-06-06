@@ -1,11 +1,11 @@
 # Packet Atlas hygiene audit
 
-Generated: 2026-06-05T10:19:27.866Z
+Generated: 2026-06-06T06:28:19.721Z
 
 ## Summary
 
 - TSX component files: 44
-- TS model/helper files: 39
+- TS model/helper files: 40
 - CSS files: 1
 - CSS total size: 101830 bytes
 - Duplicate basenames: 0

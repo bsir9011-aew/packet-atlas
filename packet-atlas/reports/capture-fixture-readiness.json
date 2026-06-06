@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-06-06T06:28:18.827Z",
+  "input": "src/data/fixtures/https-basic.real.fixture.placeholder.json",
+  "fixtureId": "https-basic-real-placeholder",
+  "fixtureStatus": "pending-real-capture",
+  "status": "pending",
+  "frameCount": 0,
+  "plannedStageCount": 4,
+  "attachedStageCount": 0,
+  "checks": [
+    {
+      "id": "fixture-id",
+      "status": "pass",
+      "message": "Fixture id: https-basic-real-placeholder"
+    },
+    {
+      "id": "real-frames",
+      "status": "pending",
+      "message": "No frames are attached yet."
+    },
+    {
+      "id": "unique-frame-numbers",
+      "status": "pass",
+      "message": "Cannot verify frame numbers before frames exist."
+    },
+    {
+      "id": "protocol-stacks",
+      "status": "pending",
+      "message": "Cannot verify protocol stacks before frames exist."
+    },
+    {
+      "id": "planned-stage-coverage",
+      "status": "pending",
+      "message": "Missing planned stage mappings: dns-query, dns-response, tcp-handshake, tls-handshake"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "5.7.0",
+  "version": "5.12.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -34,7 +34,12 @@
     "visual:update": "playwright test --config=playwright.visual.config.ts --update-snapshots",
     "visual:test": "playwright test --config=playwright.visual.config.ts",
     "capture:map": "node scripts/captures/map-fixture-to-stages.mjs",
-    "verify:full": "node scripts/verify-packet-atlas.mjs --full"
+    "verify:full": "node scripts/verify-packet-atlas.mjs --full",
+    "capture:doctor": "node scripts/captures/capture-environment-doctor.mjs",
+    "capture:plan": "node scripts/captures/create-controlled-capture-plan.mjs",
+    "capture:readiness": "node scripts/captures/fixture-readiness.mjs --allow-pending",
+    "capture:readiness:strict": "node scripts/captures/fixture-readiness.mjs src/data/fixtures/https-basic.real.fixture.json",
+    "release:readiness": "node scripts/release-readiness.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

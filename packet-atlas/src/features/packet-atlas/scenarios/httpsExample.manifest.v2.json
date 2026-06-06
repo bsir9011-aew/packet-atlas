@@ -2,6 +2,10 @@
   "schemaVersion": 2,
   "id": "https-example-basic",
   "title": "Opening https://example.com",
+  "shortTitle": "HTTPS basic",
+  "status": "ready",
+  "protocolFamily": "HTTPS / TCP / TLS / DNS",
+  "description": "The baseline request/response journey for https://example.com.",
   "scenarioModule": "src/features/packet-atlas/scenarios/httpsExample.ts",
   "capabilities": [
     "journey",
