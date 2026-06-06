@@ -17,6 +17,7 @@ const steps = [
   ['Scenario quality', 'npm', ['run', 'scenario:lint']],
   ['Capture fixtures', 'npm', ['run', 'capture:validate']],
   ['Capture readiness', 'npm', ['run', 'capture:readiness']],
+  ['Capture privacy audit', 'npm', ['run', 'capture:privacy:audit']],
   ['Scenario/capture cross-validation', 'npm', ['run', 'capture:cross-validate']],
   ['Component inventory', 'npm', ['run', 'component:inventory']],
   ['Hygiene audit', 'npm', ['run', 'hygiene:audit']],

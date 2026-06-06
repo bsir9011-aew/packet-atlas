@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "5.17.0",
+  "version": "5.22.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -45,7 +45,14 @@
     "capture:candidate": "node scripts/captures/build-real-fixture-candidate.mjs",
     "capture:candidate:validate": "node scripts/captures/validate-real-candidate.mjs",
     "capture:candidate:promote": "node scripts/captures/validate-real-candidate.mjs --promote",
-    "capture:workflow": "node scripts/captures/real-capture-workflow.mjs"
+    "capture:workflow": "node scripts/captures/real-capture-workflow.mjs",
+    "capture:redact": "node scripts/captures/redact-fixture.mjs",
+    "capture:privacy:audit": "node scripts/captures/privacy-audit.mjs",
+    "capture:privacy:audit:strict": "node scripts/captures/privacy-audit.mjs --strict",
+    "capture:coverage:compare": "node scripts/captures/compare-fixture-stage-coverage.mjs",
+    "capture:evidence": "node scripts/captures/build-evidence-pack.mjs",
+    "v6:readiness": "node scripts/v6-readiness-gate.mjs",
+    "v6:readiness:strict": "node scripts/v6-readiness-gate.mjs --strict"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
