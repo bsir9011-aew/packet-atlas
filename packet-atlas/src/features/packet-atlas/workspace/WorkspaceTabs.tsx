@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CaptureFixturePanel } from '../captures/CaptureFixturePanel'
 import { CaptureAwareInspector } from '../capture-inspector/CaptureAwareInspector'
+import { RealCaptureEvidencePanel } from '../real-capture/RealCaptureEvidencePanel'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
 import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
 import { ComponentLab } from '../component-lab/ComponentLab'
@@ -80,7 +81,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v6.0 real capture</div>
+        <div className="workspace-shell__badge">v6.1 evidence</div>
       </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
@@ -209,6 +210,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               title="Capture bridge"
               note="Synthetic scenario plus a verified redacted real capture fixture. The browser reads normalized JSON, not PCAP directly."
             >
+              <RealCaptureEvidencePanel />
               <CaptureFixturePanel scenario={scenario} stage={stage} />
               <CaptureAwareInspector stage={stage} />
             </PanelCluster>

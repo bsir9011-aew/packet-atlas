@@ -4195,3 +4195,130 @@ button:focus-visible,
     animation-iteration-count: 1 !important;
   }
 }
+
+/* === Packet Atlas v6.1 Real Capture Evidence Panel START === */
+
+.real-capture-evidence-panel {
+  border: 1px solid #1e293b;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 24rem),
+    rgba(15, 23, 42, 0.76);
+  box-shadow: 0 18px 80px rgba(0, 0, 0, 0.28);
+}
+
+.real-capture-evidence__hero {
+  margin: 14px 16px 12px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 118px;
+  gap: 14px;
+  align-items: stretch;
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.54);
+}
+
+.real-capture-evidence__eyebrow {
+  margin: 0 0 5px;
+  color: #86efac;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.real-capture-evidence__hero h3 {
+  margin: 0 0 6px;
+  color: #f8fafc;
+}
+
+.real-capture-evidence__hero p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.real-capture-evidence__seal {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  border: 1px solid rgba(34, 197, 94, 0.42);
+  border-radius: 18px;
+  background: rgba(6, 78, 59, 0.3);
+}
+
+.real-capture-evidence__seal strong {
+  font-size: 2rem;
+  color: #bbf7d0;
+}
+
+.real-capture-evidence__seal span {
+  color: #86efac;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.real-capture-evidence__grid {
+  margin: 0 16px 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 10px;
+}
+
+.real-capture-evidence__card {
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(2, 6, 23, 0.48);
+  display: grid;
+  gap: 5px;
+}
+
+.real-capture-evidence__card span {
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.real-capture-evidence__card strong {
+  color: #f8fafc;
+  overflow-wrap: anywhere;
+}
+
+.real-capture-evidence__card small {
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.real-capture-evidence__stage-strip {
+  margin: 0 16px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.real-capture-evidence__stage-strip span {
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(2, 6, 23, 0.52);
+  color: #cbd5e1;
+  font-size: 0.82rem;
+}
+
+.real-capture-evidence__stage-strip strong {
+  color: #86efac;
+}
+
+@media (max-width: 720px) {
+  .real-capture-evidence__hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Packet Atlas v6.1 Real Capture Evidence Panel END === */
