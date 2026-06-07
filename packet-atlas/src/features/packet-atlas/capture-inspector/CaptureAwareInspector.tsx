@@ -36,6 +36,14 @@ export function CaptureAwareInspector({ stage }: Props) {
               <span>Source</span>
               <strong>{projection.source ?? '—'}</strong>
             </div>
+            <div>
+              <span>Redacted</span>
+              <strong>{projection.frame.redacted ? 'yes' : 'no'}</strong>
+            </div>
+            <div>
+              <span>Confidence</span>
+              <strong>{projection.frame.confidence ?? '—'}</strong>
+            </div>
           </div>
         )}
 

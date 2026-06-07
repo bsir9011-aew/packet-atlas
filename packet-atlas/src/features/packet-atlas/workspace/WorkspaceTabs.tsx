@@ -80,7 +80,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v5.7 hardened</div>
+        <div className="workspace-shell__badge">v6.0 real capture</div>
       </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
@@ -207,7 +207,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           <div className="workspace-body__stack">
             <PanelCluster
               title="Capture bridge"
-              note="Synthetic scenario first, real capture fixtures later. The browser does not parse PCAP directly."
+              note="Synthetic scenario plus a verified redacted real capture fixture. The browser reads normalized JSON, not PCAP directly."
             >
               <CaptureFixturePanel scenario={scenario} stage={stage} />
               <CaptureAwareInspector stage={stage} />

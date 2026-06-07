@@ -5,7 +5,7 @@
   "shortTitle": "HTTPS basic",
   "status": "ready",
   "protocolFamily": "HTTPS / TCP / TLS / DNS",
-  "description": "The baseline request/response journey for https://example.com.",
+  "description": "The baseline request/response journey for https://example.com, now linked to a verified redacted real capture fixture.",
   "scenarioModule": "src/features/packet-atlas/scenarios/httpsExample.ts",
   "capabilities": [
     "journey",
@@ -16,7 +16,7 @@
   ],
   "fixtureIds": [
     "https-example-synthetic-fixture",
-    "https-basic-real-placeholder"
+    "https-basic-real-fixture"
   ],
   "qualityProfile": {
     "requiresScenarioLint": true,

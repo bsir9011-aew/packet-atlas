@@ -1,23 +1,10 @@
-import syntheticFixture from '../../../data/fixtures/https-example.synthetic.fixture.json'
 import realPlaceholder from '../../../data/fixtures/https-basic.real.fixture.placeholder.json'
+import {
+  getFixtureForStage,
+  summarizeRealCaptureFixture,
+  type CaptureFrameFixture,
+} from '../captures/captureFixtureModel'
 import type { JourneyStage } from '../schema/journeyScenarioSchema'
-
-type FixtureFrame = {
-  frameNumber: number
-  timeRelative?: string | null
-  protocolStack?: string[]
-  summary?: Record<string, unknown>
-  stageHint?: string
-}
-
-type FixtureLike = {
-  id: string
-  source?: string
-  status?: string
-  kind?: string
-  note?: string
-  frames?: FixtureFrame[]
-}
 
 type RealCaptureStagePlan = {
   stageId: string
@@ -25,24 +12,23 @@ type RealCaptureStagePlan = {
   requiredLayers?: string[]
 }
 
-type RealCaptureFixtureLike = FixtureLike & {
+type RealCaptureFixtureLike = {
+  id: string
+  source?: string
+  status?: string
+  kind?: string
+  note?: string
   stageFramePlan?: RealCaptureStagePlan[]
 }
 
-const syntheticCaptureFixture = syntheticFixture as FixtureLike
 const realCapturePlaceholder = realPlaceholder as RealCaptureFixtureLike
 
-const fixtures: FixtureLike[] = [
-  syntheticCaptureFixture,
-  realCapturePlaceholder,
-]
-
 export type CaptureInspectorProjection = {
-  mode: 'synthetic' | 'real-placeholder' | 'missing'
+  mode: 'verified-real' | 'synthetic' | 'real-placeholder' | 'missing'
   fixtureId?: string
   source?: string
   note?: string
-  frame?: FixtureFrame
+  frame?: CaptureFrameFixture
   stageId: string
   summary: string
 }
@@ -50,21 +36,24 @@ export type CaptureInspectorProjection = {
 export function getCaptureProjectionForStage(
   stage: JourneyStage,
 ): CaptureInspectorProjection {
-  const syntheticFrame = fixtures
-    .flatMap((fixture) =>
-      (fixture.frames ?? []).map((frame) => ({ fixture, frame })),
-    )
-    .find(({ frame }) => frame.stageHint === stage.id)
+  const fixture = getFixtureForStage(stage.id)
+  const realSummary = summarizeRealCaptureFixture()
 
-  if (syntheticFrame) {
+  if (fixture) {
+    const mode = fixture.isReal ? 'verified-real' : 'synthetic'
+
     return {
-      mode: 'synthetic',
-      fixtureId: syntheticFrame.fixture.id,
-      source: syntheticFrame.fixture.source,
-      note: syntheticFrame.fixture.note,
-      frame: syntheticFrame.frame,
+      mode,
+      fixtureId: fixture.fixtureId,
+      source: fixture.source,
+      note: fixture.isReal
+        ? `Real capture attached: ${realSummary.frameCount} redacted frames, ${realSummary.stageCount} mapped stage groups.`
+        : 'Synthetic fixture fallback.',
+      frame: fixture,
       stageId: stage.id,
-      summary: `Synthetic fixture frame ${syntheticFrame.frame.frameNumber} is attached to ${stage.shortName}.`,
+      summary: fixture.isReal
+        ? `Verified real capture frame ${fixture.frameNumber} is attached to ${stage.shortName}.`
+        : `Synthetic fixture frame ${fixture.frameNumber} is attached to ${stage.shortName}.`,
     }
   }
 
