@@ -2,10 +2,16 @@ import {
   buildRealCaptureEvidenceCards,
   buildRealCaptureEvidenceSummary,
 } from './realCaptureEvidenceModel'
+import {
+  buildRealFrameSemanticSummary,
+  getTopRealFrameSemanticRows,
+} from './realFrameSemanticsModel'
 
 export function RealCaptureEvidencePanel() {
   const summary = buildRealCaptureEvidenceSummary()
   const cards = buildRealCaptureEvidenceCards()
+  const semanticSummary = buildRealFrameSemanticSummary()
+  const semanticRows = getTopRealFrameSemanticRows(8)
 
   return (
     <section className="real-capture-evidence-panel">
@@ -45,6 +51,34 @@ export function RealCaptureEvidencePanel() {
             {stageId}: <strong>{count}</strong>
           </span>
         ))}
+      </div>
+
+      <div className="real-frame-semantics">
+        <div className="real-frame-semantics__header">
+          <div>
+            <strong>Frame semantics</strong>
+            <p>{semanticSummary.teachingPoint}</p>
+          </div>
+          <span>{semanticSummary.refinedCount} refined</span>
+        </div>
+
+        <div className="real-frame-semantics__grid">
+          {Object.entries(semanticSummary.categoryCounts).map(([category, count]) => (
+            <span key={category}>
+              {category}: <strong>{count}</strong>
+            </span>
+          ))}
+        </div>
+
+        <div className="real-frame-semantics__rows">
+          {semanticRows.map((row) => (
+            <div key={row.frameNumber}>
+              <span>#{row.frameNumber}</span>
+              <strong>{row.category}</strong>
+              <small>{row.reason}</small>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

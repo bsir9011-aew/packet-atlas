@@ -4322,3 +4322,105 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v6.1 Real Capture Evidence Panel END === */
+
+/* === Packet Atlas v6.2 Real Frame Semantics START === */
+
+.real-frame-semantics {
+  margin: 0 16px 16px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.48);
+  overflow: hidden;
+}
+
+.real-frame-semantics__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 13px 14px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.real-frame-semantics__header strong {
+  color: #f8fafc;
+}
+
+.real-frame-semantics__header p {
+  margin: 4px 0 0;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.real-frame-semantics__header > span {
+  flex: 0 0 auto;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #bae6fd;
+  background: rgba(8, 47, 73, 0.42);
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.real-frame-semantics__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.real-frame-semantics__grid span {
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #cbd5e1;
+  background: rgba(15, 23, 42, 0.68);
+  font-size: 0.8rem;
+}
+
+.real-frame-semantics__grid strong {
+  color: #7dd3fc;
+}
+
+.real-frame-semantics__rows {
+  display: grid;
+  gap: 7px;
+  padding: 12px 14px 14px;
+}
+
+.real-frame-semantics__rows div {
+  display: grid;
+  grid-template-columns: 48px 180px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 9px;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.real-frame-semantics__rows span {
+  color: #38bdf8;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.real-frame-semantics__rows strong {
+  color: #f8fafc;
+  overflow-wrap: anywhere;
+}
+
+.real-frame-semantics__rows small {
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+@media (max-width: 760px) {
+  .real-frame-semantics__rows div {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Packet Atlas v6.2 Real Frame Semantics END === */
