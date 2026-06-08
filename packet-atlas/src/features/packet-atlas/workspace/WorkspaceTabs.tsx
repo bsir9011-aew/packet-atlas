@@ -37,6 +37,7 @@ import { StageDeepDiveCards } from '../deep-dive/StageDeepDiveCards'
 import { TlsVisibilityPanel } from '../tls-visibility/TlsVisibilityPanel'
 import { PacketBytesHexPane } from '../bytes/PacketBytesHexPane'
 import { RouteTimeline } from '../timeline/RouteTimeline'
+import { AtlasOrientationPanel } from '../orientation/AtlasOrientationPanel'
 import { JourneyControls } from '../controls/JourneyControls'
 import { atlasWorkspaces, type AtlasWorkspaceId } from './workspaceModel'
 
@@ -84,8 +85,10 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v7.0 contrast workspace</div>
+        <div className="workspace-shell__badge">v7.2 oriented atlas</div>
       </div>
+
+      <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
         {atlasWorkspaces.map((workspace) => (
