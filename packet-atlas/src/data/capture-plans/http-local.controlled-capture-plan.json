@@ -1,0 +1,25 @@
+{
+  "id": "http-local-plaintext-contrast",
+  "status": "planned",
+  "purpose": "Create a controlled plaintext HTTP contrast capture for comparison with the verified HTTPS/TLS capture.",
+  "safety": {
+    "scope": "localhost only",
+    "rawArtifactsPolicy": "local-only",
+    "recommendedInterface": "lo"
+  },
+  "commands": {
+    "server": "python3 -m http.server 8080 --bind 127.0.0.1",
+    "capture": "sudo tshark -i lo -a duration:15 -f \"tcp port 8080\" -w captures/http-local.pcapng",
+    "request": "curl --http1.1 --max-time 10 http://127.0.0.1:8080/ -o /dev/null -v"
+  },
+  "expectedEvidence": [
+    "TCP connection on port 8080",
+    "Readable HTTP GET /",
+    "Readable HTTP response status and headers",
+    "No TLS layer"
+  ],
+  "contrastWithHttps": {
+    "httpsCapture": "DNS + TCP/443 + TLS + HTTP readable: 0",
+    "httpLocalExpected": "TCP/8080 + readable HTTP request/response + TLS: 0"
+  }
+}
