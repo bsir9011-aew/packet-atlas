@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "6.7.0",
+  "version": "6.8.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -59,7 +59,10 @@
     "visual:ci:update": "CI=1 playwright test --config=playwright.visual.config.ts --update-snapshots",
     "visual:ci:test": "CI=1 playwright test --config=playwright.visual.config.ts",
     "visual:baseline:guard": "node scripts/visual/visual-baseline-guard.mjs",
-    "visual:clean": "node scripts/visual/clean-visual-artifacts.mjs"
+    "visual:clean": "node scripts/visual/clean-visual-artifacts.mjs",
+    "capture:http-local:candidate": "node scripts/captures/build-http-local-candidate.mjs",
+    "capture:http-local:validate": "node scripts/captures/validate-http-local-candidate.mjs",
+    "capture:http-local:promote": "node scripts/captures/promote-http-local-candidate.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
