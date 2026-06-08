@@ -4424,3 +4424,101 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v6.2 Real Frame Semantics END === */
+
+/* === Packet Atlas v6.3 Real Capture Timeline START === */
+
+.real-capture-timeline-panel {
+  border: 1px solid #1e293b;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 26rem),
+    rgba(15, 23, 42, 0.76);
+  box-shadow: 0 18px 80px rgba(0, 0, 0, 0.28);
+}
+
+.real-capture-timeline__hero {
+  margin: 14px 16px 12px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(2, 6, 23, 0.5);
+}
+
+.real-capture-timeline__hero strong {
+  display: block;
+  color: #f8fafc;
+  margin-bottom: 5px;
+}
+
+.real-capture-timeline__hero p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.real-capture-timeline__rail {
+  display: grid;
+  gap: 10px;
+  margin: 0 16px 16px;
+}
+
+.real-capture-timeline__group {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  padding: 12px;
+  background: rgba(2, 6, 23, 0.46);
+}
+
+.real-capture-timeline__index {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  background: rgba(8, 47, 73, 0.42);
+  color: #7dd3fc;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.real-capture-timeline__group h3 {
+  margin: 0 0 5px;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.real-capture-timeline__group p {
+  margin: 0 0 9px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.real-capture-timeline__group small {
+  display: block;
+  margin-top: 8px;
+  color: #94a3b8;
+  overflow-wrap: anywhere;
+}
+
+.real-capture-timeline__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.real-capture-timeline__meta span {
+  border: 1px solid #334155;
+  border-radius: 999px;
+  padding: 6px 9px;
+  background: rgba(15, 23, 42, 0.66);
+  color: #bae6fd;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* === Packet Atlas v6.3 Real Capture Timeline END === */
