@@ -1,78 +1,81 @@
 # Packet Atlas
 
-**Packet Atlas** is an interactive client-side atlas for following one data journey across many lenses: user intent, application protocol, TLS, transport, IP, link layer, devices, failure variants and capture fixtures.
+Packet Atlas is an interactive network/data journey atlas.
 
-It is not a course platform, quiz app or Cyber Career clone. The product model is:
+It explains one request/response journey across multiple abstraction layers: user intent, browser/application meaning, DNS, transport, TLS, routing, link-layer delivery, server-side processing and response rendering.
 
-> **one journey, many observers, many layers**
+The current milestone includes two verified real capture fixtures:
 
-## Current baseline scenarios
+| Fixture | What it proves |
+|---|---|
+| `https-basic-real-fixture` | HTTPS exposes DNS/TCP/TLS evidence, but readable HTTP is not visible on the wire. |
+| `http-local-real-fixture` | Plain HTTP on localhost exposes readable request/response evidence. |
 
-- `https://example.com` with frozen assumptions: IPv4, classic DNS over UDP/53, TCP, TLS 1.3, HTTP/1.1, no cache, no service worker, no connection reuse, NAT enabled, Ethernet access medium.
-- SSH session over TCP/22 with DNS, ARP/default gateway, TCP and SSH checkpoints.
+## Why this project exists
 
-## Main workspaces
+Packet Atlas is not a course platform, not a quiz app and not a generic e-learning platform. It is a visual, layered atlas for understanding how one action becomes packets, frames, encrypted records and application behavior.
 
-- **Journey** — map, timeline, stage controls and active-stage inspector.
-- **Diagnostics** — failure variants, flow diff, failure trace, NAT and firewall state.
-- **Protocols** — DNS modes, HTTP versions, IPv6 neighbor discovery, Wi-Fi, TLS visibility, proxy termination, CDN edge and symbolic PHY.
-- **Internals** — observer visibility, device cutaway, packet fields, Wireshark-style tree, hex pane and component catalog.
-- **Capture** — synthetic fixtures, real-capture placeholders, capture-aware inspector and trace playback.
-
-## Quality commands
-
-```bash
-npm run verify        # standard local gate
-npm run verify:e2e    # standard gate + Playwright E2E
-npm run verify:full   # full gate + E2E + visual regression
-```
-
-Individual commands:
-
-```bash
-npm run build
-npm test
-npm run lint
-npm run bundle:budget
-npm run scenario:manifest:validate
-npm run scenario:lint
-npm run capture:validate
-npm run capture:cross-validate
-npm run capture:map -- src/data/fixtures/https-example.synthetic.fixture.json
-npm run component:inventory
-npm run hygiene:audit
-npm run e2e
-npm run visual:test
-npm run visual:update
-```
-
-## Running in Codespaces
-
-```bash
-npm run dev -- --host 0.0.0.0
-```
-
-## Capture model
-
-Packet Atlas does **not** parse PCAP/PCAPNG directly in the browser.
-
-The intended workflow is:
+The core idea:
 
 ```text
-pcapng
-→ TShark offline export
-→ normalized fixture JSON
-→ scenario stage/capture mapping
-→ capture-aware inspector
+One journey, many lenses.
+
+In lowercase terms for the project scope: one journey, many lenses.
 ```
 
-Synthetic fixtures are labeled as synthetic. Real captures remain marked as pending until actual TShark-normalized frames are attached.
+A browser action is not only a packet. A packet is not only an application event. Packet Atlas separates these viewpoints.
 
-## Design guardrails
+## Current technical capabilities
 
-- Keep Packet Atlas as an atlas/simulator, not a learning habit platform.
-- Add protocol/device/flow visibility before adding generic study features.
-- Keep PCAP parsing offline; runtime consumes normalized fixtures.
-- Be explicit about scenario assumptions.
-- Treat colors as helpful, not as the only meaning carrier.
-- Do not commit local patch installers or generated patch backups.
+- React/Vite application
+- TypeScript data models
+- Scenario-driven architecture
+- HTTPS baseline scenario
+- Failure variants and diagnostic views
+- Capture-aware inspector
+- Verified real capture fixture pipeline
+- HTTPS vs HTTP contrast audit
+- Unit tests, E2E tests and visual regression tests
+- GitHub Actions quality workflow
+
+## Real capture safety model
+
+Raw capture artifacts stay local-only:
+
+- `captures/*.pcapng`
+- `*.raw.json`
+- `*.candidate.json`
+- `*.mapping.json`
+
+Only reviewed, normalized and redacted JSON fixtures are committed.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Verify
+
+```bash
+npm run verify:full
+```
+
+## Real capture checks
+
+```bash
+npm run capture:registry:audit
+npm run capture:contrast:audit
+```
+
+## Project status
+
+Packet Atlas has reached the v6.x real-capture foundation:
+
+```text
+HTTPS capture: DNS + TCP/443 + TLS + readable HTTP = 0
+HTTP local capture: TCP/8080 + readable HTTP > 0 + TLS = 0
+```
+
+Next larger milestone: a dedicated visual HTTP vs HTTPS contrast workspace.
