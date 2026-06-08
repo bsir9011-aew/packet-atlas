@@ -4,6 +4,7 @@ import { CaptureAwareInspector } from '../capture-inspector/CaptureAwareInspecto
 import { RealCaptureEvidencePanel } from '../real-capture/RealCaptureEvidencePanel'
 import { RealCaptureTimelinePanel } from '../real-capture/RealCaptureTimelinePanel'
 import { TlsBoundaryPanel } from '../real-capture/TlsBoundaryPanel'
+import { HttpsHttpContrastPanel } from '../contrast-workspace/HttpsHttpContrastPanel'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
 import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
 import { ComponentLab } from '../component-lab/ComponentLab'
@@ -83,7 +84,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v6.4 TLS boundary</div>
+        <div className="workspace-shell__badge">v7.0 contrast workspace</div>
       </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
@@ -212,6 +213,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               title="Capture bridge"
               note="Synthetic scenario plus a verified redacted real capture fixture. The browser reads normalized JSON, not PCAP directly."
             >
+              <HttpsHttpContrastPanel />
               <RealCaptureEvidencePanel />
               <RealCaptureTimelinePanel />
               <TlsBoundaryPanel />
