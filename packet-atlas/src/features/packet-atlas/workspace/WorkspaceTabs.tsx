@@ -5,6 +5,7 @@ import { RealCaptureEvidencePanel } from '../real-capture/RealCaptureEvidencePan
 import { RealCaptureTimelinePanel } from '../real-capture/RealCaptureTimelinePanel'
 import { TlsBoundaryPanel } from '../real-capture/TlsBoundaryPanel'
 import { HttpsHttpContrastPanel } from '../contrast-workspace/HttpsHttpContrastPanel'
+import { CaptureWorkspaceGuidePanel } from '../capture-guide/CaptureWorkspaceGuidePanel'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
 import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
 import { ComponentLab } from '../component-lab/ComponentLab'
@@ -87,7 +88,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v7.4 guided path</div>
+        <div className="workspace-shell__badge">v7.5 capture guide</div>
       </div>
 
       <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
@@ -218,8 +219,9 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           <div className="workspace-body__stack">
             <PanelCluster
               title="Capture bridge"
-              note="Synthetic scenario plus a verified redacted real capture fixture. The browser reads normalized JSON, not PCAP directly."
+              note="Read this workspace top-down: first the guide, then HTTPS vs HTTP contrast, then detailed fixture evidence. The browser reads normalized JSON, not PCAP directly."
             >
+              <CaptureWorkspaceGuidePanel />
               <HttpsHttpContrastPanel />
               <RealCaptureEvidencePanel />
               <RealCaptureTimelinePanel />
