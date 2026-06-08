@@ -1,0 +1,10 @@
+import type { AtlasWorkspaceDefinition, AtlasWorkspaceId } from '../workspace/workspaceModel'
+export type ScreenExplanation = { workspaceId: AtlasWorkspaceId; plainEnglish: string; lookFor: string; ignoreForNow: string; notebookLine: string }
+const explanations: Record<AtlasWorkspaceId, Omit<ScreenExplanation,'workspaceId'>> = {
+ journey:{plainEnglish:'This is the clean map of one request/response journey.',lookFor:'The active stage, route direction and what layer is highlighted.',ignoreForNow:'Deep packet fields and capture internals.',notebookLine:'A web request is one journey seen through many layers.'},
+ diagnostics:{plainEnglish:'This is where the healthy path is compared with broken paths.',lookFor:'First affected stage, cut-off stages and likely root cause.',ignoreForNow:'Protocol variants that are not related to the selected failure.',notebookLine:'Debugging starts by finding the first point where reality differs from baseline.'},
+ protocols:{plainEnglish:'This is the what-if room for protocol and infrastructure variants.',lookFor:'What becomes visible, hidden, cached, proxied or rerouted.',ignoreForNow:'Failure debugging unless you are testing a specific variant.',notebookLine:'Changing one protocol assumption changes what the observer can prove.'},
+ internals:{plainEnglish:'This is microscope mode.',lookFor:'Fields, bytes, observer limits and device-specific truth.',ignoreForNow:'Big-picture learning if you are tired or just starting.',notebookLine:'Packet fields are evidence, but not automatically application meaning.'},
+ capture:{plainEnglish:'This connects the atlas to real packet evidence.',lookFor:'HTTPS vs HTTP contrast, redaction status and readable HTTP counts.',ignoreForNow:'Raw PCAP details unless the contrast claim is already clear.',notebookLine:'HTTPS hides readable HTTP in TLS; plaintext HTTP exposes it.'},
+}
+export function explainWorkspace(currentWorkspace: AtlasWorkspaceDefinition): ScreenExplanation { return {workspaceId:currentWorkspace.id,...explanations[currentWorkspace.id]} }

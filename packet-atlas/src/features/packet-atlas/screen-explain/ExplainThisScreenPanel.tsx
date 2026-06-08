@@ -1,0 +1,4 @@
+import type { AtlasWorkspaceDefinition } from '../workspace/workspaceModel'
+import { explainWorkspace } from './explainThisScreenModel'
+type Props = { currentWorkspace: AtlasWorkspaceDefinition }
+export function ExplainThisScreenPanel({ currentWorkspace }: Props){const e=explainWorkspace(currentWorkspace);return <section className="explain-screen-panel" aria-label="Explain this screen"><div className="explain-screen__heading"><p>Explain this screen</p><h3>{currentWorkspace.icon} {currentWorkspace.label}</h3></div><div className="explain-screen__cards"><article><strong>Plain English</strong><p>{e.plainEnglish}</p></article><article><strong>Look for</strong><p>{e.lookFor}</p></article><article><strong>Ignore for now</strong><p>{e.ignoreForNow}</p></article><article><strong>Notebook line</strong><p>✍️ {e.notebookLine}</p></article></div></section>}
