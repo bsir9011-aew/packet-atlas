@@ -39,6 +39,7 @@ import { PacketBytesHexPane } from '../bytes/PacketBytesHexPane'
 import { RouteTimeline } from '../timeline/RouteTimeline'
 import { AtlasOrientationPanel } from '../orientation/AtlasOrientationPanel'
 import { AtlasInventoryPanel } from '../inventory/AtlasInventoryPanel'
+import { GuidedLearningPathPanel } from '../guided-path/GuidedLearningPathPanel'
 import { JourneyControls } from '../controls/JourneyControls'
 import { atlasWorkspaces, type AtlasWorkspaceId } from './workspaceModel'
 
@@ -86,11 +87,12 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v7.3 inventory map</div>
+        <div className="workspace-shell__badge">v7.4 guided path</div>
       </div>
 
       <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
       <AtlasInventoryPanel />
+      <GuidedLearningPathPanel currentWorkspace={current} />
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
         {atlasWorkspaces.map((workspace) => (
