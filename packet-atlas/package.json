@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "6.4.0",
+  "version": "6.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -53,7 +53,8 @@
     "capture:evidence": "node scripts/captures/build-evidence-pack.mjs",
     "v6:readiness": "node scripts/v6-readiness-gate.mjs",
     "v6:readiness:strict": "node scripts/v6-readiness-gate.mjs --strict",
-    "capture:slice": "node scripts/captures/slice-clean-capture.mjs"
+    "capture:slice": "node scripts/captures/slice-clean-capture.mjs",
+    "capture:registry:audit": "node scripts/captures/fixture-registry-audit.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
