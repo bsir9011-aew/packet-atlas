@@ -1,62 +1,79 @@
 # Changelog
 
+## v7.7 — Release Checkpoint / Project Status
+
+- refreshed the repository status narrative to match the real v7.x repo state,
+- added a richer project status generator and checkpoint command,
+- regenerated committed project status and release readiness reports,
+- updated the roadmap to position Animated Journey Mode as the next milestone,
+- removed stale release-checkpoint expectations that still described the first real fixture as pending.
+
+## v7.0–v7.6 — Workspace maturity and evidence layer
+
+- added the HTTP vs HTTPS contrast workspace,
+- attached the verified HTTPS real capture fixture,
+- attached the verified localhost HTTP real capture fixture,
+- added Atlas Orientation, Inventory, Guided Path, Capture Workspace Guide and Explain This Screen layers,
+- added Cinematic Trace Mode as a secondary playback tool,
+- kept unit, E2E, visual regression and GitHub Actions quality gates in place.
+
 ## v5.7 — Repository & CI Hardening
 
-- Moved GitHub Actions workflow to the repository root.
-- Added monorepo-safe CI working directory for `packet-atlas`.
-- Expanded verification to include lint, bundle budget, manifest validation, capture cross-validation, E2E and visual regression.
-- Updated README, roadmap and changelog.
-- Removed local patch installers, generated patch backups and rejected learning-mode leftovers.
-- Fixed stale atlas health check paths.
-- Set package version to `5.7.0`.
+- moved GitHub Actions workflow to the repository root,
+- added monorepo-safe CI working directory for `packet-atlas`,
+- expanded verification to include lint, bundle budget, manifest validation, capture cross-validation, E2E and visual regression,
+- updated README, roadmap and changelog,
+- removed local patch installers, generated patch backups and rejected learning-mode leftovers,
+- fixed stale atlas health check paths,
+- set package version to `5.7.0`.
 
 ## v5.2–v5.6 — Scenario/capture quality layer
 
-- Added Scenario Manifest v2 groundwork.
-- Added scenario-to-capture cross-validator.
-- Added keyboard navigation and accessibility live region.
-- Added visual regression harness.
-- Added capture stage mapper heuristics.
+- added Scenario Manifest v2 groundwork,
+- added scenario-to-capture cross-validator,
+- added keyboard navigation and accessibility live region,
+- added visual regression harness,
+- added capture stage mapper heuristics.
 
 ## v4.7–v5.1 — Hardening and capture bridge
 
-- Added repository hygiene audit.
-- Added unified quality gate.
-- Added GitHub Actions workflow scaffold.
-- Added real capture placeholder and recipe.
-- Added Capture-aware Inspector.
+- added repository hygiene audit,
+- added unified quality gate,
+- added GitHub Actions workflow scaffold,
+- added real capture placeholder and recipe,
+- added Capture-aware Inspector.
 
 ## v4.2–v4.6 — Testing, fixtures and component catalog
 
-- Added Playwright E2E smoke tests.
-- Added Scenario Quality Linter.
-- Added TShark fixture pipeline.
-- Added symbolic PHY Signal Strip.
-- Added Component Lab.
+- added Playwright E2E smoke tests,
+- added Scenario Quality Linter,
+- added TShark fixture pipeline,
+- added symbolic PHY Signal Strip,
+- added Component Lab.
 
 ## v4.1 — Workspace Consolidation & UX Stabilization
 
-- Reorganized the application into focused workspaces: Journey, Diagnostics, Protocols, Internals and Capture.
-- Moved secondary protocol/diagnostic panels out of the default scroll path.
-- Restored the map/timeline/inspector as the center of the experience.
-- Added a small workspace model test to keep the organization intentional.
+- reorganized the application into focused workspaces: Journey, Diagnostics, Protocols, Internals and Capture,
+- moved secondary protocol/diagnostic panels out of the default scroll path,
+- restored the map/timeline/inspector as the center of the experience,
+- added a small workspace model test to keep the organization intentional.
 
 ## v2.1 — Stabilization & Project Cleanup
 
-- Added project health scripts.
-- Added project validation script.
-- Added README, changelog and roadmap.
-- Kept the app direction focused on atlas/simulator behavior.
+- added project health scripts,
+- added project validation script,
+- added README, changelog and roadmap,
+- kept the app direction focused on atlas/simulator behavior.
 
 ## v2.0 — Offline Capture Fixture Pipeline
 
-- Added normalized capture fixture model.
-- Added synthetic fixture sample and validation command.
+- added normalized capture fixture model,
+- added synthetic fixture sample and validation command.
 
 ## v1.6–v1.9
 
-- Added Observer Mode, Encapsulation Transform View, Protocol Sequence Boards and Wireshark-style Field Tree.
+- added Observer Mode, Encapsulation Transform View, Protocol Sequence Boards and Wireshark-style Field Tree.
 
 ## v1.1–v1.5
 
-- Added scenario variants, failure impact, visibility matrix, flow diff and failure trace navigator.
+- added scenario variants, failure impact, visibility matrix, flow diff and failure trace navigator.

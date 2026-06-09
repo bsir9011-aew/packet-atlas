@@ -2,33 +2,39 @@
 
 ## Current milestone
 
-**v5.7 — Repository & CI Hardening**
+**v7.7 — Release Checkpoint / Project Status**
 
-The project now has workspaces, E2E tests, visual regression harness, capture fixture tooling, manifest v2 groundwork, capture cross-validation and a hardened CI workflow.
+This milestone does not add more UI surface area.
+
+It makes the project legible again:
+
+- sync the docs with the real repo state,
+- publish a trustworthy project status report,
+- publish a trustworthy release readiness snapshot,
+- clarify the next product milestone.
 
 ## Immediate next steps
 
-1. **v5.8 — Real Capture Preparation**
-   - create a controlled capture checklist,
-   - add fixture import dry-run,
-   - document exact TShark commands,
-   - avoid browser cache / HTTP3 / DoH surprises.
+1. **v7.8 — Animated Journey Mode promotion**
+   - promote the existing cinematic trace from secondary playback to a first-class guided mode,
+   - keep the current workspace system intact,
+   - move guided-flow state to the atlas store,
+   - make the current step visually calmer and more central.
 
-2. **v6.0 — First Verified Real Capture**
-   - attach first real DNS/TCP/TLS frames,
-   - map frames to baseline HTTPS stages,
-   - update Capture-aware Inspector to show real frame data,
-   - pass scenario/capture cross-validation.
+2. **v7.9 — Stage narrative metadata**
+   - add stronger narrative metadata per stage,
+   - define `whatHappensNow`, `whyItMatters`, `userVisibleOutcome`, `networkEvidence`, `diagnosticHint` and `nextChoices`,
+   - reuse existing stage copy instead of inventing a second parallel model.
 
-3. **v6.1 — Manifest-driven Scenario Registry**
-   - add manifest v2 for SSH,
-   - remove hardcoded HTTPS-only validation paths,
-   - make scenario registry and quality tools manifest-aware.
+3. **v8.0 — Branching Journey Choices**
+   - add choices for happy path and failure branches,
+   - start with a synthetic DNS failure branch,
+   - teach that `site does not work` can fail before TCP, TLS or HTTP ever start.
 
-4. **v6.2 — CSS / UI Consolidation**
-   - split `packetAtlas.css`,
-   - keep visual regression baselines green,
-   - reduce workspace visual noise.
+4. **v8.1 — Presentation Mode polish**
+   - reduce clutter for demo/teaching mode,
+   - enlarge the current stage,
+   - keep supporting evidence one click away instead of everywhere at once.
 
 ## Not in scope
 
@@ -37,4 +43,5 @@ The project now has workspaces, E2E tests, visual regression harness, capture fi
 - progress accounts,
 - backend user profiles,
 - generic certification training modes,
-- browser-side raw PCAP parsing.
+- browser-side raw PCAP parsing,
+- separate routes/pages for every single journey stage.

@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "7.6.0",
+  "version": "7.7.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -65,6 +65,7 @@
     "capture:http-local:promote": "node scripts/captures/promote-http-local-candidate.mjs",
     "capture:contrast:audit": "node scripts/captures/https-http-contrast-audit.mjs",
     "project:summary": "node scripts/project/build-project-summary.mjs",
+    "status:checkpoint": "npm run project:summary && npm run release:readiness",
     "contrast:workspace:audit": "node scripts/captures/contrast-workspace-audit.mjs"
   },
   "dependencies": {

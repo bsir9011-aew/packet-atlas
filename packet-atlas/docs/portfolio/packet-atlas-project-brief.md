@@ -21,12 +21,13 @@ Most networking explanations are either too abstract or too packet-centric. Pack
 ## Technical highlights
 
 - React + TypeScript application
-- Scenario-driven architecture
-- Real capture fixture pipeline
+- scenario-driven architecture
+- five product workspaces for one journey viewed through different lenses
+- real capture fixture pipeline
 - TShark-based capture export/normalization
-- HTTPS vs plaintext HTTP contrast
-- Visual regression testing
-- CI quality workflow
+- HTTPS vs plaintext HTTP contrast workspace
+- visual regression testing
+- GitHub Actions quality workflow
 
 ## Current real capture milestone
 
@@ -50,6 +51,11 @@ HTTP localhost:
 - Packet evidence and application assumptions must be separated.
 - Safe capture workflows can be built around redaction and local-only raw artifacts.
 
-## Next milestone
+## Product direction now
 
-A dedicated HTTP vs HTTPS contrast workspace that presents both real traces side by side.
+The next product milestone is **Animated Journey Mode**:
+
+- not a course,
+- not a quiz,
+- not a separate app,
+- but a calmer guided narrative layer over the existing atlas.

@@ -1,12 +1,12 @@
-# Packet Atlas 5.12.0 — Release Readiness Snapshot
+# Packet Atlas 7.7.0 — Release Readiness Snapshot
 
-Generated: 2026-06-06T06:27:52.608Z
+Generated: 2026-06-09T05:32:41.188Z
 
 ## Summary
 
 - Registered scenario manifests: 2
-- Fixture JSON files: 2
-- Attached real fixtures: 0
+- Fixture JSON files: 7
+- Attached real fixtures: 2
 - Root CI workflow: yes
 - Visual snapshots: yes
 
@@ -17,8 +17,8 @@ Generated: 2026-06-06T06:27:52.608Z
 
 ## Release blockers
 
-- No verified real capture fixture is attached yet.
+- None detected.
 
 ## Interpretation
 
-The application/tooling release is healthy, but the v6.0 real-capture milestone is not yet complete.
+The project has at least one attached real capture fixture.
