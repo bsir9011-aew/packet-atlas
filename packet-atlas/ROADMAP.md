@@ -80,3 +80,10 @@ It makes the project legible again:
 - v8.5: branch decision explanations.
 - v8.6: DNS failure synthetic fixture.
 - v8.7: DNS failure capture plan.
+
+
+## v8.8–v9.0 — DNS Branch Evidence Integration ✅
+
+- v8.8: DNS branch evidence checklist in the UI.
+- v8.9: checklist aligned with the synthetic fixture contract.
+- v9.0: DNS branch readiness report for future real capture work.

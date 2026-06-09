@@ -2,6 +2,10 @@ import {
   buildDnsFailureBranchPath,
   type BranchDiagnosticStep,
 } from './dnsFailureBranchModel'
+import {
+  buildDnsFailureEvidenceChecklist,
+  type DnsFailureEvidenceChecklist,
+} from './dnsFailureEvidenceChecklistModel'
 import { explainBranchDecision, type BranchDecisionExplanation } from './branchDecisionExplainer'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 
@@ -22,6 +26,7 @@ export type BranchJourneyChoice = {
   networkEvidence: string
   nextDiagnosticStep: string
   diagnosticPath?: BranchDiagnosticStep[]
+  evidenceChecklist?: DnsFailureEvidenceChecklist
   decision?: BranchDecisionExplanation
 }
 
@@ -112,6 +117,7 @@ export function buildBranchJourneyChoicesForStage(
       nextDiagnosticStep:
         'Check resolver configuration, DNS response code, search suffixes, VPN/DNS filtering and whether the domain exists.',
       diagnosticPath: buildDnsFailureBranchPath(stage.id).steps,
+      evidenceChecklist: buildDnsFailureEvidenceChecklist(),
     })
   }
 

@@ -221,6 +221,21 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
             </div>
           ) : null}
 
+          {selectedBranch.evidenceChecklist ? (
+            <div className="animated-journey__evidence-checklist">
+              <strong>{selectedBranch.evidenceChecklist.title}</strong>
+              <p>{selectedBranch.evidenceChecklist.thesis}</p>
+              <ul>
+                {selectedBranch.evidenceChecklist.items.map((item) => (
+                  <li key={item.id} data-observed={item.observed}>
+                    <span>{item.label}</span>
+                    <small>{item.meaning}</small>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
           <dl>
             <dt>What changes</dt>
             <dd>{selectedBranch.whatChanges}</dd>

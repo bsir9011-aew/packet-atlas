@@ -1,5 +1,12 @@
 # Changelog
 
+## v9.0 — DNS Branch Evidence Integration
+
+- connected DNS failure branches to an explicit evidence checklist,
+- added a DNS branch readiness script and report,
+- aligned UI branch preview, synthetic fixture evidence and capture plan documentation,
+- prepared the DNS branch for a later controlled real capture candidate.
+
 ## v8.7 — Branch Evidence Pack
 
 - added branch decision explanations for DNS, TCP, TLS and HTTP/application failures,

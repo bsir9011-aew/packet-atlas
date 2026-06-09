@@ -5401,3 +5401,66 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v8.5 Branch Decision Explainer END === */
+
+
+/* === Packet Atlas v8.8-v9.0 DNS Branch Evidence Integration START === */
+
+.animated-journey__evidence-checklist {
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 18rem),
+    rgba(2, 6, 23, 0.64);
+  margin-top: 12px;
+  padding: 12px;
+}
+
+.animated-journey__evidence-checklist > strong {
+  color: #bbf7d0;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.animated-journey__evidence-checklist > p {
+  color: #dcfce7;
+  line-height: 1.42;
+  margin: 0 0 10px;
+}
+
+.animated-journey__evidence-checklist ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.animated-journey__evidence-checklist li {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.68);
+  padding: 9px;
+}
+
+.animated-journey__evidence-checklist li[data-observed='present'] {
+  border-color: rgba(34, 197, 94, 0.34);
+}
+
+.animated-journey__evidence-checklist li[data-observed='absent'] {
+  border-color: rgba(251, 191, 36, 0.34);
+}
+
+.animated-journey__evidence-checklist span {
+  color: #f8fafc;
+  display: block;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.animated-journey__evidence-checklist small {
+  color: #cbd5e1;
+  display: block;
+  line-height: 1.35;
+}
+
+/* === Packet Atlas v8.8-v9.0 DNS Branch Evidence Integration END === */
