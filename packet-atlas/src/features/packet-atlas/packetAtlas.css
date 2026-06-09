@@ -5464,3 +5464,63 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v8.8-v9.0 DNS Branch Evidence Integration END === */
+
+/* === Packet Atlas v9.1 Guided Journey Reset START === */
+
+.animated-journey__manual-note {
+  margin: 0 16px 12px;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 14px;
+  background: rgba(8, 47, 73, 0.36);
+  color: #dbeafe;
+  padding: 10px 12px;
+  line-height: 1.45;
+}
+
+.animated-journey__manual-note strong,
+.animated-journey__manual-note b {
+  color: #f8fafc;
+}
+
+.atlas-shell--focus .path-scope-panel,
+.atlas-shell--focus .layer-highlight-panel,
+.atlas-shell--focus .journey-controls,
+.atlas-shell--focus .atlas-layout--workspace {
+  display: none !important;
+}
+
+.atlas-shell--focus .workspace-body__stack {
+  display: block;
+}
+
+.atlas-shell--focus .cinematic-trace-panel--promoted {
+  margin-top: 0;
+}
+
+.atlas-shell--focus .cinematic-trace__hero {
+  min-height: 230px;
+}
+
+.atlas-shell--focus .cinematic-trace__hero p {
+  font-size: 1.05rem;
+  max-width: 64ch;
+}
+
+.atlas-shell--focus .cinematic-trace__controls {
+  position: static;
+  width: auto;
+  border-radius: 18px;
+  justify-content: center;
+}
+
+.atlas-shell--focus .cinematic-trace__play,
+.atlas-shell--focus .cinematic-trace__focus-toggle {
+  font-size: 0.95rem;
+  padding: 10px 14px;
+}
+
+.atlas-shell--focus .animated-journey__branches {
+  margin-top: 14px;
+}
+
+/* === Packet Atlas v9.1 Guided Journey Reset END === */

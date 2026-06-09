@@ -41,7 +41,7 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   selectedObserverId: 'user',
   selectedLayerLens: 'human',
   animatedJourneyPlaying: false,
-  animatedJourneySpeed: 'normal',
+  animatedJourneySpeed: 'slow',
   visitedStageIds: ['url-intent'],
   selectedBranchChoiceId: null,
   presentationMode: 'atlas',

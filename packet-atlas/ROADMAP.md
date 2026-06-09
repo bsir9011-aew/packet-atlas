@@ -87,3 +87,10 @@ It makes the project legible again:
 - v8.8: DNS branch evidence checklist in the UI.
 - v8.9: checklist aligned with the synthetic fixture contract.
 - v9.0: DNS branch readiness report for future real capture work.
+
+
+## v9.1 — Guided Journey Reset ✅
+
+- Focus Mode becomes a manual-first guided story.
+- Auto-play becomes slower and optional.
+- Supporting panels stop competing with the current step.

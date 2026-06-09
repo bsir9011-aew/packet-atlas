@@ -74,8 +74,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
             {summary.stepLabel} — {stage.shortName}
           </h3>
           <p>
-            Move through one request/response journey as a story. The atlas
-            changes one stage at a time instead of showing every detail at once.
+            Manual mode first: use Next to move one step at a time. Auto-play is optional and deliberately slow.
           </p>
         </div>
 
@@ -115,6 +114,10 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
         <p>{summary.diagnosticHint}</p>
       </div>
 
+      <div className="animated-journey__manual-note">
+        <strong>Recommended:</strong> read this step, then press <b>Next</b>. Use <b>Auto-play</b> only when you want a slow demo.
+      </div>
+
       <div className="cinematic-trace__controls">
         <button type="button" onClick={() => resetAnimatedJourney(scenario.stages[0]?.id ?? stage.id)}>
           Restart
@@ -131,7 +134,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           className="cinematic-trace__play"
           onClick={() => setPlaying(!playing)}
         >
-          {playing ? 'Pause' : 'Play'}
+          {playing ? 'Pause auto' : 'Auto-play'}
         </button>
         <button
           type="button"

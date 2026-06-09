@@ -7,9 +7,9 @@ import {
 export type TraceSpeed = 'slow' | 'normal' | 'fast'
 
 export const traceSpeedMs: Record<TraceSpeed, number> = {
-  slow: 1800,
-  normal: 1000,
-  fast: 450,
+  slow: 9000,
+  normal: 6000,
+  fast: 3500,
 }
 
 export function getStageIndex(scenario: JourneyScenario, stageId: string): number {

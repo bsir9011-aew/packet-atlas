@@ -1,5 +1,13 @@
 # Changelog
 
+## v9.1 — Guided Journey Reset
+
+- reset Focus Mode toward manual step-by-step reading,
+- slowed auto-play timings and made slow speed the default,
+- renamed the play control to Auto-play to reduce confusion,
+- hid supporting map/inspector panels in Focus Mode,
+- hid empty failure-branch blocks so the final steps read cleaner.
+
 ## v9.0 — DNS Branch Evidence Integration
 
 - connected DNS failure branches to an explicit evidence checklist,
