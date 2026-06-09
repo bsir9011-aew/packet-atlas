@@ -6,12 +6,14 @@ It explains one request/response journey across multiple abstraction layers: use
 
 ## Project shape now
 
-Packet Atlas is **not** a course platform, quiz app, flashcard system or generic e-learning product.
+Packet Atlas is not a course platform, quiz app, flashcard system or generic e-learning product.
 
 Its scope stays narrow and deliberate:
 
 ```text
 One journey, many lenses.
+
+In plain lowercase scope terms: one journey, many lenses.
 ```
 
 The current application organizes that journey into five **product workspaces**:
