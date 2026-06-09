@@ -89,7 +89,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v7.6 explained screens</div>
+        <div className="workspace-shell__badge">v7.8 animated journey</div>
       </div>
 
       <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
@@ -124,6 +124,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
             <PathScopeFilter />
             <LayerHighlightPanel scenario={scenario} />
             <JourneyControls scenario={scenario} />
+            <CinematicTraceMode scenario={scenario} stage={stage} />
 
             <main className="atlas-layout atlas-layout--workspace">
               <section className="map-column">
@@ -232,12 +233,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
               <CaptureAwareInspector stage={stage} />
             </PanelCluster>
 
-            <PanelCluster
-              title="Trace playback"
-              note="Cinematic trace is useful, but it is a secondary playback tool, not the default workspace."
-            >
-              <CinematicTraceMode scenario={scenario} stage={stage} />
-            </PanelCluster>
           </div>
         )}
       </div>
