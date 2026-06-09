@@ -50,3 +50,12 @@ It makes the project legible again:
 - generic certification training modes,
 - browser-side raw PCAP parsing,
 - separate routes/pages for every single journey stage.
+
+
+## v8.3 — Branch Classifier Precision ✅
+
+- DNS-only stages expose DNS failure choices.
+- TCP stages expose TCP blocked choices.
+- TLS stages expose TLS failure choices.
+- HTTP/app stages expose HTTP/application error choices.
+- `DNS response` is not treated as `HTTP response`.

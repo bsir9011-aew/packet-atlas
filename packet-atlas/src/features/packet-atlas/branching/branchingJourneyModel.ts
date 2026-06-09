@@ -44,14 +44,57 @@ function includesAny(value: string, needles: string[]) {
   return needles.some((needle) => value.includes(needle))
 }
 
+
+function isDnsStage(stage: JourneyStage) {
+  const value = stageHaystack(stage)
+  return includesAny(value, ['dns', 'resolver', 'domain', 'name resolution'])
+}
+
+function isTcpStage(stage: JourneyStage) {
+  const value = stageHaystack(stage)
+  return includesAny(value, ['tcp', 'syn', 'transport', 'socket', 'port'])
+}
+
+function isTlsStage(stage: JourneyStage) {
+  const value = stageHaystack(stage)
+  return includesAny(value, ['tls', 'certificate', 'handshake', 'encrypted'])
+}
+
+function isHttpApplicationStage(stage: JourneyStage) {
+  const stageKind = stage.stageKind.toLowerCase()
+  const shortName = stage.shortName.toLowerCase()
+  const id = stage.id.toLowerCase()
+  const focus = stage.layerFocus.join(' ').toLowerCase()
+  const haystack = stageHaystack(stage)
+
+  const explicitHttp =
+    stageKind.includes('http') ||
+    shortName.includes('http') ||
+    id.includes('http') ||
+    focus.includes('http')
+
+  const applicationBoundary =
+    stageKind.includes('reverse') ||
+    stageKind.includes('proxy') ||
+    stageKind.includes('app') ||
+    shortName.includes('reverse proxy') ||
+    shortName.includes('app') ||
+    id.includes('reverse-proxy') ||
+    id.includes('app-db')
+
+  const dnsOnly = isDnsStage(stage) && !explicitHttp && !applicationBoundary
+  if (dnsOnly) return false
+
+  return explicitHttp || applicationBoundary || includesAny(haystack, ['http request', 'http response', 'status code'])
+}
+
 export function buildBranchJourneyChoicesForStage(
   _scenario: JourneyScenario,
   stage: JourneyStage,
 ): BranchJourneyChoice[] {
-  const haystack = stageHaystack(stage)
   const choices: BranchJourneyChoice[] = []
 
-  if (includesAny(haystack, ['dns', 'resolver', 'domain', 'name resolution'])) {
+  if (isDnsStage(stage)) {
     choices.push({
       id: makeBranchId(stage, 'dns-failure'),
       stageId: stage.id,
@@ -70,7 +113,7 @@ export function buildBranchJourneyChoicesForStage(
     })
   }
 
-  if (includesAny(haystack, ['tcp', 'syn', 'transport', 'socket', 'port'])) {
+  if (isTcpStage(stage)) {
     choices.push({
       id: makeBranchId(stage, 'tcp-blocked'),
       stageId: stage.id,
@@ -88,7 +131,7 @@ export function buildBranchJourneyChoicesForStage(
     })
   }
 
-  if (includesAny(haystack, ['tls', 'certificate', 'handshake', 'encrypted'])) {
+  if (isTlsStage(stage)) {
     choices.push({
       id: makeBranchId(stage, 'tls-failure'),
       stageId: stage.id,
@@ -106,7 +149,7 @@ export function buildBranchJourneyChoicesForStage(
     })
   }
 
-  if (includesAny(haystack, ['http', 'request', 'response', 'status', 'get ', 'server'])) {
+  if (isHttpApplicationStage(stage)) {
     choices.push({
       id: makeBranchId(stage, 'http-error'),
       stageId: stage.id,

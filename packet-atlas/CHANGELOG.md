@@ -1,5 +1,11 @@
 # Changelog
 
+## v8.3 — Branch Classifier Precision
+
+- tightened branch choice classification by layer boundary,
+- prevented HTTP/application error branches from attaching to DNS-only stages,
+- documented the DNS response versus HTTP response distinction.
+
 ## v8.2 — Presentation Focus Mode Polish
 
 - added a Focus Mode toggle to Animated Journey Mode,
