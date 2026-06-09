@@ -59,3 +59,10 @@ It makes the project legible again:
 - TLS stages expose TLS failure choices.
 - HTTP/app stages expose HTTP/application error choices.
 - `DNS response` is not treated as `HTTP response`.
+
+
+## v8.4 — Focus Mode Viewport Anchor ✅
+
+- Focus Mode marks the current step more clearly.
+- Playback controls stay reachable while reading.
+- Wide screens keep the guided story centered.

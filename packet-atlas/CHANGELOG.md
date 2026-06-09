@@ -1,5 +1,11 @@
 # Changelog
 
+## v8.4 — Focus Mode Viewport Anchor
+
+- polished Focus Mode so the animated step reads as the screen anchor,
+- added sticky playback controls in focus view,
+- constrained and centered the focused presentation surface.
+
 ## v8.3 — Branch Classifier Precision
 
 - tightened branch choice classification by layer boundary,

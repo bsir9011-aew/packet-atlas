@@ -5315,3 +5315,59 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v8.2 Presentation Focus Mode END === */
+
+/* === Packet Atlas v8.4 Focus Mode Viewport Anchor START === */
+
+.atlas-shell--focus {
+  scroll-padding-top: 86px;
+}
+
+.atlas-shell--focus .workspace-shell {
+  max-width: 1420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.atlas-shell--focus .cinematic-trace-panel--promoted {
+  position: relative;
+  scroll-margin-top: 82px;
+}
+
+.atlas-shell--focus .cinematic-trace-panel--promoted::before {
+  content: "current step";
+  position: absolute;
+  right: 18px;
+  top: -13px;
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  border-radius: 999px;
+  background: rgba(8, 47, 73, 0.98);
+  color: #bae6fd;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  padding: 4px 9px;
+  text-transform: uppercase;
+}
+
+.atlas-shell--focus .cinematic-trace__controls {
+  position: sticky;
+  bottom: 12px;
+  z-index: 20;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.88);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
+  padding: 7px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.atlas-shell--focus .cinematic-trace__rail {
+  justify-content: center;
+}
+
+.atlas-shell--focus .atlas-layout--workspace {
+  margin-top: 12px;
+}
+
+/* === Packet Atlas v8.4 Focus Mode Viewport Anchor END === */
