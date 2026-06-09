@@ -1,5 +1,12 @@
 # Changelog
 
+## v8.0 — Branching Journey Choices
+
+- added a diagnostic branch choice model for DNS failure, TCP blocked, TLS failure and HTTP/application error,
+- connected branch previews to Stage Narrative Metadata and Animated Journey Mode,
+- added central branch selection state to the atlas store,
+- documented branch previews as diagnostic forks, not full alternate routes yet.
+
 ## v7.9 — Stage Narrative Metadata
 
 - added a reusable stage narrative metadata model,

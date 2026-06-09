@@ -20,9 +20,13 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const playing = useAtlasStore((state) => state.animatedJourneyPlaying)
   const speed = useAtlasStore((state) => state.animatedJourneySpeed)
   const visitedStageIds = useAtlasStore((state) => state.visitedStageIds)
+  const selectedBranchChoiceId = useAtlasStore((state) => state.selectedBranchChoiceId)
   const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
   const setPlaying = useAtlasStore((state) => state.setAnimatedJourneyPlaying)
   const setSpeed = useAtlasStore((state) => state.setAnimatedJourneySpeed)
+  const setSelectedBranchChoiceId = useAtlasStore(
+    (state) => state.setSelectedBranchChoiceId,
+  )
   const resetAnimatedJourney = useAtlasStore((state) => state.resetAnimatedJourney)
 
   const index = useMemo(() => getStageIndex(scenario, stage.id), [scenario, stage.id])
@@ -32,6 +36,9 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const nextStageId = getNextStageId(scenario, stage.id)
   const isFirst = previousStageId === stage.id
   const isLast = nextStageId === stage.id
+  const selectedBranch =
+    summary.branchChoices.find((choice) => choice.id === selectedBranchChoiceId) ??
+    null
 
   useEffect(() => {
     if (!playing) return
@@ -160,6 +167,52 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           )}
         </div>
       </div>
+
+      <div className="animated-journey__branches">
+        <strong>Failure branches</strong>
+        <p>
+          These choices preview where the journey could break. They do not create
+          a second route yet; they explain the diagnostic fork from this exact stage.
+        </p>
+        <div>
+          {summary.branchChoices.length > 0 ? (
+            summary.branchChoices.map((choice) => (
+              <button
+                key={choice.id}
+                type="button"
+                onClick={() => setSelectedBranchChoiceId(choice.id)}
+                data-active={choice.id === selectedBranchChoiceId}
+                data-kind={choice.kind}
+              >
+                {choice.label}
+              </button>
+            ))
+          ) : (
+            <span>No failure branch at this stage yet.</span>
+          )}
+        </div>
+      </div>
+
+      {selectedBranch ? (
+        <article className="animated-journey__branch-preview">
+          <div>
+            <strong>{selectedBranch.title}</strong>
+            <button type="button" onClick={() => setSelectedBranchChoiceId(null)}>
+              Clear branch
+            </button>
+          </div>
+          <dl>
+            <dt>What changes</dt>
+            <dd>{selectedBranch.whatChanges}</dd>
+            <dt>User sees</dt>
+            <dd>{selectedBranch.userSees}</dd>
+            <dt>Network evidence</dt>
+            <dd>{selectedBranch.networkEvidence}</dd>
+            <dt>Next diagnostic step</dt>
+            <dd>{selectedBranch.nextDiagnosticStep}</dd>
+          </dl>
+        </article>
+      ) : null}
 
       <div className="cinematic-trace__rail" aria-label="Animated journey stages">
         {scenario.stages.map((item, idx) => {

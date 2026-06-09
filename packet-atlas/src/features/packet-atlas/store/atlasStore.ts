@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import type { LayerLens } from '../schema/journeyScenarioSchema'
 import type { TraceSpeed } from '../cinematic/cinematicTraceModel'
+import type { LayerLens } from '../schema/journeyScenarioSchema'
 
 type AtlasState = {
   selectedScenarioId: string
@@ -11,6 +11,7 @@ type AtlasState = {
   animatedJourneyPlaying: boolean
   animatedJourneySpeed: TraceSpeed
   visitedStageIds: string[]
+  selectedBranchChoiceId: string | null
   setSelectedStageId: (stageId: string) => void
   setSelectedScenarioId: (scenarioId: string) => void
   setSelectedLayerLens: (lens: LayerLens) => void
@@ -18,6 +19,7 @@ type AtlasState = {
   setSelectedObserverId: (observerId: string) => void
   setAnimatedJourneyPlaying: (playing: boolean) => void
   setAnimatedJourneySpeed: (speed: TraceSpeed) => void
+  setSelectedBranchChoiceId: (choiceId: string | null) => void
   resetAnimatedJourney: (stageId: string) => void
 }
 
@@ -36,10 +38,12 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   animatedJourneyPlaying: false,
   animatedJourneySpeed: 'normal',
   visitedStageIds: ['url-intent'],
+  selectedBranchChoiceId: null,
   setSelectedStageId: (stageId) =>
     set((state) => ({
       selectedStageId: stageId,
       visitedStageIds: rememberStage(stageId, state.visitedStageIds),
+      selectedBranchChoiceId: null,
     })),
   setSelectedScenarioId: (scenarioId) => set({ selectedScenarioId: scenarioId }),
   setSelectedLayerLens: (lens) => set({ selectedLayerLens: lens }),
@@ -47,10 +51,16 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   setSelectedObserverId: (observerId) => set({ selectedObserverId: observerId }),
   setAnimatedJourneyPlaying: (playing) => set({ animatedJourneyPlaying: playing }),
   setAnimatedJourneySpeed: (speed) => set({ animatedJourneySpeed: speed }),
+  setSelectedBranchChoiceId: (choiceId) =>
+    set({
+      selectedBranchChoiceId: choiceId,
+      animatedJourneyPlaying: false,
+    }),
   resetAnimatedJourney: (stageId) =>
     set({
       selectedStageId: stageId,
       visitedStageIds: [stageId],
       animatedJourneyPlaying: false,
+      selectedBranchChoiceId: null,
     }),
 }))

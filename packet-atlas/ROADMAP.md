@@ -26,10 +26,10 @@ It makes the project legible again:
    - keeps Animated Journey Mode on top of the same scenario/stage data,
    - prepares the project for branching choices without creating a second parallel atlas.
 
-3. **v8.0 — Branching Journey Choices**
-   - add choices for happy path and failure branches,
-   - start with a synthetic DNS failure branch,
-   - teach that `site does not work` can fail before TCP, TLS or HTTP ever start.
+3. **v8.0 — Branching Journey Choices** ✅
+   - adds diagnostic branch previews for DNS failure, TCP blocked, TLS failure and HTTP/application error,
+   - keeps the stable scenario path intact,
+   - teaches that `site does not work` can fail before TCP, TLS or HTTP ever start.
 
 4. **v8.1 — Presentation Mode polish**
    - reduce clutter for demo/teaching mode,

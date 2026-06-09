@@ -1,3 +1,7 @@
+import {
+  buildBranchJourneyChoicesForStage,
+  type BranchJourneyChoice,
+} from '../branching/branchingJourneyModel'
 import type { JourneyScenario, JourneyStage, LayerLens } from '../schema/journeyScenarioSchema'
 
 export type StageNarrativeChoiceKind = 'next' | 'branch'
@@ -21,12 +25,15 @@ export type StageNarrativeMetadata = {
   networkEvidence: string
   diagnosticHint: string
   nextChoices: StageNarrativeChoice[]
+  branchChoices: BranchJourneyChoice[]
 }
 
 export type StageNarrativeCoverage = {
   totalStages: number
   coveredStages: number
   stagesWithChoices: number
+  stagesWithBranchChoices: number
+  branchChoiceCount: number
   missingNarrative: string[]
 }
 
@@ -81,32 +88,42 @@ export function buildStageNarrativeMetadata(
     networkEvidence: stage.copy.samePayloadHereLooksLike,
     diagnosticHint: stage.copy.easyToConfuse,
     nextChoices: resolveStageNarrativeChoices(scenario, stage),
+    branchChoices: buildBranchJourneyChoicesForStage(scenario, stage),
   }
 }
 
 export function validateStageNarrativeCoverage(
   scenario: JourneyScenario,
 ): StageNarrativeCoverage {
-  const missingNarrative = scenario.stages
-    .filter((stage) => {
-      const narrative = buildStageNarrativeMetadata(scenario, stage)
-
-      return !(
-        hasMeaningfulText(narrative.whatHappensNow) &&
-        hasMeaningfulText(narrative.whyItMatters) &&
-        hasMeaningfulText(narrative.userVisibleOutcome) &&
-        hasMeaningfulText(narrative.networkEvidence) &&
-        hasMeaningfulText(narrative.diagnosticHint)
-      )
-    })
-    .map((stage) => stage.id)
+  const narratives = scenario.stages.map((stage) =>
+    buildStageNarrativeMetadata(scenario, stage),
+  )
+  const missingNarrative = narratives
+    .filter(
+      (narrative) =>
+        !(
+          hasMeaningfulText(narrative.whatHappensNow) &&
+          hasMeaningfulText(narrative.whyItMatters) &&
+          hasMeaningfulText(narrative.userVisibleOutcome) &&
+          hasMeaningfulText(narrative.networkEvidence) &&
+          hasMeaningfulText(narrative.diagnosticHint)
+        ),
+    )
+    .map((narrative) => narrative.stageId)
 
   return {
     totalStages: scenario.stages.length,
     coveredStages: scenario.stages.length - missingNarrative.length,
-    stagesWithChoices: scenario.stages.filter((stage) =>
-      resolveStageNarrativeChoices(scenario, stage).length > 0,
+    stagesWithChoices: narratives.filter(
+      (narrative) => narrative.nextChoices.length > 0,
     ).length,
+    stagesWithBranchChoices: narratives.filter(
+      (narrative) => narrative.branchChoices.length > 0,
+    ).length,
+    branchChoiceCount: narratives.reduce(
+      (sum, narrative) => sum + narrative.branchChoices.length,
+      0,
+    ),
     missingNarrative,
   }
 }
