@@ -21,10 +21,10 @@ It makes the project legible again:
    - move guided-flow state to the atlas store,
    - make the current step visually calmer and more central.
 
-2. **v7.9 — Stage narrative metadata**
-   - add stronger narrative metadata per stage,
-   - define `whatHappensNow`, `whyItMatters`, `userVisibleOutcome`, `networkEvidence`, `diagnosticHint` and `nextChoices`,
-   - reuse existing stage copy instead of inventing a second parallel model.
+2. **v7.9 — Stage narrative metadata** ✅
+   - adds a reusable narrative model for `whatHappensNow`, `whyItMatters`, `userVisibleOutcome`, `networkEvidence`, `diagnosticHint` and `nextChoices`,
+   - keeps Animated Journey Mode on top of the same scenario/stage data,
+   - prepares the project for branching choices without creating a second parallel atlas.
 
 3. **v8.0 — Branching Journey Choices**
    - add choices for happy path and failure branches,

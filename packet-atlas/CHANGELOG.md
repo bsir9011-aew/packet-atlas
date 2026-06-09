@@ -1,5 +1,12 @@
 # Changelog
 
+## v7.9 — Stage Narrative Metadata
+
+- added a reusable stage narrative metadata model,
+- kept Animated Journey Mode wired through the cinematic model while moving narrative assembly into a dedicated layer,
+- added narrative coverage checks for current scenario stages,
+- documented the narrative contract before adding branching choices.
+
 ## v7.7 — Release Checkpoint / Project Status
 
 - refreshed the repository status narrative to match the real v7.x repo state,

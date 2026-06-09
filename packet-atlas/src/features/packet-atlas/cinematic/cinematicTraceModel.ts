@@ -1,4 +1,8 @@
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
+import {
+  buildStageNarrativeMetadata,
+  type StageNarrativeMetadata,
+} from '../narrative/stageNarrativeModel'
 
 export type TraceSpeed = 'slow' | 'normal' | 'fast'
 
@@ -43,40 +47,11 @@ export function getTraceProgress(scenario: JourneyScenario, stageId: string): nu
   return Math.round(((getStageIndex(scenario, stageId) + 1) / scenario.stages.length) * 100)
 }
 
-export type AnimatedJourneyStepSummary = {
-  stepLabel: string
-  whatHappensNow: string
-  whyItMatters: string
-  userVisibleOutcome: string
-  networkEvidence: string
-  diagnosticHint: string
-  nextChoices: { id: string; label: string; kind: 'next' | 'branch' }[]
-}
+export type AnimatedJourneyStepSummary = StageNarrativeMetadata
 
 export function buildAnimatedJourneyStepSummary(
   scenario: JourneyScenario,
   stage: JourneyStage,
 ): AnimatedJourneyStepSummary {
-  const index = getStageIndex(scenario, stage.id)
-  const nextIds = stage.relations.nextIds.filter((id) =>
-    scenario.stages.some((item) => item.id === id),
-  )
-  const nextChoices = nextIds.map((id, choiceIndex) => {
-    const nextStage = scenario.stages.find((item) => item.id === id)
-    return {
-      id,
-      label: nextStage?.shortName ?? id,
-      kind: choiceIndex === 0 ? ('next' as const) : ('branch' as const),
-    }
-  })
-
-  return {
-    stepLabel: `Step ${index + 1} / ${scenario.stages.length}`,
-    whatHappensNow: stage.copy.whatReallyHappens,
-    whyItMatters: stage.copy.whyItMatters,
-    userVisibleOutcome: stage.copy.whatUserSees,
-    networkEvidence: stage.copy.samePayloadHereLooksLike,
-    diagnosticHint: stage.copy.easyToConfuse,
-    nextChoices,
-  }
+  return buildStageNarrativeMetadata(scenario, stage)
 }
