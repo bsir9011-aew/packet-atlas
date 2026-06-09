@@ -89,7 +89,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v8.2 focus mode</div>
+        <div className="workspace-shell__badge">v9.1 guided focus</div>
       </div>
 
       <div className="workspace-guidance-stack">
