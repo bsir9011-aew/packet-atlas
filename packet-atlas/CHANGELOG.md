@@ -1,5 +1,12 @@
 # Changelog
 
+## v8.2 — Presentation Focus Mode Polish
+
+- added a Focus Mode toggle to Animated Journey Mode,
+- added central presentation mode state to the atlas store,
+- simplified the screen while focus is active by hiding guidance stacks and early filter controls,
+- enlarged the current guided step without removing the supporting atlas panels.
+
 ## v8.1 — DNS Failure Branch Path
 
 - expanded the DNS failure branch from a single preview into a short diagnostic path,

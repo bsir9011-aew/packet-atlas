@@ -11,6 +11,7 @@ import './packetAtlas.css'
 export function PacketAtlasPage() {
   const selectedScenarioId = useAtlasStore((state) => state.selectedScenarioId)
   const selectedStageId = useAtlasStore((state) => state.selectedStageId)
+  const presentationMode = useAtlasStore((state) => state.presentationMode)
   const activeScenario = getScenarioById(selectedScenarioId)
   const activeStage =
     activeScenario.stages.find((stage) => stage.id === selectedStageId) ??
@@ -22,10 +23,15 @@ export function PacketAtlasPage() {
   )
 
   return (
-    <div className="atlas-shell atlas-shell--v41">
+    <div className={`atlas-shell atlas-shell--v41 atlas-shell--${presentationMode}`}>
+      {presentationMode === 'focus' ? (
+        <div className="focus-mode-ribbon" role="status">
+          🎬 Focus Mode: Animated Journey is the primary reading path. Supporting panels stay below.
+        </div>
+      ) : null}
       <header className="atlas-header atlas-header--v41">
         <div>
-          <p className="eyebrow">Packet Atlas v7.8</p>
+          <p className="eyebrow">Packet Atlas v8.2</p>
           <h1>{activeScenario.title}</h1>
           <p>{activeScenario.description}</p>
         </div>

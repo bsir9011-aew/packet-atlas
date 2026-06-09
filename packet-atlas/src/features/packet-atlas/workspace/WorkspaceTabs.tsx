@@ -89,13 +89,15 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v7.8 animated journey</div>
+        <div className="workspace-shell__badge">v8.2 focus mode</div>
       </div>
 
-      <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
-      <AtlasInventoryPanel />
-      <GuidedLearningPathPanel currentWorkspace={current} />
-      <ExplainThisScreenPanel currentWorkspace={current} />
+      <div className="workspace-guidance-stack">
+        <AtlasOrientationPanel currentWorkspace={current} workspaces={atlasWorkspaces} />
+        <AtlasInventoryPanel />
+        <GuidedLearningPathPanel currentWorkspace={current} />
+        <ExplainThisScreenPanel currentWorkspace={current} />
+      </div>
 
       <div className="workspace-tabs" role="tablist" aria-label="Workspace tabs">
         {atlasWorkspaces.map((workspace) => (

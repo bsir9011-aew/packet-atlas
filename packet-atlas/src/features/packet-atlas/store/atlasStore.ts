@@ -2,6 +2,8 @@ import { create } from 'zustand'
 import type { TraceSpeed } from '../cinematic/cinematicTraceModel'
 import type { LayerLens } from '../schema/journeyScenarioSchema'
 
+export type PresentationMode = 'atlas' | 'focus'
+
 type AtlasState = {
   selectedScenarioId: string
   selectedObserverId: string
@@ -12,6 +14,7 @@ type AtlasState = {
   animatedJourneySpeed: TraceSpeed
   visitedStageIds: string[]
   selectedBranchChoiceId: string | null
+  presentationMode: PresentationMode
   setSelectedStageId: (stageId: string) => void
   setSelectedScenarioId: (scenarioId: string) => void
   setSelectedLayerLens: (lens: LayerLens) => void
@@ -20,6 +23,8 @@ type AtlasState = {
   setAnimatedJourneyPlaying: (playing: boolean) => void
   setAnimatedJourneySpeed: (speed: TraceSpeed) => void
   setSelectedBranchChoiceId: (choiceId: string | null) => void
+  setPresentationMode: (mode: PresentationMode) => void
+  togglePresentationMode: () => void
   resetAnimatedJourney: (stageId: string) => void
 }
 
@@ -39,6 +44,7 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   animatedJourneySpeed: 'normal',
   visitedStageIds: ['url-intent'],
   selectedBranchChoiceId: null,
+  presentationMode: 'atlas',
   setSelectedStageId: (stageId) =>
     set((state) => ({
       selectedStageId: stageId,
@@ -56,6 +62,11 @@ export const useAtlasStore = create<AtlasState>((set) => ({
       selectedBranchChoiceId: choiceId,
       animatedJourneyPlaying: false,
     }),
+  setPresentationMode: (mode) => set({ presentationMode: mode }),
+  togglePresentationMode: () =>
+    set((state) => ({
+      presentationMode: state.presentationMode === 'focus' ? 'atlas' : 'focus',
+    })),
   resetAnimatedJourney: (stageId) =>
     set({
       selectedStageId: stageId,

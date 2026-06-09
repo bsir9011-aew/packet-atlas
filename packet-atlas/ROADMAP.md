@@ -36,10 +36,10 @@ It makes the project legible again:
    - teaches `DNS failure -> no target IP -> no TCP -> no TLS -> no HTTP`,
    - keeps this as a guided branch preview, not a full alternate scenario route yet.
 
-5. **v8.2 — Presentation Mode polish**
-   - reduce clutter for demo/teaching mode,
-   - enlarge the current stage,
-   - keep supporting evidence one click away instead of everywhere at once.
+5. **v8.2 — Presentation Focus Mode polish** ✅
+   - reduces clutter for demo/teaching mode,
+   - enlarges the current guided stage,
+   - keeps supporting evidence below the primary story instead of competing with it.
 
 ## Not in scope
 

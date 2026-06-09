@@ -21,6 +21,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const speed = useAtlasStore((state) => state.animatedJourneySpeed)
   const visitedStageIds = useAtlasStore((state) => state.visitedStageIds)
   const selectedBranchChoiceId = useAtlasStore((state) => state.selectedBranchChoiceId)
+  const presentationMode = useAtlasStore((state) => state.presentationMode)
   const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
   const setPlaying = useAtlasStore((state) => state.setAnimatedJourneyPlaying)
   const setSpeed = useAtlasStore((state) => state.setAnimatedJourneySpeed)
@@ -28,6 +29,9 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
     (state) => state.setSelectedBranchChoiceId,
   )
   const resetAnimatedJourney = useAtlasStore((state) => state.resetAnimatedJourney)
+  const togglePresentationMode = useAtlasStore(
+    (state) => state.togglePresentationMode,
+  )
 
   const index = useMemo(() => getStageIndex(scenario, stage.id), [scenario, stage.id])
   const progress = getTraceProgress(scenario, stage.id)
@@ -145,6 +149,13 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           <option value="normal">normal</option>
           <option value="fast">fast</option>
         </select>
+        <button
+          type="button"
+          className="cinematic-trace__focus-toggle"
+          onClick={togglePresentationMode}
+        >
+          {presentationMode === 'focus' ? 'Exit Focus' : 'Focus Mode'}
+        </button>
       </div>
 
       <div className="animated-journey__choices">
