@@ -211,6 +211,21 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
             <dt>Next diagnostic step</dt>
             <dd>{selectedBranch.nextDiagnosticStep}</dd>
           </dl>
+
+          {selectedBranch.diagnosticPath ? (
+            <div className="animated-journey__branch-path">
+              <strong>DNS failure path</strong>
+              <ol>
+                {selectedBranch.diagnosticPath.map((step) => (
+                  <li key={step.id} data-status={step.status}>
+                    <span>{step.label}</span>
+                    <p>{step.whatHappens}</p>
+                    <small>{step.networkEvidence}</small>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : null}
         </article>
       ) : null}
 

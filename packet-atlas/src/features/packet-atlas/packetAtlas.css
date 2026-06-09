@@ -5134,3 +5134,65 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v8.0 Branching Journey Choices END === */
+
+/* === Packet Atlas v8.1 DNS Failure Branch Path START === */
+
+.animated-journey__branch-path {
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.animated-journey__branch-path > strong {
+  color: #bfdbfe;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.animated-journey__branch-path ol {
+  counter-reset: dns-branch;
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.animated-journey__branch-path li {
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.62);
+  padding: 10px;
+}
+
+.animated-journey__branch-path li[data-status='blocked'] {
+  border-color: rgba(248, 113, 113, 0.34);
+}
+
+.animated-journey__branch-path li[data-status='not-started'] {
+  border-color: rgba(251, 191, 36, 0.34);
+}
+
+.animated-journey__branch-path li[data-status='diagnostic'] {
+  border-color: rgba(34, 197, 94, 0.34);
+}
+
+.animated-journey__branch-path span {
+  color: #f8fafc;
+  display: block;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+.animated-journey__branch-path p {
+  color: #dbeafe;
+  margin: 0 0 5px;
+}
+
+.animated-journey__branch-path small {
+  color: #93c5fd;
+  display: block;
+  line-height: 1.35;
+}
+
+/* === Packet Atlas v8.1 DNS Failure Branch Path END === */

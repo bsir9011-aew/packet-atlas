@@ -31,7 +31,12 @@ It makes the project legible again:
    - keeps the stable scenario path intact,
    - teaches that `site does not work` can fail before TCP, TLS or HTTP ever start.
 
-4. **v8.1 — Presentation Mode polish**
+4. **v8.1 — DNS Failure Branch Path** ✅
+   - expands the DNS failure preview into a concrete diagnostic path,
+   - teaches `DNS failure -> no target IP -> no TCP -> no TLS -> no HTTP`,
+   - keeps this as a guided branch preview, not a full alternate scenario route yet.
+
+5. **v8.2 — Presentation Mode polish**
    - reduce clutter for demo/teaching mode,
    - enlarge the current stage,
    - keep supporting evidence one click away instead of everywhere at once.

@@ -1,3 +1,7 @@
+import {
+  buildDnsFailureBranchPath,
+  type BranchDiagnosticStep,
+} from './dnsFailureBranchModel'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 
 export type BranchJourneyChoiceKind =
@@ -16,6 +20,7 @@ export type BranchJourneyChoice = {
   userSees: string
   networkEvidence: string
   nextDiagnosticStep: string
+  diagnosticPath?: BranchDiagnosticStep[]
 }
 
 function stageHaystack(stage: JourneyStage) {
@@ -61,6 +66,7 @@ export function buildBranchJourneyChoicesForStage(
         'A capture should show DNS queries and failed/empty answers, but no TCP/443, no TLS and no HTTP for the target site.',
       nextDiagnosticStep:
         'Check resolver configuration, DNS response code, search suffixes, VPN/DNS filtering and whether the domain exists.',
+      diagnosticPath: buildDnsFailureBranchPath(stage.id).steps,
     })
   }
 

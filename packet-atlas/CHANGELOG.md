@@ -1,5 +1,12 @@
 # Changelog
 
+## v8.1 — DNS Failure Branch Path
+
+- expanded the DNS failure branch from a single preview into a short diagnostic path,
+- added a reusable DNS failure branch path model,
+- showed DNS failure path steps inside Animated Journey Mode branch preview,
+- documented the rule: DNS failure means no target IP, no TCP, no TLS and no HTTP.
+
 ## v8.0 — Branching Journey Choices
 
 - added a diagnostic branch choice model for DNS failure, TCP blocked, TLS failure and HTTP/application error,
