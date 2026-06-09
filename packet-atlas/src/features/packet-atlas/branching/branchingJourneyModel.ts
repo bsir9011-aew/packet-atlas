@@ -2,6 +2,7 @@ import {
   buildDnsFailureBranchPath,
   type BranchDiagnosticStep,
 } from './dnsFailureBranchModel'
+import { explainBranchDecision, type BranchDecisionExplanation } from './branchDecisionExplainer'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 
 export type BranchJourneyChoiceKind =
@@ -21,6 +22,7 @@ export type BranchJourneyChoice = {
   networkEvidence: string
   nextDiagnosticStep: string
   diagnosticPath?: BranchDiagnosticStep[]
+  decision?: BranchDecisionExplanation
 }
 
 function stageHaystack(stage: JourneyStage) {
@@ -167,7 +169,10 @@ export function buildBranchJourneyChoicesForStage(
     })
   }
 
-  return choices
+  return choices.map((choice) => ({
+    ...choice,
+    decision: explainBranchDecision(choice),
+  }))
 }
 
 export function buildBranchJourneyChoiceCatalog(

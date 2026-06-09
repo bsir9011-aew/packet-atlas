@@ -66,3 +66,10 @@ It makes the project legible again:
 - Focus Mode marks the current step more clearly.
 - Playback controls stay reachable while reading.
 - Wide screens keep the guided story centered.
+
+
+## v8.5 — Branch Decision Explainer ✅
+
+- Branches explain why they belong at that layer.
+- Branches show what not to assume.
+- Branches name the evidence rule before deeper debugging.

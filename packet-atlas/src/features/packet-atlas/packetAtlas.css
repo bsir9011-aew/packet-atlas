@@ -5371,3 +5371,33 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v8.4 Focus Mode Viewport Anchor END === */
+
+/* === Packet Atlas v8.5 Branch Decision Explainer START === */
+
+.animated-journey__decision {
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 18rem),
+    rgba(2, 6, 23, 0.62);
+  margin-top: 12px;
+  padding: 12px;
+}
+
+.animated-journey__decision strong {
+  color: #bfdbfe;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.animated-journey__decision p {
+  color: #dbeafe;
+  line-height: 1.42;
+  margin: 6px 0 0;
+}
+
+.animated-journey__decision b {
+  color: #f8fafc;
+}
+
+/* === Packet Atlas v8.5 Branch Decision Explainer END === */

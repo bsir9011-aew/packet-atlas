@@ -212,6 +212,15 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
               Clear branch
             </button>
           </div>
+          {selectedBranch.decision ? (
+            <div className="animated-journey__decision">
+              <strong>{selectedBranch.decision.headline}</strong>
+              <p>{selectedBranch.decision.boundary}</p>
+              <p><b>Do not assume:</b> {selectedBranch.decision.doNotAssume}</p>
+              <p><b>Evidence rule:</b> {selectedBranch.decision.evidenceRule}</p>
+            </div>
+          ) : null}
+
           <dl>
             <dt>What changes</dt>
             <dd>{selectedBranch.whatChanges}</dd>

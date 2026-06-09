@@ -1,5 +1,11 @@
 # Changelog
 
+## v8.5 — Branch Decision Explainer
+
+- added a decision explainer for branch previews,
+- clarified layer boundaries for DNS, TCP, TLS and HTTP/application failures,
+- showed evidence rules directly inside the selected branch preview.
+
 ## v8.4 — Focus Mode Viewport Anchor
 
 - polished Focus Mode so the animated step reads as the screen anchor,
