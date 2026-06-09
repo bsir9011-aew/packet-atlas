@@ -1,0 +1,66 @@
+{
+  "id": "dns-failure-synthetic-fixture",
+  "kind": "synthetic-diagnostic-fixture",
+  "status": "synthetic",
+  "scenarioId": "https-example-basic",
+  "branchKind": "dns-failure",
+  "summary": "Synthetic DNS failure evidence: DNS query exists, DNS answer fails, TCP/TLS/HTTP never start.",
+  "redaction": {
+    "applied": true,
+    "note": "Synthetic fixture contains no private data."
+  },
+  "expectedAbsence": [
+    "tcp/443",
+    "tls",
+    "http"
+  ],
+  "frames": [
+    {
+      "id": "dnsfail-1",
+      "index": 1,
+      "timestamp": "synthetic",
+      "protocolStack": [
+        "eth",
+        "ip",
+        "udp",
+        "dns"
+      ],
+      "summary": {
+        "direction": "request",
+        "src": "client",
+        "dst": "resolver",
+        "dstPort": "53",
+        "label": "DNS query for example.invalid"
+      },
+      "fields": {
+        "dns.qry.name": "example.invalid",
+        "dns.flags.response": "0"
+      },
+      "frameNumber": 1
+    },
+    {
+      "id": "dnsfail-2",
+      "index": 2,
+      "timestamp": "synthetic",
+      "protocolStack": [
+        "eth",
+        "ip",
+        "udp",
+        "dns"
+      ],
+      "summary": {
+        "direction": "response",
+        "src": "resolver",
+        "dst": "client",
+        "srcPort": "53",
+        "label": "DNS NXDOMAIN response"
+      },
+      "fields": {
+        "dns.qry.name": "example.invalid",
+        "dns.flags.response": "1",
+        "dns.rcode": "3"
+      },
+      "frameNumber": 2
+    }
+  ]
+}

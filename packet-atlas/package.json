@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "8.5.0",
+  "version": "8.7.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -66,7 +66,8 @@
     "capture:contrast:audit": "node scripts/captures/https-http-contrast-audit.mjs",
     "project:summary": "node scripts/project/build-project-summary.mjs",
     "status:checkpoint": "npm run project:summary && npm run release:readiness",
-    "contrast:workspace:audit": "node scripts/captures/contrast-workspace-audit.mjs"
+    "contrast:workspace:audit": "node scripts/captures/contrast-workspace-audit.mjs",
+    "capture:dns-failure:plan": "node scripts/captures/dns-failure-capture-plan.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

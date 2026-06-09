@@ -1,5 +1,12 @@
 # Changelog
 
+## v8.7 — Branch Evidence Pack
+
+- added branch decision explanations for DNS, TCP, TLS and HTTP/application failures,
+- added a synthetic DNS failure fixture proving DNS failure before TCP/TLS/HTTP,
+- added a DNS failure capture planning script and report,
+- documented the combined branch evidence workflow.
+
 ## v8.5 — Branch Decision Explainer
 
 - added a decision explainer for branch previews,

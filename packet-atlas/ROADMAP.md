@@ -73,3 +73,10 @@ It makes the project legible again:
 - Branches explain why they belong at that layer.
 - Branches show what not to assume.
 - Branches name the evidence rule before deeper debugging.
+
+
+## v8.5–v8.7 — Branch Evidence Pack ✅
+
+- v8.5: branch decision explanations.
+- v8.6: DNS failure synthetic fixture.
+- v8.7: DNS failure capture plan.
