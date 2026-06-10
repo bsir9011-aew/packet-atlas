@@ -5851,3 +5851,145 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v9.4-v9.5 Coach-Only Guided Reading END === */
+
+/* === Packet Atlas v9.6-v9.7 Guided Narrator Pack START === */
+
+.animated-journey__narrator {
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 18rem),
+    rgba(2, 6, 23, 0.64);
+  margin-bottom: 12px;
+  padding: 14px;
+}
+
+.animated-journey__narrator span {
+  color: #93c5fd;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.animated-journey__narrator p {
+  color: #f8fafc;
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.animated-journey__narrator small {
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  color: #bae6fd;
+  display: block;
+  line-height: 1.4;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.atlas-shell--focus .animated-journey__narrator p {
+  font-size: 1.18rem;
+}
+
+/* === Packet Atlas v9.6-v9.7 Guided Narrator Pack END === */
+
+/* === Packet Atlas v9.8-v10.2 Guided Story Layer Pack START === */
+
+.animated-journey__story-layer {
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 24rem),
+    rgba(2, 6, 23, 0.66);
+  margin-bottom: 12px;
+  padding: 14px;
+}
+
+.animated-journey__story-layer > span {
+  color: #93c5fd;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.animated-journey__story-layer > p {
+  color: #f8fafc;
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.animated-journey__story-prompts {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.animated-journey__story-prompts article,
+.animated-journey__vocabulary article {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.62);
+  padding: 10px;
+}
+
+.animated-journey__story-prompts strong,
+.animated-journey__vocabulary strong {
+  color: #f8fafc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.animated-journey__story-prompts small,
+.animated-journey__vocabulary small {
+  color: #cbd5e1;
+  display: block;
+  line-height: 1.38;
+}
+
+.animated-journey__vocabulary {
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.animated-journey__vocabulary span {
+  color: #dbeafe;
+  display: block;
+  line-height: 1.38;
+  margin-bottom: 5px;
+}
+
+.atlas-shell--focus .animated-journey__narrator {
+  display: none;
+}
+
+.atlas-shell--focus .animated-journey__story-layer > p {
+  font-size: 1.18rem;
+}
+
+.atlas-shell--focus .animated-journey__story-prompts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 920px) {
+  .animated-journey__story-prompts,
+  .atlas-shell--focus .animated-journey__story-prompts,
+  .animated-journey__vocabulary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Packet Atlas v9.8-v10.2 Guided Story Layer Pack END === */

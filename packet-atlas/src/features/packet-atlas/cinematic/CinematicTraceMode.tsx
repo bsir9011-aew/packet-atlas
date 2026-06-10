@@ -1,7 +1,10 @@
 import { useEffect, useMemo } from 'react'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 import { buildGuidedFinalRecap } from '../guide/guidedFinalRecapModel'
+import { buildGuidedNarratorLine } from '../guide/guidedNarratorModel'
 import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
+import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
+import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
 import { useAtlasStore } from '../store/atlasStore'
 import {
   buildAnimatedJourneyStepSummary,
@@ -39,6 +42,9 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const progress = getTraceProgress(scenario, stage.id)
   const summary = buildAnimatedJourneyStepSummary(scenario, stage)
   const coach = buildGuidedStepCoach(scenario, stage, summary)
+  const storyScript = buildGuidedStoryScript(scenario, stage, summary)
+  const vocabulary = buildGuidedVocabulary(stage)
+  const narrator = buildGuidedNarratorLine(scenario, stage, summary)
   const finalRecap = buildGuidedFinalRecap(scenario)
   const previousStageId = getPreviousStageId(scenario, stage.id)
   const nextStageId = getNextStageId(scenario, stage.id)
@@ -99,6 +105,46 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           <span>Phase: {coach.phaseLabel}</span>
           <strong>Read this step like a story, not like a dashboard.</strong>
         </div>
+
+        <div className="animated-journey__narrator">
+          <span>Narrator</span>
+          <p>{narrator.line}</p>
+          <small>{narrator.pausePrompt} {narrator.handoff}</small>
+        </div>
+
+        <section className="animated-journey__story-layer" aria-label="Guided story layer">
+          <span>Story layer</span>
+          <p>{storyScript.spokenLine}</p>
+
+          <div className="animated-journey__story-prompts">
+            <article>
+              <strong>Mental model</strong>
+              <small>{storyScript.mentalModel}</small>
+            </article>
+            <article>
+              <strong>Evidence question</strong>
+              <small>{storyScript.evidenceQuestion}</small>
+            </article>
+            <article>
+              <strong>Don't jump to</strong>
+              <small>{storyScript.avoidJumpingTo}</small>
+            </article>
+            <article>
+              <strong>Handoff</strong>
+              <small>{storyScript.nextHandoff}</small>
+            </article>
+          </div>
+
+          <div className="animated-journey__vocabulary">
+            {vocabulary.map((item) => (
+              <article key={item.term}>
+                <strong>{item.term}</strong>
+                <span>{item.simpleMeaning}</span>
+                <small>{item.doNotConfuseWith}</small>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <div className="animated-journey__coach-path">
           <span>

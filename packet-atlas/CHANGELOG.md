@@ -1,5 +1,18 @@
 # Changelog
 
+## v10.2 — Guided Story Layer Pack
+
+- added a guided story script model for every journey stage,
+- added mental model, evidence question, do-not-jump guard and handoff text,
+- added a small vocabulary helper with do-not-confuse guidance,
+- integrated the story layer into Animated Journey Mode without adding dashboard metrics.
+
+## v9.7 — Guided Narrator Pack
+
+- added a narrator line to each guided journey step,
+- added pause prompts and handoff text before moving to the next step,
+- strengthened the one-journey reading flow without adding dashboard metrics.
+
 ## v9.5 — Coach-Only Guided Reading
 
 - made Focus Mode coach-only instead of dashboard-like,

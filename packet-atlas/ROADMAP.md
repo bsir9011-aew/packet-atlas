@@ -115,3 +115,19 @@ It makes the project legible again:
 - v9.4: Focus Mode keeps the coach as the main reading path.
 - v9.5: Final recap appears only at the end of the journey.
 - No dashboard-like progress widgets are added.
+
+
+## v9.6–v9.7 — Guided Narrator Pack ✅
+
+- v9.6: narrator line per journey stage.
+- v9.7: pause prompt and handoff to the next step.
+- No dashboards, charts or extra metrics.
+
+
+## v9.8–v10.2 — Guided Story Layer Pack ✅
+
+- v9.8: stage-level story script.
+- v9.9: mental model per step.
+- v10.0: evidence question per step.
+- v10.1: do-not-jump guard per step.
+- v10.2: vocabulary helper per step.
