@@ -5993,3 +5993,203 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v9.8-v10.2 Guided Story Layer Pack END === */
+
+/* === Packet Atlas v12.3-v12.7 Guided Scenario Selector UI START === */
+
+.guided-scenario-selector {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  background:
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.1), transparent 24rem),
+    rgba(2, 6, 23, 0.52);
+  padding: 16px;
+}
+
+.guided-scenario-selector__header {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.guided-scenario-selector__header span,
+.guided-scenario-selector__question span {
+  color: #c4b5fd;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.guided-scenario-selector__header strong,
+.guided-scenario-selector__question strong {
+  color: #f8fafc;
+  display: block;
+  font-size: 1rem;
+}
+
+.guided-scenario-selector__header p,
+.guided-scenario-selector__question p {
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin: 6px 0 0;
+}
+
+.guided-scenario-selector__header small {
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  border-radius: 999px;
+  color: #ddd6fe;
+  font-weight: 950;
+  padding: 6px 9px;
+  white-space: nowrap;
+}
+
+.guided-scenario-selector__cards {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-bottom: 12px;
+}
+
+.guided-scenario-selector__card {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.66);
+  cursor: pointer;
+  min-height: 118px;
+  padding: 10px;
+  text-align: left;
+}
+
+.guided-scenario-selector__card:hover,
+.guided-scenario-selector__card--active {
+  border-color: rgba(196, 181, 253, 0.54);
+  background: rgba(59, 7, 100, 0.28);
+}
+
+.guided-scenario-selector__card span {
+  color: #a5b4fc;
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.guided-scenario-selector__card strong {
+  color: #f8fafc;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.guided-scenario-selector__card small {
+  color: #cbd5e1;
+  display: block;
+  line-height: 1.35;
+}
+
+.guided-scenario-selector__reader {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+}
+
+.guided-scenario-selector__question {
+  border: 1px solid rgba(196, 181, 253, 0.24);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.62);
+  padding: 12px;
+}
+
+.guided-scenario-selector__steps {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.guided-scenario-selector__steps li {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.62);
+  padding: 10px;
+}
+
+.guided-scenario-selector__steps span {
+  color: #93c5fd;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.guided-scenario-selector__steps strong {
+  color: #f8fafc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.guided-scenario-selector__steps p {
+  color: #dbeafe;
+  line-height: 1.42;
+  margin: 0 0 5px;
+}
+
+.guided-scenario-selector__steps small {
+  color: #cbd5e1;
+  display: block;
+  line-height: 1.35;
+}
+
+.atlas-shell--focus .guided-scenario-selector {
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: 18px;
+  margin: 16px 16px 0;
+}
+
+.atlas-shell--focus .guided-scenario-selector__reader {
+  display: none;
+}
+
+.atlas-shell--focus .guided-scenario-selector__cards {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.atlas-shell--focus .guided-scenario-selector__card {
+  min-height: 92px;
+}
+
+.atlas-shell--focus .guided-scenario-selector__card small {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .guided-scenario-selector__cards,
+  .atlas-shell--focus .guided-scenario-selector__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guided-scenario-selector__reader {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .guided-scenario-selector__cards,
+  .atlas-shell--focus .guided-scenario-selector__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .guided-scenario-selector__header {
+    flex-direction: column;
+  }
+}
+
+/* === Packet Atlas v12.3-v12.7 Guided Scenario Selector UI END === */

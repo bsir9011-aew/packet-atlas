@@ -167,3 +167,12 @@ It makes the project legible again:
 - v12.0: bridge readiness.
 - v12.1: bridge reports.
 - v12.2: future UI-prep contract.
+
+
+## v12.3–v12.7 — Guided Scenario Selector UI Pack ✅
+
+- v12.3: guided scenario selector UI.
+- v12.4: symptom-first scenario cards.
+- v12.5: first diagnostic question.
+- v12.6: runtime reading steps.
+- v12.7: compact Focus Mode behavior.

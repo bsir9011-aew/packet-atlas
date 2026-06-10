@@ -1,5 +1,12 @@
 # Changelog
 
+## v12.7 — Guided Scenario Selector UI Pack
+
+- added the first guided scenario selector UI,
+- exposed symptom-first scenario cards,
+- showed first diagnostic question and runtime reading steps,
+- kept Focus Mode compact to avoid dashboard drift.
+
 ## v12.2 — Guided Scenario Bridge Pack
 
 - added scenario-to-stage bridge model,

@@ -6,6 +6,7 @@ import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
 import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
 import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
 import { useAtlasStore } from '../store/atlasStore'
+import { GuidedScenarioSelector } from '../guide/GuidedScenarioSelector'
 import {
   buildAnimatedJourneyStepSummary,
   getNextStageId,
@@ -99,6 +100,8 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
       <div className="cinematic-trace__bar" aria-label={`Animated journey progress ${progress}%`}>
         <span style={{ width: `${progress}%` }} />
       </div>
+
+      <GuidedScenarioSelector />
 
       <section className="animated-journey__step-coach" aria-label="Guided step coach">
         <div className="animated-journey__coach-header">
