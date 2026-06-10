@@ -158,3 +158,12 @@ It makes the project legible again:
 - v11.5: runtime report.
 - v11.6: story:all report runner.
 - v11.7: future UI bridge contract.
+
+
+## v11.8–v12.2 — Guided Scenario Bridge Pack ✅
+
+- v11.8: scenario-to-stage bridge.
+- v11.9: anchor reasons.
+- v12.0: bridge readiness.
+- v12.1: bridge reports.
+- v12.2: future UI-prep contract.

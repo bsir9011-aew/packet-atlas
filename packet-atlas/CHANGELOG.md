@@ -1,5 +1,13 @@
 # Changelog
 
+## v12.2 — Guided Scenario Bridge Pack
+
+- added scenario-to-stage bridge model,
+- added bridge readiness evaluation and reports,
+- added story:bridge and story:bridge:readiness scripts,
+- updated story:all to run the full guided story pipeline,
+- prepared future guided scenario UI without adding UI panels.
+
 ## v11.7 — Guided Scenario Runtime Pack
 
 - added guided scenario runtime cards and runtime steps,
