@@ -1,7 +1,7 @@
 {
   "name": "packet-atlas",
   "private": true,
-  "version": "10.7.0",
+  "version": "11.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -70,7 +70,9 @@
     "capture:dns-failure:plan": "node scripts/captures/dns-failure-capture-plan.mjs",
     "branch:dns:readiness": "node scripts/project/dns-branch-readiness.mjs",
     "story:guided": "node scripts/project/guided-journey-script.mjs",
-    "story:quality": "node scripts/project/guided-story-quality.mjs"
+    "story:quality": "node scripts/project/guided-story-quality.mjs",
+    "story:scenarios": "node scripts/project/guided-scenario-packs.mjs",
+    "story:scenario:quality": "node scripts/project/guided-scenario-quality.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",

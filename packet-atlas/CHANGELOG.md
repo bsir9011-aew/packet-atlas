@@ -1,5 +1,12 @@
 # Changelog
 
+## v11.2 — Guided Scenario Authoring Pack
+
+- added guided scenario pack models for happy path and failure paths,
+- added DNS, TCP, TLS and HTTP/application failure story blueprints,
+- added evidence contracts and do-not-jump guardrails for scenario steps,
+- added story:scenarios and story:scenario:quality reports without changing UI.
+
 ## v10.7 — Guided Authoring Pack
 
 - added a full guided journey script model and Markdown renderer,

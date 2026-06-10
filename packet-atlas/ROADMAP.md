@@ -140,3 +140,12 @@ It makes the project legible again:
 - v10.5: story quality rules.
 - v10.6: guided story reports.
 - v10.7: authoring contract.
+
+
+## v10.8–v11.2 — Guided Scenario Authoring Pack ✅
+
+- v10.8: guided scenario pack model.
+- v10.9: failure story catalog.
+- v11.0: evidence contracts.
+- v11.1: diagnostic guardrails.
+- v11.2: scenario quality reports.
