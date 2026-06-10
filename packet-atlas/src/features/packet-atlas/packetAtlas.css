@@ -5660,3 +5660,52 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v9.2 Guided Step Coach END === */
+
+/* === Packet Atlas v9.3 Guided Read Mode Cleanup START === */
+
+.animated-journey__coach-footer button {
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  border-radius: 999px;
+  background: rgba(8, 145, 178, 0.18);
+  color: #bae6fd;
+  cursor: pointer;
+  font-weight: 950;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.animated-journey__coach-footer button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.atlas-shell--focus .animated-journey__grid,
+.atlas-shell--focus .animated-journey__hint,
+.atlas-shell--focus .animated-journey__manual-note,
+.atlas-shell--focus .animated-journey__choices {
+  display: none;
+}
+
+.atlas-shell--focus .cinematic-trace__controls {
+  margin: 14px 16px 0;
+}
+
+.atlas-shell--focus .animated-journey__step-coach {
+  border-bottom: 0;
+}
+
+.atlas-shell--focus .animated-journey__coach-footer {
+  margin-bottom: 0;
+}
+
+.atlas-shell--focus .animated-journey__branches {
+  margin-top: 14px;
+}
+
+.atlas-shell--focus .cinematic-trace__rail {
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+/* === Packet Atlas v9.3 Guided Read Mode Cleanup END === */

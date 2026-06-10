@@ -101,3 +101,10 @@ It makes the project legible again:
 - Adds a Before / Now / Next reading guide.
 - Gives each stage a simple action and proof question.
 - Keeps focus on understanding one step before pressing Next.
+
+
+## v9.3 — Guided Read Mode Cleanup ✅
+
+- Focus Mode stops repeating the same reading content twice.
+- The Guided Step Coach becomes the main reading path.
+- The coach footer gets a real Next action.

@@ -1,5 +1,12 @@
 # Changelog
 
+## v9.3 — Guided Read Mode Cleanup
+
+- made the Guided Step Coach the primary Focus Mode reading path,
+- hid duplicate old summary and recommendation blocks in Focus Mode,
+- turned the coach footer next action into a real navigation button,
+- kept the full workshop available in normal Atlas Mode.
+
 ## v9.2 — Guided Step Coach
 
 - added a guided step coach to Animated Journey Mode,

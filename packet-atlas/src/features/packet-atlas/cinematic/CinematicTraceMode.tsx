@@ -134,7 +134,13 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
 
         <div className="animated-journey__coach-footer">
           <span>{coach.dontLookAtYet}</span>
-          <b>{coach.nextActionLabel}</b>
+          <button
+            type="button"
+            disabled={isLast}
+            onClick={() => setSelectedStageId(nextStageId)}
+          >
+            {coach.nextActionLabel}
+          </button>
         </div>
       </section>
 
