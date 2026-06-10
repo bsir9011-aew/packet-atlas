@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
+import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
 import { useAtlasStore } from '../store/atlasStore'
 import {
   buildAnimatedJourneyStepSummary,
@@ -36,6 +37,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const index = useMemo(() => getStageIndex(scenario, stage.id), [scenario, stage.id])
   const progress = getTraceProgress(scenario, stage.id)
   const summary = buildAnimatedJourneyStepSummary(scenario, stage)
+  const coach = buildGuidedStepCoach(scenario, stage, summary)
   const previousStageId = getPreviousStageId(scenario, stage.id)
   const nextStageId = getNextStageId(scenario, stage.id)
   const isFirst = previousStageId === stage.id
@@ -89,6 +91,52 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
       <div className="cinematic-trace__bar" aria-label={`Animated journey progress ${progress}%`}>
         <span style={{ width: `${progress}%` }} />
       </div>
+
+      <section className="animated-journey__step-coach" aria-label="Guided step coach">
+        <div className="animated-journey__coach-header">
+          <span>Phase: {coach.phaseLabel}</span>
+          <strong>Read this step like a story, not like a dashboard.</strong>
+        </div>
+
+        <div className="animated-journey__coach-path">
+          <span>
+            <small>Before</small>
+            {coach.beforeLabel}
+          </span>
+          <span className="animated-journey__coach-now">
+            <small>Now</small>
+            {coach.nowLabel}
+          </span>
+          <span>
+            <small>Next</small>
+            {coach.nextLabel}
+          </span>
+        </div>
+
+        <div className="animated-journey__coach-grid">
+          <article>
+            <strong>Say it simply</strong>
+            <p>{coach.plainEnglish}</p>
+          </article>
+          <article>
+            <strong>What to do now</strong>
+            <p>{coach.whatToDoNow}</p>
+          </article>
+          <article>
+            <strong>Proof question</strong>
+            <p>{coach.proofQuestion}</p>
+          </article>
+          <article>
+            <strong>Notebook line</strong>
+            <p>{coach.notebookLine}</p>
+          </article>
+        </div>
+
+        <div className="animated-journey__coach-footer">
+          <span>{coach.dontLookAtYet}</span>
+          <b>{coach.nextActionLabel}</b>
+        </div>
+      </section>
 
       <div className="animated-journey__grid">
         <article>
@@ -182,7 +230,8 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
         </div>
       </div>
 
-      <div className="animated-journey__branches">
+      {summary.branchChoices.length > 0 || selectedBranch ? (
+        <div className="animated-journey__branches">
         <strong>Failure branches</strong>
         <p>
           These choices preview where the journey could break. They do not create
@@ -206,6 +255,8 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           )}
         </div>
       </div>
+
+      ) : null}
 
       {selectedBranch ? (
         <article className="animated-journey__branch-preview">

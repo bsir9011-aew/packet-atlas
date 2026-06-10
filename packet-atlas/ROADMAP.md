@@ -94,3 +94,10 @@ It makes the project legible again:
 - Focus Mode becomes a manual-first guided story.
 - Auto-play becomes slower and optional.
 - Supporting panels stop competing with the current step.
+
+
+## v9.2 — Guided Step Coach ✅
+
+- Adds a Before / Now / Next reading guide.
+- Gives each stage a simple action and proof question.
+- Keeps focus on understanding one step before pressing Next.

@@ -1,5 +1,12 @@
 # Changelog
 
+## v9.2 — Guided Step Coach
+
+- added a guided step coach to Animated Journey Mode,
+- introduced Before / Now / Next reading structure,
+- added Say it simply, What to do now, Proof question and Notebook line prompts,
+- reinforced manual step-by-step guidance instead of dashboard scanning.
+
 ## v9.1 — Guided Journey Reset
 
 - reset Focus Mode toward manual step-by-step reading,
