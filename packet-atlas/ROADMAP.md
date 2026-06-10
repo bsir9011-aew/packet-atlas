@@ -149,3 +149,12 @@ It makes the project legible again:
 - v11.0: evidence contracts.
 - v11.1: diagnostic guardrails.
 - v11.2: scenario quality reports.
+
+
+## v11.3–v11.7 — Guided Scenario Runtime Pack ✅
+
+- v11.3: runtime scenario cards.
+- v11.4: runtime scenario steps.
+- v11.5: runtime report.
+- v11.6: story:all report runner.
+- v11.7: future UI bridge contract.

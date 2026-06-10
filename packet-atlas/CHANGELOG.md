@@ -1,5 +1,12 @@
 # Changelog
 
+## v11.7 — Guided Scenario Runtime Pack
+
+- added guided scenario runtime cards and runtime steps,
+- added story:runtime and story:all project scripts,
+- generated a guided scenario runtime report,
+- prepared a future UI bridge without adding new UI panels.
+
 ## v11.2 — Guided Scenario Authoring Pack
 
 - added guided scenario pack models for happy path and failure paths,
