@@ -131,3 +131,12 @@ It makes the project legible again:
 - v10.0: evidence question per step.
 - v10.1: do-not-jump guard per step.
 - v10.2: vocabulary helper per step.
+
+
+## v10.3–v10.7 — Guided Authoring Pack ✅
+
+- v10.3: full guided script model.
+- v10.4: Markdown renderer.
+- v10.5: story quality rules.
+- v10.6: guided story reports.
+- v10.7: authoring contract.

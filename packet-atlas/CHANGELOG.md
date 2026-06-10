@@ -1,5 +1,12 @@
 # Changelog
 
+## v10.7 — Guided Authoring Pack
+
+- added a full guided journey script model and Markdown renderer,
+- added story quality checks for evidence questions, do-not-jump guards and vocabulary,
+- added story:guided and story:quality project scripts,
+- generated guided story and quality reports without adding UI dashboard weight.
+
 ## v10.2 — Guided Story Layer Pack
 
 - added a guided story script model for every journey stage,
