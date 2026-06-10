@@ -10,6 +10,7 @@ export function GuidedScenarioSelector() {
   const packs = useMemo(() => buildGuidedScenarioPacks(), [])
   const runtime = useMemo(() => buildGuidedScenarioRuntime(packs), [packs])
   const [selectedScenarioId, setSelectedScenarioId] = useState(runtime.defaultScenarioId)
+  const [readerStepIndex, setReaderStepIndex] = useState(0)
 
   if (packs.length === 0) return null
 
@@ -17,6 +18,14 @@ export function GuidedScenarioSelector() {
   const selectedCard =
     runtime.cards.find((card) => card.scenarioId === selectedPack.id) ?? runtime.cards[0]
   const steps = buildGuidedScenarioRuntimeSteps(selectedPack)
+  const currentStep = steps[Math.min(readerStepIndex, Math.max(steps.length - 1, 0))]
+  const isFirstStep = readerStepIndex <= 0
+  const isLastStep = readerStepIndex >= steps.length - 1
+
+  const selectScenario = (scenarioId: string) => {
+    setSelectedScenarioId(scenarioId)
+    setReaderStepIndex(0)
+  }
 
   return (
     <section className="guided-scenario-selector" aria-label="Guided scenario selector">
@@ -25,8 +34,8 @@ export function GuidedScenarioSelector() {
           <span>Story path</span>
           <strong>Choose what this same journey should explain.</strong>
           <p>
-            Start from a user-visible symptom, then follow the guided evidence path. This is a
-            reading path, not a dashboard.
+            Start from a user-visible symptom, then follow one guided evidence step at a time.
+            This is a reading path, not a dashboard.
           </p>
         </div>
         <small>{selectedPack.mode === 'happy-path' ? 'happy path' : 'failure path'}</small>
@@ -43,7 +52,7 @@ export function GuidedScenarioSelector() {
                 : 'guided-scenario-selector__card'
             }
             aria-pressed={card.scenarioId === selectedPack.id}
-            onClick={() => setSelectedScenarioId(card.scenarioId)}
+            onClick={() => selectScenario(card.scenarioId)}
           >
             <span>{card.mode === 'happy-path' ? 'Normal path' : 'Failure path'}</span>
             <strong>{card.label}</strong>
@@ -59,18 +68,65 @@ export function GuidedScenarioSelector() {
           <p>{selectedCard.nextReaderAction}</p>
         </div>
 
-        <ol className="guided-scenario-selector__steps">
-          {steps.map((step) => (
-            <li key={`${step.scenarioId}-${step.stepNumber}`}>
+        {currentStep ? (
+          <article className="guided-scenario-reader" aria-label="Guided scenario reader">
+            <div className="guided-scenario-reader__topline">
               <span>
-                Step {step.stepNumber}/{step.totalSteps}
+                Step {currentStep.stepNumber}/{currentStep.totalSteps}
               </span>
-              <strong>{step.title}</strong>
-              <p>{step.readThis}</p>
-              <small>Evidence: {step.evidenceChecklist.join(', ')}</small>
-            </li>
-          ))}
-        </ol>
+              <small>{selectedCard.label}</small>
+            </div>
+
+            <h3>{currentStep.title}</h3>
+            <p className="guided-scenario-reader__read">{currentStep.readThis}</p>
+
+            <div className="guided-scenario-reader__grid">
+              <section>
+                <span>Ask this</span>
+                <p>{currentStep.askThis}</p>
+              </section>
+
+              <section>
+                <span>Evidence checklist</span>
+                <ul>
+                  {currentStep.evidenceChecklist.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <section>
+                <span>Do not jump to</span>
+                <p>{currentStep.doNotJumpTo}</p>
+              </section>
+
+              <section>
+                <span>Notebook line</span>
+                <p>{currentStep.notebookLine}</p>
+              </section>
+            </div>
+
+            <footer className="guided-scenario-reader__actions">
+              <button
+                type="button"
+                onClick={() => setReaderStepIndex((current) => Math.max(0, current - 1))}
+                disabled={isFirstStep}
+              >
+                Previous
+              </button>
+              <strong>{currentStep.nextAction}</strong>
+              <button
+                type="button"
+                onClick={() =>
+                  setReaderStepIndex((current) => Math.min(steps.length - 1, current + 1))
+                }
+                disabled={isLastStep}
+              >
+                {isLastStep ? 'Done' : 'Next step'}
+              </button>
+            </footer>
+          </article>
+        ) : null}
       </div>
     </section>
   )

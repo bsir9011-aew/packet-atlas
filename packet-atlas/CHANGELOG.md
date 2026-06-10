@@ -1,5 +1,12 @@
 # Changelog
 
+## v13.2 — Guided Scenario Reader UI Pack
+
+- converted guided scenario selector into a one-step scenario reader,
+- added scenario step ask/evidence/guard/notebook sections,
+- added manual-first Previous/Next controls,
+- kept the experience guided instead of dashboard-like.
+
 ## v12.7 — Guided Scenario Selector UI Pack
 
 - added the first guided scenario selector UI,

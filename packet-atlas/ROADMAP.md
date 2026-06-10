@@ -176,3 +176,12 @@ It makes the project legible again:
 - v12.5: first diagnostic question.
 - v12.6: runtime reading steps.
 - v12.7: compact Focus Mode behavior.
+
+
+## v12.8–v13.2 — Guided Scenario Reader UI Pack ✅
+
+- v12.8: one-step scenario reader.
+- v12.9: evidence checklist.
+- v13.0: do-not-jump guard.
+- v13.1: notebook line.
+- v13.2: manual-first controls.
