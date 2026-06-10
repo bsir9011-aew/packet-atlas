@@ -108,3 +108,10 @@ It makes the project legible again:
 - Focus Mode stops repeating the same reading content twice.
 - The Guided Step Coach becomes the main reading path.
 - The coach footer gets a real Next action.
+
+
+## v9.4–v9.5 — Coach-Only Guided Reading ✅
+
+- v9.4: Focus Mode keeps the coach as the main reading path.
+- v9.5: Final recap appears only at the end of the journey.
+- No dashboard-like progress widgets are added.

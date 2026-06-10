@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
+import { buildGuidedFinalRecap } from '../guide/guidedFinalRecapModel'
 import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
 import { useAtlasStore } from '../store/atlasStore'
 import {
@@ -38,6 +39,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
   const progress = getTraceProgress(scenario, stage.id)
   const summary = buildAnimatedJourneyStepSummary(scenario, stage)
   const coach = buildGuidedStepCoach(scenario, stage, summary)
+  const finalRecap = buildGuidedFinalRecap(scenario)
   const previousStageId = getPreviousStageId(scenario, stage.id)
   const nextStageId = getNextStageId(scenario, stage.id)
   const isFirst = previousStageId === stage.id
@@ -131,6 +133,26 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
             <p>{coach.notebookLine}</p>
           </article>
         </div>
+
+        {isLast ? (
+          <section className="animated-journey__final-recap" aria-label="Final journey recap">
+            <span>Final recap</span>
+            <h3>{finalRecap.title}</h3>
+            <p>{finalRecap.simpleStory}</p>
+            <ul>
+              {finalRecap.checkpoints.map((checkpoint) => (
+                <li key={checkpoint}>{checkpoint}</li>
+              ))}
+            </ul>
+            <div className="animated-journey__final-note">
+              <strong>Notebook line</strong>
+              <p>{finalRecap.notebookLine}</p>
+            </div>
+            <div className="animated-journey__closing-action">
+              {finalRecap.closingAction}
+            </div>
+          </section>
+        ) : null}
 
         <div className="animated-journey__coach-footer">
           <span>{coach.dontLookAtYet}</span>

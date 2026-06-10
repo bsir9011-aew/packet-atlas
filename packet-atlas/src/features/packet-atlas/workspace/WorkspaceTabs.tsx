@@ -89,7 +89,7 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
           </h2>
           <p>{current.purpose}</p>
         </div>
-        <div className="workspace-shell__badge">v9.3 guided read</div>
+        <div className="workspace-shell__badge">v9.5 coach only</div>
       </div>
 
       <div className="workspace-guidance-stack">

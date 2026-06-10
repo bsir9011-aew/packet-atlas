@@ -1,5 +1,12 @@
 # Changelog
 
+## v9.5 — Coach-Only Guided Reading
+
+- made Focus Mode coach-only instead of dashboard-like,
+- hid duplicate and competing panels in Focus Mode,
+- added a final recap only at the last journey step,
+- kept detailed workshop panels available in Atlas Mode.
+
 ## v9.3 — Guided Read Mode Cleanup
 
 - made the Guided Step Coach the primary Focus Mode reading path,

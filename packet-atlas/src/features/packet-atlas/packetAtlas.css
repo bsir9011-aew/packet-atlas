@@ -5709,3 +5709,145 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v9.3 Guided Read Mode Cleanup END === */
+
+/* === Packet Atlas v9.4-v9.5 Coach-Only Guided Reading START === */
+
+/*
+  Focus Mode is not a dashboard.
+  Atlas Mode can keep the workshop panels.
+  Focus Mode keeps: title, coach, one Next action, final recap.
+*/
+
+.atlas-shell--focus .cinematic-trace__progress-card,
+.atlas-shell--focus .cinematic-trace__progress,
+.atlas-shell--focus .cinematic-trace__percent,
+.atlas-shell--focus .cinematic-trace__hero aside,
+.atlas-shell--focus .animated-journey__grid,
+.atlas-shell--focus .animated-journey__hint,
+.atlas-shell--focus .animated-journey__manual-note,
+.atlas-shell--focus .animated-journey__choices,
+.atlas-shell--focus .animated-journey__branches,
+.atlas-shell--focus .cinematic-trace__rail {
+  display: none !important;
+}
+
+.atlas-shell--focus .cinematic-trace__hero {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  min-height: auto;
+  padding-bottom: 30px;
+}
+
+.atlas-shell--focus .animated-journey__step-coach {
+  border-bottom: 0;
+  padding: 20px;
+}
+
+.atlas-shell--focus .animated-journey__coach-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.animated-journey__coach-footer button {
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  border-radius: 999px;
+  background: rgba(8, 145, 178, 0.18);
+  color: #bae6fd;
+  cursor: pointer;
+  font-weight: 950;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.animated-journey__coach-footer button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.atlas-shell--focus .cinematic-trace__controls {
+  margin: 14px 20px 20px;
+  opacity: 0.78;
+}
+
+.atlas-shell--focus .cinematic-trace__controls select,
+.atlas-shell--focus .cinematic-trace__play {
+  display: none;
+}
+
+.animated-journey__final-recap {
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 24rem),
+    rgba(2, 6, 23, 0.68);
+  margin: 14px 0;
+  padding: 16px;
+}
+
+.animated-journey__final-recap > span {
+  color: #86efac;
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.animated-journey__final-recap h3 {
+  color: #f8fafc;
+  font-size: 1.35rem;
+  margin: 0 0 8px;
+}
+
+.animated-journey__final-recap p {
+  color: #dbeafe;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.animated-journey__final-recap ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.animated-journey__final-recap li {
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.66);
+  color: #dcfce7;
+  padding: 9px 10px;
+}
+
+.animated-journey__final-note {
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  border-radius: 14px;
+  background: rgba(24, 12, 3, 0.24);
+  margin-top: 12px;
+  padding: 10px;
+}
+
+.animated-journey__final-note strong {
+  color: #fde68a;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.animated-journey__closing-action {
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 14px;
+  background: rgba(8, 47, 73, 0.32);
+  color: #bae6fd;
+  font-weight: 850;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+@media (max-width: 880px) {
+  .atlas-shell--focus .animated-journey__coach-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Packet Atlas v9.4-v9.5 Coach-Only Guided Reading END === */
