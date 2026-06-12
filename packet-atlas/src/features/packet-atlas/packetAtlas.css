@@ -6348,3 +6348,274 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v12.8-v13.2 Guided Scenario Reader UI END === */
+
+/* === Packet Atlas v13.3-v13.7 Full Stage Play Mode START === */
+
+/*
+  Play Mode rule:
+  In Focus Mode the screen must feel like one current-stage play screen,
+  not an atlas dashboard. The selector and inspectors belong to Atlas Mode.
+*/
+
+.atlas-shell--focus {
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 28rem),
+    radial-gradient(circle at top right, rgba(168, 85, 247, 0.12), transparent 24rem),
+    #020617;
+}
+
+.atlas-shell--focus .guided-scenario-selector {
+  display: none;
+}
+
+.atlas-shell--focus .animated-journey {
+  border: 2px solid rgba(56, 189, 248, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.18),
+    0 24px 90px rgba(8, 47, 73, 0.32);
+  margin: 0 auto;
+  max-width: 1180px;
+  min-height: calc(100vh - 40px);
+}
+
+.atlas-shell--focus .cinematic-trace__hero {
+  border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+  background:
+    linear-gradient(135deg, rgba(8, 47, 73, 0.86), rgba(15, 23, 42, 0.96)),
+    radial-gradient(circle at top right, rgba(244, 114, 182, 0.12), transparent 20rem);
+  padding: clamp(18px, 3vw, 34px);
+  position: sticky;
+  top: 0;
+  z-index: 6;
+}
+
+.atlas-shell--focus .cinematic-trace__hero::before {
+  color: #bae6fd;
+  content: "PLAY MODE — EVERYTHING ON THIS SCREEN IS ABOUT THE CURRENT STAGE";
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.atlas-shell--focus .cinematic-trace__hero h2,
+.atlas-shell--focus .cinematic-trace__hero h3,
+.atlas-shell--focus .cinematic-trace__hero strong {
+  text-wrap: balance;
+}
+
+.atlas-shell--focus .cinematic-trace__hero h2 {
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  line-height: 0.95;
+}
+
+.atlas-shell--focus .cinematic-trace__hero p {
+  font-size: 1rem;
+  line-height: 1.45;
+  max-width: 820px;
+}
+
+.atlas-shell--focus .cinematic-trace__progress,
+.atlas-shell--focus .cinematic-trace__progress-card {
+  opacity: 0.95;
+}
+
+.atlas-shell--focus .animated-journey__story-layer,
+.atlas-shell--focus .animated-journey__step-coach {
+  border-color: rgba(56, 189, 248, 0.34);
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.12), transparent 24rem),
+    rgba(2, 6, 23, 0.76);
+  margin-left: clamp(14px, 2vw, 26px);
+  margin-right: clamp(14px, 2vw, 26px);
+}
+
+.atlas-shell--focus .animated-journey__story-layer::before {
+  color: #67e8f9;
+  content: "CURRENT STAGE STORY";
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 1000;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.atlas-shell--focus .animated-journey__step-coach::before {
+  color: #fde68a;
+  content: "PLAY THIS STEP";
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 1000;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* Hide old dashboard/detail leftovers in Play Mode. Atlas Mode still has them. */
+.atlas-shell--focus .animated-journey__summary,
+.atlas-shell--focus .animated-journey__legacy-summary,
+.atlas-shell--focus .animated-journey__manual-note,
+.atlas-shell--focus .animated-journey__choices,
+.atlas-shell--focus .animated-journey__branches,
+.atlas-shell--focus .cinematic-trace__rail,
+.atlas-shell--focus .journey-map,
+.atlas-shell--focus .journey-inspector,
+.atlas-shell--focus .stage-deep-dive,
+.atlas-shell--focus .layer-highlight-mode,
+.atlas-shell--focus .path-scope-filter {
+  display: none !important;
+}
+
+.atlas-shell--focus .cinematic-trace__controls {
+  border-top: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(2, 6, 23, 0.86);
+  bottom: 0;
+  margin-top: 20px;
+  padding: 14px clamp(14px, 2vw, 26px);
+  position: sticky;
+  z-index: 5;
+}
+
+.atlas-shell--focus .cinematic-trace__controls::before {
+  color: #fde68a;
+  content: "Read this stage. Say it simply. Press Next.";
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 950;
+  margin-bottom: 8px;
+}
+
+.atlas-shell--focus .cinematic-trace__controls button {
+  min-height: 40px;
+}
+
+.atlas-shell--focus .cinematic-trace__controls button:last-of-type {
+  border-color: rgba(56, 189, 248, 0.75);
+  background: rgba(8, 145, 178, 0.28);
+  font-size: 1rem;
+  padding-inline: 18px;
+}
+
+/* In Play Mode, scenario reader can return later as a separate full-screen mode. */
+.atlas-shell--focus .guided-scenario-reader {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .atlas-shell--focus .animated-journey {
+    min-height: calc(100vh - 16px);
+  }
+
+  .atlas-shell--focus .cinematic-trace__hero {
+    padding: 16px;
+  }
+
+  .atlas-shell--focus .cinematic-trace__hero::before {
+    font-size: 0.62rem;
+  }
+}
+
+/* === Packet Atlas v13.3-v13.7 Full Stage Play Mode END === */
+
+/* === Packet Atlas v13.8 Play Mode Layout Repair START === */
+
+/*
+  Repair after v13.7:
+  The Play Mode hero must not use the old split/dashboard header layout.
+  The current stage title should sit full-width at the top, not squeezed into a side column.
+*/
+
+.atlas-shell--focus .cinematic-trace__hero {
+  display: block !important;
+  min-height: auto !important;
+  padding: clamp(22px, 4vw, 42px) !important;
+}
+
+.atlas-shell--focus .cinematic-trace__hero > aside,
+.atlas-shell--focus .cinematic-trace__hero .cinematic-trace__progress-card {
+  display: none !important;
+}
+
+.atlas-shell--focus .cinematic-trace__hero h2 {
+  max-width: 980px;
+  width: 100%;
+  font-size: clamp(2.6rem, 7vw, 5.6rem) !important;
+  line-height: 0.96 !important;
+  margin: 0 0 14px !important;
+  text-align: left;
+}
+
+.atlas-shell--focus .cinematic-trace__hero p {
+  max-width: 760px;
+  margin: 0 !important;
+  text-align: left;
+}
+
+.atlas-shell--focus .cinematic-trace__progress {
+  margin-top: 26px;
+  max-width: 760px;
+}
+
+.atlas-shell--focus .animated-journey {
+  overflow: visible;
+}
+
+.atlas-shell--focus .animated-journey__story-layer,
+.atlas-shell--focus .animated-journey__step-coach {
+  max-width: 980px;
+}
+
+.atlas-shell--focus .animated-journey__story-layer {
+  margin-top: clamp(16px, 2vw, 28px);
+}
+
+.atlas-shell--focus .animated-journey__story-prompts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.atlas-shell--focus .animated-journey__vocabulary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.atlas-shell--focus .animated-journey__coach-path,
+.atlas-shell--focus .animated-journey__coach-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.atlas-shell--focus .animated-journey__coach-footer {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.atlas-shell--focus .animated-journey__coach-footer button {
+  min-width: 180px;
+}
+
+/* The Play Mode screen should not leave a huge empty hero block. */
+.atlas-shell--focus .cinematic-trace__hero + * {
+  margin-top: 0;
+}
+
+@media (max-width: 820px) {
+  .atlas-shell--focus .cinematic-trace__hero h2 {
+    font-size: clamp(2.1rem, 13vw, 4rem) !important;
+  }
+
+  .atlas-shell--focus .animated-journey__story-prompts,
+  .atlas-shell--focus .animated-journey__vocabulary,
+  .atlas-shell--focus .animated-journey__coach-path,
+  .atlas-shell--focus .animated-journey__coach-grid,
+  .atlas-shell--focus .animated-journey__coach-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-shell--focus .animated-journey__coach-footer button {
+    width: 100%;
+  }
+}
+
+/* === Packet Atlas v13.8 Play Mode Layout Repair END === */

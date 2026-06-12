@@ -1,5 +1,19 @@
 # Changelog
 
+## v13.8 — Play Mode Layout Repair
+
+- fixed Play Mode hero layout so the current stage title uses full width,
+- hid old progress-card/aside layout in Play Mode,
+- reduced the large empty hero area,
+- kept Play Mode focused on one current stage.
+
+## v13.7 — Full Stage Play Mode Pack
+
+- reframed Focus Mode as Play Mode,
+- made the current stage the dominant full-screen anchor,
+- hid scenario selector and dashboard leftovers in Play Mode,
+- kept Atlas Mode available for inspection and exploration.
+
 ## v13.2 — Guided Scenario Reader UI Pack
 
 - converted guided scenario selector into a one-step scenario reader,

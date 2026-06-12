@@ -185,3 +185,19 @@ It makes the project legible again:
 - v13.0: do-not-jump guard.
 - v13.1: notebook line.
 - v13.2: manual-first controls.
+
+
+## v13.3–v13.7 — Full Stage Play Mode Pack ✅
+
+- v13.3: Play Mode framing.
+- v13.4: current-stage screen anchor.
+- v13.5: hide dashboard leftovers.
+- v13.6: sticky play controls.
+- v13.7: Atlas Mode vs Play Mode contract.
+
+
+## v13.8 — Play Mode Layout Repair ✅
+
+- full-width current stage hero.
+- hidden old split/dashboard hero fragments.
+- reduced empty space in Play Mode.
