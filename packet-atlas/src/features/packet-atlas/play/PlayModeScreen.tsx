@@ -16,6 +16,7 @@ import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
 import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
+import { PlayMotionLayer } from './PlayMotionLayer'
 
 type Props = {
   scenario: JourneyScenario
@@ -106,6 +107,8 @@ export function PlayModeScreen({ scenario, stage }: Props) {
 
         <small>{narrator.pausePrompt} {narrator.handoff}</small>
       </section>
+
+      <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
 
       <section className="play-mode-story" aria-label="Current stage story">
         <span>Current stage story</span>
