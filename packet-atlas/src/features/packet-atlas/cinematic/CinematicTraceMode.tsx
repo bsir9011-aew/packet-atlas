@@ -282,7 +282,7 @@ export function CinematicTraceMode({ scenario, stage }: Props) {
           className="cinematic-trace__focus-toggle"
           onClick={togglePresentationMode}
         >
-          {presentationMode === 'focus' ? 'Exit Focus' : 'Focus Mode'}
+          {presentationMode === 'play' ? 'Exit Play' : 'Play Mode'}
         </button>
       </div>
 

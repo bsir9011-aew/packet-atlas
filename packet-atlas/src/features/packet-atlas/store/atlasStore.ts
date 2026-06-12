@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type { TraceSpeed } from '../cinematic/cinematicTraceModel'
 import type { LayerLens } from '../schema/journeyScenarioSchema'
 
-export type PresentationMode = 'atlas' | 'focus'
+export type PresentationMode = 'atlas' | 'play'
 
 type AtlasState = {
   selectedScenarioId: string
@@ -62,10 +62,16 @@ export const useAtlasStore = create<AtlasState>((set) => ({
       selectedBranchChoiceId: choiceId,
       animatedJourneyPlaying: false,
     }),
-  setPresentationMode: (mode) => set({ presentationMode: mode }),
+  setPresentationMode: (mode) =>
+    set((state) => ({
+      presentationMode: mode,
+      animatedJourneyPlaying: mode === 'atlas' ? false : state.animatedJourneyPlaying,
+    })),
   togglePresentationMode: () =>
     set((state) => ({
-      presentationMode: state.presentationMode === 'focus' ? 'atlas' : 'focus',
+      presentationMode: state.presentationMode === 'play' ? 'atlas' : 'play',
+      animatedJourneyPlaying:
+        state.presentationMode === 'play' ? false : state.animatedJourneyPlaying,
     })),
   resetAnimatedJourney: (stageId) =>
     set({

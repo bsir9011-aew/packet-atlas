@@ -7,7 +7,6 @@ import { TlsBoundaryPanel } from '../real-capture/TlsBoundaryPanel'
 import { HttpsHttpContrastPanel } from '../contrast-workspace/HttpsHttpContrastPanel'
 import { CaptureWorkspaceGuidePanel } from '../capture-guide/CaptureWorkspaceGuidePanel'
 import { CdnEdgeVariantPanel } from '../cdn-edge/CdnEdgeVariantPanel'
-import { CinematicTraceMode } from '../cinematic/CinematicTraceMode'
 import { ComponentLab } from '../component-lab/ComponentLab'
 import { DeviceCutawayView } from '../device-cutaway/DeviceCutawayView'
 import { VariantFlowDiff } from '../diff/VariantFlowDiff'
@@ -126,7 +125,6 @@ export function WorkspaceTabs({ scenario, stage }: Props) {
             <PathScopeFilter />
             <LayerHighlightPanel scenario={scenario} />
             <JourneyControls scenario={scenario} />
-            <CinematicTraceMode scenario={scenario} stage={stage} />
 
             <main className="atlas-layout atlas-layout--workspace">
               <section className="map-column">
