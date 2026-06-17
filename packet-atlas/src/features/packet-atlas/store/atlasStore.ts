@@ -3,6 +3,7 @@ import type { TraceSpeed } from '../cinematic/cinematicTraceModel'
 import type { LayerLens } from '../schema/journeyScenarioSchema'
 
 export type PresentationMode = 'atlas' | 'focus' | 'play'
+export type AtlasLanguage = 'en' | 'pl'
 
 type AtlasState = {
   selectedScenarioId: string
@@ -15,6 +16,7 @@ type AtlasState = {
   visitedStageIds: string[]
   selectedBranchChoiceId: string | null
   presentationMode: PresentationMode
+  language: AtlasLanguage
   setSelectedStageId: (stageId: string) => void
   setSelectedScenarioId: (scenarioId: string) => void
   setSelectedLayerLens: (lens: LayerLens) => void
@@ -24,8 +26,34 @@ type AtlasState = {
   setAnimatedJourneySpeed: (speed: TraceSpeed) => void
   setSelectedBranchChoiceId: (choiceId: string | null) => void
   setPresentationMode: (mode: PresentationMode) => void
+  setLanguage: (language: AtlasLanguage) => void
+  toggleLanguage: () => void
   togglePresentationMode: () => void
   resetAnimatedJourney: (stageId: string) => void
+}
+
+
+const atlasLanguageStorageKey = 'packet-atlas-language'
+
+function readInitialLanguage(): AtlasLanguage {
+  if (typeof window === 'undefined') return 'en'
+
+  try {
+    const stored = window.localStorage.getItem(atlasLanguageStorageKey)
+    return stored === 'pl' ? 'pl' : 'en'
+  } catch {
+    return 'en'
+  }
+}
+
+function persistLanguage(language: AtlasLanguage) {
+  if (typeof window === 'undefined') return
+
+  try {
+    window.localStorage.setItem(atlasLanguageStorageKey, language)
+  } catch {
+    // Non-critical: language switch still works for the current session.
+  }
 }
 
 function rememberStage(stageId: string, visitedStageIds: string[]) {
@@ -45,6 +73,7 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   visitedStageIds: ['url-intent'],
   selectedBranchChoiceId: null,
   presentationMode: 'atlas',
+  language: readInitialLanguage(),
   setSelectedStageId: (stageId) =>
     set((state) => ({
       selectedStageId: stageId,
@@ -67,6 +96,16 @@ export const useAtlasStore = create<AtlasState>((set) => ({
       presentationMode: mode,
       animatedJourneyPlaying: mode === 'atlas' ? false : state.animatedJourneyPlaying,
     })),
+  setLanguage: (language) => {
+    persistLanguage(language)
+    set({ language })
+  },
+  toggleLanguage: () =>
+    set((state) => {
+      const language = state.language === 'pl' ? 'en' : 'pl'
+      persistLanguage(language)
+      return { language }
+    }),
   togglePresentationMode: () =>
     set((state) => ({
       presentationMode: state.presentationMode === 'play' ? 'atlas' : 'play',

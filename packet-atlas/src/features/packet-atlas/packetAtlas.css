@@ -7849,3 +7849,22 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v14.5-v14.8 Play Motion Pack END === */
+
+/* === Packet Atlas v14.9 PL/EN Language Switch START === */
+
+.play-mode-language-toggle {
+  border-color: rgba(125, 211, 252, 0.44) !important;
+  background: rgba(8, 47, 73, 0.42) !important;
+  color: #e0f2fe !important;
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+  min-width: 82px;
+}
+
+.play-mode-language-toggle:hover,
+.play-mode-language-toggle:focus-visible {
+  border-color: rgba(103, 232, 249, 0.72) !important;
+  background: rgba(14, 165, 233, 0.22) !important;
+}
+
+/* === Packet Atlas v14.9 PL/EN Language Switch END === */

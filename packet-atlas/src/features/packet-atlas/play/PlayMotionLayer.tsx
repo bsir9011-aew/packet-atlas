@@ -4,7 +4,15 @@ import {
   getStageIndex,
   getTraceProgress,
 } from '../cinematic/cinematicTraceModel'
+import {
+  translateAtlasUi,
+  translateLayerLabel,
+  translateMotionExplanation,
+  translateMotionLabel,
+  translateScenarioText,
+} from '../i18n/atlasI18n'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
+import { useAtlasStore } from '../store/atlasStore'
 
 type Props = {
   scenario: JourneyScenario
@@ -16,19 +24,8 @@ function findStage(scenario: JourneyScenario, stageId: string) {
   return scenario.stages.find((candidate) => candidate.id === stageId)
 }
 
-function getMotionLabel(stage: JourneyStage) {
-  if (stage.direction === 'request') return 'Request moves forward'
-  if (stage.direction === 'response') return 'Response travels back'
-  return 'Boundary transition'
-}
-
-function getMotionVerb(stage: JourneyStage) {
-  if (stage.direction === 'request') return 'leaves this boundary toward the next system'
-  if (stage.direction === 'response') return 'returns through this boundary toward the browser'
-  return 'changes form at this boundary'
-}
-
 export function PlayMotionLayer({ scenario, stage, playing }: Props) {
+  const language = useAtlasStore((state) => state.language)
   const index = getStageIndex(scenario, stage.id)
   const progress = getTraceProgress(scenario, stage.id)
   const previousStage = findStage(scenario, getPreviousStageId(scenario, stage.id)) ?? stage
@@ -43,22 +40,27 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
       className="play-motion-layer"
       data-direction={stage.direction}
       data-playing={playing}
-      aria-label="Animated packet handoff"
+      aria-label={translateAtlasUi(language, 'motion.ariaLabel')}
     >
       <div className="play-motion-layer__header">
         <div>
-          <span>Animated handoff</span>
-          <strong>{getMotionLabel(stage)}</strong>
+          <span>{translateAtlasUi(language, 'motion.animatedHandoff')}</span>
+          <strong>{translateMotionLabel(language, stage.direction)}</strong>
         </div>
         <small>
-          Step {index + 1}/{scenario.stages.length} · {progress}%
+          {translateAtlasUi(language, 'play.step')} {index + 1}/
+          {scenario.stages.length} · {progress}%
         </small>
       </div>
 
       <div className="play-motion-stage">
         <article className="play-motion-node" data-muted={isFirst}>
-          <span>Before</span>
-          <strong>{isFirst ? 'Start here' : previousStage.shortName}</strong>
+          <span>{translateAtlasUi(language, 'play.before')}</span>
+          <strong>
+            {isFirst
+              ? translateAtlasUi(language, 'motion.beforeStart')
+              : translateScenarioText(language, previousStage.shortName)}
+          </strong>
         </article>
 
         <div className="play-motion-runway" aria-hidden="true">
@@ -73,8 +75,8 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
         </div>
 
         <article className="play-motion-node play-motion-node--current">
-          <span>Now</span>
-          <strong>{stage.shortName}</strong>
+          <span>{translateAtlasUi(language, 'play.now')}</span>
+          <strong>{translateScenarioText(language, stage.shortName)}</strong>
         </article>
 
         <div className="play-motion-runway" aria-hidden="true">
@@ -89,8 +91,12 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
         </div>
 
         <article className="play-motion-node" data-muted={isLast}>
-          <span>Next</span>
-          <strong>{isLast ? 'Journey end' : nextStage.shortName}</strong>
+          <span>{translateAtlasUi(language, 'play.next')}</span>
+          <strong>
+            {isLast
+              ? translateAtlasUi(language, 'motion.journeyEnd')
+              : translateScenarioText(language, nextStage.shortName)}
+          </strong>
         </article>
       </div>
 
@@ -103,16 +109,16 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
         </div>
 
         <div className="play-motion-transform__copy">
-          <span>What you are watching</span>
-          <p>
-            The current stage is not just text. The same journey {getMotionVerb(stage)}:
-            it has a previous boundary, a current transformation and a next handoff.
-          </p>
+          <span>{translateAtlasUi(language, 'motion.whatWatching')}</span>
+          <p>{translateMotionExplanation(language, stage.direction)}</p>
         </div>
 
-        <div className="play-motion-layers" aria-label="Layer focus for this animation">
+        <div
+          className="play-motion-layers"
+          aria-label={translateAtlasUi(language, 'motion.layerFocus')}
+        >
           {layerFocus.map((layer) => (
-            <span key={layer}>{layer}</span>
+            <span key={layer}>{translateLayerLabel(language, layer)}</span>
           ))}
         </div>
       </div>

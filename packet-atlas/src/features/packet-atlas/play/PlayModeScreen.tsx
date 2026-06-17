@@ -14,6 +14,7 @@ import { buildGuidedNarratorLine } from '../guide/guidedNarratorModel'
 import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
 import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
 import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
+import { translateAtlasUi, translateScenarioText } from '../i18n/atlasI18n'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
 import { PlayMotionLayer } from './PlayMotionLayer'
@@ -28,6 +29,8 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const speed = useAtlasStore((state) => state.animatedJourneySpeed)
   const visitedStageIds = useAtlasStore((state) => state.visitedStageIds)
   const selectedBranchChoiceId = useAtlasStore((state) => state.selectedBranchChoiceId)
+  const language = useAtlasStore((state) => state.language)
+  const toggleLanguage = useAtlasStore((state) => state.toggleLanguage)
   const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
   const setPlaying = useAtlasStore((state) => state.setAnimatedJourneyPlaying)
   const setSpeed = useAtlasStore((state) => state.setAnimatedJourneySpeed)
@@ -75,115 +78,141 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   }
 
   return (
-    <main className="play-mode-screen" aria-label="Packet Atlas Play Mode">
+    <main className="play-mode-screen" aria-label={translateAtlasUi(language, 'play.mode')}>
       <header className="play-mode-topbar">
         <div>
-          <span>🎬 Play Mode</span>
-          <strong>{scenario.title}</strong>
+          <span>🎬 {translateAtlasUi(language, 'play.mode')}</span>
+          <strong>{translateScenarioText(language, scenario.title)}</strong>
         </div>
 
+        <button
+          type="button"
+          className="play-mode-language-toggle"
+          onClick={toggleLanguage}
+          aria-label={translateAtlasUi(language, 'language.toggle')}
+        >
+          {language === 'pl' ? 'PL / EN' : 'EN / PL'}
+        </button>
+
         <button type="button" onClick={exitPlay}>
-          Exit Play
+          {translateAtlasUi(language, 'play.exit')}
         </button>
       </header>
 
       <section className="play-mode-hero">
         <div className="play-mode-hero__meta">
           <span>
-            Step {index + 1}/{scenario.stages.length}
+            {translateAtlasUi(language, 'play.step')} {index + 1}/
+            {scenario.stages.length}
           </span>
           <strong>{progress}%</strong>
         </div>
 
         <h1>
-          {summary.stepLabel} — {stage.shortName}
+          {translateScenarioText(language, summary.stepLabel)} —{' '}
+          {translateScenarioText(language, stage.shortName)}
         </h1>
 
-        <p>{narrator.line}</p>
+        <p>{translateScenarioText(language, narrator.line)}</p>
 
-        <div className="play-mode-progress" aria-label={`Play progress ${progress}%`}>
+        <div
+          className="play-mode-progress"
+          aria-label={`${translateAtlasUi(language, 'play.progress')} ${progress}%`}
+        >
           <span style={{ width: `${progress}%` }} />
         </div>
 
-        <small>{narrator.pausePrompt} {narrator.handoff}</small>
+        <small>
+          {translateScenarioText(language, narrator.pausePrompt)}{' '}
+          {translateScenarioText(language, narrator.handoff)}
+        </small>
       </section>
 
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
 
-      <section className="play-mode-story" aria-label="Current stage story">
-        <span>Current stage story</span>
-        <p>{storyScript.spokenLine}</p>
+      <section
+        className="play-mode-story"
+        aria-label={translateAtlasUi(language, 'play.currentStageStory')}
+      >
+        <span>{translateAtlasUi(language, 'play.currentStageStory')}</span>
+        <p>{translateScenarioText(language, storyScript.spokenLine)}</p>
 
         <div className="play-mode-story__grid">
           <article>
-            <strong>Mental model</strong>
-            <p>{storyScript.mentalModel}</p>
+            <strong>{translateAtlasUi(language, 'play.mentalModel')}</strong>
+            <p>{translateScenarioText(language, storyScript.mentalModel)}</p>
           </article>
           <article>
-            <strong>Evidence question</strong>
-            <p>{storyScript.evidenceQuestion}</p>
+            <strong>{translateAtlasUi(language, 'play.evidenceQuestion')}</strong>
+            <p>{translateScenarioText(language, storyScript.evidenceQuestion)}</p>
           </article>
           <article>
-            <strong>Do not jump to</strong>
-            <p>{storyScript.avoidJumpingTo}</p>
+            <strong>{translateAtlasUi(language, 'play.doNotJumpTo')}</strong>
+            <p>{translateScenarioText(language, storyScript.avoidJumpingTo)}</p>
           </article>
           <article>
-            <strong>Handoff</strong>
-            <p>{storyScript.nextHandoff}</p>
+            <strong>{translateAtlasUi(language, 'play.handoff')}</strong>
+            <p>{translateScenarioText(language, storyScript.nextHandoff)}</p>
           </article>
         </div>
       </section>
 
-      <section className="play-mode-coach" aria-label="Play step coach">
+      <section
+        className="play-mode-coach"
+        aria-label={translateAtlasUi(language, 'play.readStage')}
+      >
         <div className="play-mode-coach__header">
-          <span>{coach.phaseLabel}</span>
-          <strong>Read this stage. Say it simply. Then press Next.</strong>
+          <span>{translateScenarioText(language, coach.phaseLabel)}</span>
+          <strong>{translateAtlasUi(language, 'play.readStage')}</strong>
         </div>
 
         <div className="play-mode-coach__path">
           <article>
-            <span>Before</span>
-            <strong>{coach.beforeLabel}</strong>
+            <span>{translateAtlasUi(language, 'play.before')}</span>
+            <strong>{translateScenarioText(language, coach.beforeLabel)}</strong>
           </article>
           <article data-current="true">
-            <span>Now</span>
-            <strong>{coach.nowLabel}</strong>
+            <span>{translateAtlasUi(language, 'play.now')}</span>
+            <strong>{translateScenarioText(language, coach.nowLabel)}</strong>
           </article>
           <article>
-            <span>Next</span>
-            <strong>{coach.nextLabel}</strong>
+            <span>{translateAtlasUi(language, 'play.next')}</span>
+            <strong>{translateScenarioText(language, coach.nextLabel)}</strong>
           </article>
         </div>
 
         <div className="play-mode-coach__grid">
           <article>
-            <strong>Say it simply</strong>
-            <p>{coach.plainEnglish}</p>
+            <strong>{translateAtlasUi(language, 'play.saySimply')}</strong>
+            <p>{translateScenarioText(language, coach.plainEnglish)}</p>
           </article>
           <article>
-            <strong>What to do now</strong>
-            <p>{coach.whatToDoNow}</p>
+            <strong>{translateAtlasUi(language, 'play.whatToDoNow')}</strong>
+            <p>{translateScenarioText(language, coach.whatToDoNow)}</p>
           </article>
           <article>
-            <strong>Proof question</strong>
-            <p>{coach.proofQuestion}</p>
+            <strong>{translateAtlasUi(language, 'play.proofQuestion')}</strong>
+            <p>{translateScenarioText(language, coach.proofQuestion)}</p>
           </article>
           <article>
-            <strong>Notebook line</strong>
-            <p>{coach.notebookLine}</p>
+            <strong>{translateAtlasUi(language, 'play.notebookLine')}</strong>
+            <p>{translateScenarioText(language, coach.notebookLine)}</p>
           </article>
         </div>
       </section>
 
       {vocabulary.length > 0 ? (
-        <section className="play-mode-vocabulary" aria-label="Vocabulary for this stage">
-          <span>Vocabulary</span>
+        <section
+          className="play-mode-vocabulary"
+          aria-label={translateAtlasUi(language, 'play.vocabulary')}
+        >
+          <span>{translateAtlasUi(language, 'play.vocabulary')}</span>
           <div>
             {vocabulary.map((item) => (
               <article key={item.term}>
-                <strong>{item.term}</strong>
-                <p>{item.simpleMeaning}</p>
-                <small>{item.doNotConfuseWith}</small>
+                <strong>{translateScenarioText(language, item.term)}</strong>
+                <p>{translateScenarioText(language, item.simpleMeaning)}</p>
+                <small>{translateScenarioText(language, item.doNotConfuseWith)}</small>
               </article>
             ))}
           </div>
@@ -191,10 +220,13 @@ export function PlayModeScreen({ scenario, stage }: Props) {
       ) : null}
 
       {summary.branchChoices.length > 0 || selectedBranch ? (
-        <section className="play-mode-branches" aria-label="Failure branches">
+        <section
+          className="play-mode-branches"
+          aria-label={translateAtlasUi(language, 'play.optionalFork')}
+        >
           <div className="play-mode-branches__header">
-            <span>Optional diagnostic fork</span>
-            <strong>Only inspect this if the current stage is clear.</strong>
+            <span>{translateAtlasUi(language, 'play.optionalFork')}</span>
+            <strong>{translateAtlasUi(language, 'play.onlyInspect')}</strong>
           </div>
 
           {summary.branchChoices.length > 0 ? (
@@ -206,7 +238,7 @@ export function PlayModeScreen({ scenario, stage }: Props) {
                   onClick={() => setSelectedBranchChoiceId(choice.id)}
                   data-active={choice.id === selectedBranchChoiceId}
                 >
-                  {choice.label}
+                  {translateScenarioText(language, choice.label)}
                 </button>
               ))}
             </div>
@@ -215,19 +247,21 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           {selectedBranch ? (
             <article className="play-mode-branch-preview">
               <div>
-                <strong>{selectedBranch.title}</strong>
+                <strong>{translateScenarioText(language, selectedBranch.title)}</strong>
                 <button type="button" onClick={() => setSelectedBranchChoiceId(null)}>
-                  Clear
+                  {translateAtlasUi(language, 'play.clear')}
                 </button>
               </div>
-              <p>{selectedBranch.whatChanges}</p>
+              <p>{translateScenarioText(language, selectedBranch.whatChanges)}</p>
               <dl>
-                <dt>User sees</dt>
-                <dd>{selectedBranch.userSees}</dd>
-                <dt>Network evidence</dt>
-                <dd>{selectedBranch.networkEvidence}</dd>
-                <dt>Next diagnostic step</dt>
-                <dd>{selectedBranch.nextDiagnosticStep}</dd>
+                <dt>{translateAtlasUi(language, 'play.userSees')}</dt>
+                <dd>{translateScenarioText(language, selectedBranch.userSees)}</dd>
+                <dt>{translateAtlasUi(language, 'play.networkEvidence')}</dt>
+                <dd>{translateScenarioText(language, selectedBranch.networkEvidence)}</dd>
+                <dt>{translateAtlasUi(language, 'play.nextDiagnosticStep')}</dt>
+                <dd>
+                  {translateScenarioText(language, selectedBranch.nextDiagnosticStep)}
+                </dd>
               </dl>
             </article>
           ) : null}
@@ -235,25 +269,31 @@ export function PlayModeScreen({ scenario, stage }: Props) {
       ) : null}
 
       {isLast ? (
-        <section className="play-mode-final" aria-label="Final recap">
-          <span>Final recap</span>
-          <h2>{finalRecap.title}</h2>
-          <p>{finalRecap.simpleStory}</p>
+        <section
+          className="play-mode-final"
+          aria-label={translateAtlasUi(language, 'play.finalRecap')}
+        >
+          <span>{translateAtlasUi(language, 'play.finalRecap')}</span>
+          <h2>{translateScenarioText(language, finalRecap.title)}</h2>
+          <p>{translateScenarioText(language, finalRecap.simpleStory)}</p>
           <ul>
             {finalRecap.checkpoints.map((checkpoint) => (
-              <li key={checkpoint}>{checkpoint}</li>
+              <li key={checkpoint}>{translateScenarioText(language, checkpoint)}</li>
             ))}
           </ul>
-          <strong>{finalRecap.notebookLine}</strong>
+          <strong>{translateScenarioText(language, finalRecap.notebookLine)}</strong>
         </section>
       ) : null}
 
-      <footer className="play-mode-controls" aria-label="Play controls">
+      <footer
+        className="play-mode-controls"
+        aria-label={translateAtlasUi(language, 'play.controls')}
+      >
         <button
           type="button"
           onClick={() => resetAnimatedJourney(scenario.stages[0]?.id ?? stage.id)}
         >
-          Restart
+          {translateAtlasUi(language, 'play.restart')}
         </button>
 
         <button
@@ -261,21 +301,23 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           disabled={isFirst}
           onClick={() => setSelectedStageId(previousStageId)}
         >
-          Previous
+          {translateAtlasUi(language, 'play.previous')}
         </button>
 
         <button type="button" onClick={() => setPlaying(!playing)}>
-          {playing ? 'Pause auto' : 'Auto-play'}
+          {playing
+            ? translateAtlasUi(language, 'play.pauseAuto')
+            : translateAtlasUi(language, 'play.autoPlay')}
         </button>
 
         <select
           value={speed}
-          aria-label="Animated journey speed"
+          aria-label={translateAtlasUi(language, 'play.speed')}
           onChange={(event) => setSpeed(event.target.value as TraceSpeed)}
         >
-          <option value="slow">slow</option>
-          <option value="normal">normal</option>
-          <option value="fast">fast</option>
+          <option value="slow">{translateAtlasUi(language, 'play.slow')}</option>
+          <option value="normal">{translateAtlasUi(language, 'play.normal')}</option>
+          <option value="fast">{translateAtlasUi(language, 'play.fast')}</option>
         </select>
 
         <button
@@ -284,11 +326,16 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           disabled={isLast}
           onClick={() => setSelectedStageId(nextStageId)}
         >
-          {isLast ? 'Journey complete' : coach.nextActionLabel}
+          {isLast
+            ? translateAtlasUi(language, 'play.complete')
+            : translateScenarioText(language, coach.nextActionLabel)}
         </button>
       </footer>
 
-      <nav className="play-mode-rail" aria-label="Play stage rail">
+      <nav
+        className="play-mode-rail"
+        aria-label={translateAtlasUi(language, 'play.stageRail')}
+      >
         {scenario.stages.map((item, idx) => {
           const visited = visitedStageIds.includes(item.id)
           const active = item.id === stage.id
@@ -300,8 +347,10 @@ export function PlayModeScreen({ scenario, stage }: Props) {
               onClick={() => setSelectedStageId(item.id)}
               data-active={active}
               data-visited={visited}
-              aria-label={`Go to stage ${idx + 1}: ${item.shortName}`}
-              title={item.shortName}
+              aria-label={`${translateAtlasUi(language, 'play.goToStage')} ${
+                idx + 1
+              }: ${translateScenarioText(language, item.shortName)}`}
+              title={translateScenarioText(language, item.shortName)}
             >
               {idx + 1}
             </button>
