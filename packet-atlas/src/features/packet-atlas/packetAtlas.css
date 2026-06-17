@@ -7868,3 +7868,43 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v14.9 PL/EN Language Switch END === */
+
+
+/* === Packet Atlas v15.0 Bilingual Overlay START === */
+
+.play-mode-bilingual-line {
+  align-items: center;
+  border: 1px solid rgba(125, 211, 252, 0.22);
+  border-radius: 999px;
+  color: #cbd5e1;
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 7px 11px;
+}
+
+.play-mode-bilingual-line span {
+  color: #67e8f9;
+  font-size: 0.72rem;
+  font-weight: 1000;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.play-mode-bilingual-line--soft {
+  border-style: dashed;
+  opacity: 0.86;
+}
+
+.play-motion-node__secondary {
+  color: #bae6fd;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+
+/* === Packet Atlas v15.0 Bilingual Overlay END === */

@@ -5,6 +5,7 @@ import {
   getTraceProgress,
 } from '../cinematic/cinematicTraceModel'
 import {
+  getScenarioTranslation,
   translateAtlasUi,
   translateLayerLabel,
   translateMotionExplanation,
@@ -33,6 +34,7 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
   const layerFocus = stage.layerFocus.length > 0 ? stage.layerFocus : [stage.stageKind]
   const isFirst = previousStage.id === stage.id
   const isLast = nextStage.id === stage.id
+  const currentStageName = getScenarioTranslation(language, stage.shortName)
 
   return (
     <section
@@ -76,7 +78,12 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
 
         <article className="play-motion-node play-motion-node--current">
           <span>{translateAtlasUi(language, 'play.now')}</span>
-          <strong>{translateScenarioText(language, stage.shortName)}</strong>
+          <strong>{currentStageName.primary}</strong>
+          {currentStageName.secondary ? (
+            <small className="play-motion-node__secondary">
+              EN: {currentStageName.secondary}
+            </small>
+          ) : null}
         </article>
 
         <div className="play-motion-runway" aria-hidden="true">

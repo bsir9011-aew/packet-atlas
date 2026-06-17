@@ -182,3 +182,13 @@ export function translateScenarioText(language: AtlasLanguage, text: string) {
   if (language === 'en') return text
   return scenarioTextPl[text] ?? text
 }
+
+export function getScenarioTranslation(language: AtlasLanguage, text: string) {
+  const primary = translateScenarioText(language, text)
+  const secondary = language === 'pl' && primary !== text ? text : null
+
+  return {
+    primary,
+    secondary,
+  }
+}

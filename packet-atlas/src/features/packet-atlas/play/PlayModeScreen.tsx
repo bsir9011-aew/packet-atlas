@@ -14,7 +14,11 @@ import { buildGuidedNarratorLine } from '../guide/guidedNarratorModel'
 import { buildGuidedStepCoach } from '../guide/guidedStepCoachModel'
 import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
 import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
-import { translateAtlasUi, translateScenarioText } from '../i18n/atlasI18n'
+import {
+  getScenarioTranslation,
+  translateAtlasUi,
+  translateScenarioText,
+} from '../i18n/atlasI18n'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
 import { PlayMotionLayer } from './PlayMotionLayer'
@@ -55,6 +59,8 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const selectedBranch =
     summary.branchChoices.find((choice) => choice.id === selectedBranchChoiceId) ??
     null
+  const stageNameBilingual = getScenarioTranslation(language, stage.shortName)
+  const narratorBilingual = getScenarioTranslation(language, narrator.line)
 
   useEffect(() => {
     if (!playing) return
@@ -109,11 +115,24 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         </div>
 
         <h1>
-          {translateScenarioText(language, summary.stepLabel)} —{' '}
-          {translateScenarioText(language, stage.shortName)}
+          {translateScenarioText(language, summary.stepLabel)} — {stageNameBilingual.primary}
         </h1>
 
-        <p>{translateScenarioText(language, narrator.line)}</p>
+        {stageNameBilingual.secondary ? (
+          <p className="play-mode-bilingual-line">
+            <span>EN source</span>
+            {stageNameBilingual.secondary}
+          </p>
+        ) : null}
+
+        <p>{narratorBilingual.primary}</p>
+
+        {narratorBilingual.secondary ? (
+          <p className="play-mode-bilingual-line play-mode-bilingual-line--soft">
+            <span>EN narrator</span>
+            {narratorBilingual.secondary}
+          </p>
+        ) : null}
 
         <div
           className="play-mode-progress"
