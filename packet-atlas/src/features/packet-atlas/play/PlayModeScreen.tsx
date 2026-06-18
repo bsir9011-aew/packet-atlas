@@ -264,6 +264,46 @@ export function PlayModeScreen({ scenario, stage }: Props) {
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
 
       <section
+        className="play-mode-evidence-trail"
+        aria-label={translateAtlasUi(language, 'play.evidenceTrail')}
+      >
+        <div className="play-mode-evidence-trail__header">
+          <span>{translateAtlasUi(language, 'play.evidenceTrail')}</span>
+          <strong>{translateAtlasUi(language, 'play.evidenceTrailPrompt')}</strong>
+        </div>
+
+        <div className="play-mode-evidence-trail__grid">
+          <article>
+            <span>{translateAtlasUi(language, 'play.evidenceSymptom')}</span>
+            <p>{displayScenarioText('The user sees a simple waiting state, but the network has many possible checkpoints.')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.evidenceSignal')}</span>
+            <p>{displayScenarioText('The current stage should leave a trace in at least one layer-specific view.')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.evidenceCommand')}</span>
+            <p>{displayScenarioText('Use browser devtools, terminal commands or capture evidence depending on the layer.')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.evidenceConclusion')}</span>
+            <p>{displayScenarioText('Only claim what the evidence can support.')}</p>
+          </article>
+        </div>
+
+        <div className="play-mode-evidence-trail__questions">
+          <strong>{translateAtlasUi(language, 'play.evidenceOperatorRule')}</strong>
+          <ul>
+            <li>{displayScenarioText('Where did the journey last look correct?')}</li>
+            <li>{displayScenarioText('Which layer changed the form of the payload?')}</li>
+            <li>{displayScenarioText('Which observer would see this evidence?')}</li>
+            <li>{displayScenarioText('What would be different if this stage failed?')}</li>
+          </ul>
+          <p>{displayScenarioText('Do not debug by vibe. Debug by narrowing the boundary.')}</p>
+        </div>
+      </section>
+
+      <section
         className="play-mode-layer-ladder"
         aria-label={translateAtlasUi(language, 'play.layerLadder')}
       >

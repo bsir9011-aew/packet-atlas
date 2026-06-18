@@ -8226,3 +8226,77 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v18.0 Layer Ladder END === */
+
+/* === Packet Atlas v19.0 Evidence Trail START === */
+
+.play-mode-evidence-trail {
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 24px;
+  margin: 18px 0;
+  padding: 18px;
+}
+
+.play-mode-evidence-trail__header {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.play-mode-evidence-trail__header span,
+.play-mode-evidence-trail__grid span,
+.play-mode-evidence-trail__questions strong {
+  color: #fbbf24;
+  font-size: 0.74rem;
+  font-weight: 1000;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.play-mode-evidence-trail__header strong {
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+.play-mode-evidence-trail__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.play-mode-evidence-trail__grid article {
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.play-mode-evidence-trail__grid p {
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
+.play-mode-evidence-trail__questions {
+  background: rgba(69, 26, 3, 0.24);
+  border: 1px dashed rgba(251, 191, 36, 0.28);
+  border-radius: 18px;
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.play-mode-evidence-trail__questions ul {
+  color: #e2e8f0;
+  display: grid;
+  gap: 8px;
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.play-mode-evidence-trail__questions p {
+  color: #fde68a;
+  font-weight: 800;
+  line-height: 1.45;
+  margin: 8px 0 0;
+}
+
+/* === Packet Atlas v19.0 Evidence Trail END === */
