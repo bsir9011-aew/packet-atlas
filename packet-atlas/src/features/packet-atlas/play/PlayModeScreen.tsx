@@ -16,6 +16,7 @@ import { buildGuidedStoryScript } from '../guide/guidedStoryScriptModel'
 import { buildGuidedVocabulary } from '../guide/guidedVocabularyModel'
 import {
   getScenarioTranslation,
+  getTextDisplayModeLabel,
   translateAtlasUi,
   translateScenarioText,
 } from '../i18n/atlasI18n'
@@ -34,7 +35,9 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const visitedStageIds = useAtlasStore((state) => state.visitedStageIds)
   const selectedBranchChoiceId = useAtlasStore((state) => state.selectedBranchChoiceId)
   const language = useAtlasStore((state) => state.language)
+  const textDisplayMode = useAtlasStore((state) => state.textDisplayMode)
   const toggleLanguage = useAtlasStore((state) => state.toggleLanguage)
+  const cycleTextDisplayMode = useAtlasStore((state) => state.cycleTextDisplayMode)
   const setSelectedStageId = useAtlasStore((state) => state.setSelectedStageId)
   const setPlaying = useAtlasStore((state) => state.setAnimatedJourneyPlaying)
   const setSpeed = useAtlasStore((state) => state.setAnimatedJourneySpeed)
@@ -59,8 +62,8 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const selectedBranch =
     summary.branchChoices.find((choice) => choice.id === selectedBranchChoiceId) ??
     null
-  const stageNameBilingual = getScenarioTranslation(language, stage.shortName)
-  const narratorBilingual = getScenarioTranslation(language, narrator.line)
+  const stageNameBilingual = getScenarioTranslation(language, stage.shortName, textDisplayMode)
+  const narratorBilingual = getScenarioTranslation(language, narrator.line, textDisplayMode)
 
   useEffect(() => {
     if (!playing) return
@@ -98,6 +101,15 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           aria-label={translateAtlasUi(language, 'language.toggle')}
         >
           {language === 'pl' ? 'PL / EN' : 'EN / PL'}
+        </button>
+
+        <button
+          type="button"
+          className="play-mode-text-mode-toggle"
+          onClick={cycleTextDisplayMode}
+          aria-label="Cycle text display mode"
+        >
+          {getTextDisplayModeLabel(language, textDisplayMode)}
         </button>
 
         <button type="button" onClick={exitPlay}>

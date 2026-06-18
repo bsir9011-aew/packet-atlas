@@ -1,4 +1,4 @@
-import type { AtlasLanguage } from '../store/atlasStore'
+import type { AtlasLanguage, AtlasTextDisplayMode } from '../store/atlasStore'
 import type { JourneyStage } from '../schema/journeyScenarioSchema'
 
 export const atlasUiText = {
@@ -183,8 +183,27 @@ export function translateScenarioText(language: AtlasLanguage, text: string) {
   return scenarioTextPl[text] ?? text
 }
 
-export function getScenarioTranslation(language: AtlasLanguage, text: string) {
+export function getScenarioTranslation(
+  language: AtlasLanguage,
+  text: string,
+  textDisplayMode: AtlasTextDisplayMode = 'bilingual',
+) {
+  if (textDisplayMode === 'source') {
+    return {
+      primary: text,
+      secondary: null,
+    }
+  }
+
   const primary = translateScenarioText(language, text)
+
+  if (textDisplayMode === 'translated') {
+    return {
+      primary,
+      secondary: null,
+    }
+  }
+
   const secondary = language === 'pl' && primary !== text ? text : null
 
   return {
@@ -192,3 +211,33 @@ export function getScenarioTranslation(language: AtlasLanguage, text: string) {
     secondary,
   }
 }
+
+export function getTextDisplayModeLabel(language: AtlasLanguage, mode: string) {
+  const normalizedMode =
+    mode === 'translated' || mode === 'pl-only' || mode === 'plOnly'
+      ? 'translated'
+      : mode === 'bilingual' || mode === 'pl-plus-en'
+        ? 'bilingual'
+        : mode === 'source' || mode === 'en-only' || mode === 'enOnly'
+          ? 'source'
+          : mode
+
+  const labels: Record<AtlasLanguage, Record<'translated' | 'bilingual' | 'source', string>> = {
+    en: {
+      translated: 'PL only',
+      bilingual: 'PL + EN',
+      source: 'EN only',
+    },
+    pl: {
+      translated: 'PL only',
+      bilingual: 'PL + EN',
+      source: 'EN only',
+    },
+  }
+
+  const dictionary = labels[language]
+  return dictionary[normalizedMode as keyof typeof dictionary] ?? mode
+}
+
+
+

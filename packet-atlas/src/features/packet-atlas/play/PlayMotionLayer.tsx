@@ -27,6 +27,7 @@ function findStage(scenario: JourneyScenario, stageId: string) {
 
 export function PlayMotionLayer({ scenario, stage, playing }: Props) {
   const language = useAtlasStore((state) => state.language)
+  const textDisplayMode = useAtlasStore((state) => state.textDisplayMode)
   const index = getStageIndex(scenario, stage.id)
   const progress = getTraceProgress(scenario, stage.id)
   const previousStage = findStage(scenario, getPreviousStageId(scenario, stage.id)) ?? stage
@@ -34,7 +35,7 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
   const layerFocus = stage.layerFocus.length > 0 ? stage.layerFocus : [stage.stageKind]
   const isFirst = previousStage.id === stage.id
   const isLast = nextStage.id === stage.id
-  const currentStageName = getScenarioTranslation(language, stage.shortName)
+  const currentStageName = getScenarioTranslation(language, stage.shortName, textDisplayMode)
 
   return (
     <section

@@ -7908,3 +7908,23 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v15.0 Bilingual Overlay END === */
+
+
+/* === Packet Atlas v15.1 Text Display Modes START === */
+
+.play-mode-text-mode-toggle {
+  border-color: rgba(167, 139, 250, 0.44) !important;
+  background: rgba(59, 7, 100, 0.28) !important;
+  color: #ddd6fe !important;
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+  min-width: 92px;
+}
+
+.play-mode-text-mode-toggle:hover,
+.play-mode-text-mode-toggle:focus-visible {
+  border-color: rgba(196, 181, 253, 0.72) !important;
+  background: rgba(109, 40, 217, 0.22) !important;
+}
+
+/* === Packet Atlas v15.1 Text Display Modes END === */

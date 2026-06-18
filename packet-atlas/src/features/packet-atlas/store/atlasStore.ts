@@ -4,6 +4,7 @@ import type { LayerLens } from '../schema/journeyScenarioSchema'
 
 export type PresentationMode = 'atlas' | 'focus' | 'play'
 export type AtlasLanguage = 'en' | 'pl'
+export type AtlasTextDisplayMode = 'translated' | 'bilingual' | 'source'
 
 type AtlasState = {
   selectedScenarioId: string
@@ -17,6 +18,7 @@ type AtlasState = {
   selectedBranchChoiceId: string | null
   presentationMode: PresentationMode
   language: AtlasLanguage
+  textDisplayMode: AtlasTextDisplayMode
   setSelectedStageId: (stageId: string) => void
   setSelectedScenarioId: (scenarioId: string) => void
   setSelectedLayerLens: (lens: LayerLens) => void
@@ -28,12 +30,15 @@ type AtlasState = {
   setPresentationMode: (mode: PresentationMode) => void
   setLanguage: (language: AtlasLanguage) => void
   toggleLanguage: () => void
+  setTextDisplayMode: (mode: AtlasTextDisplayMode) => void
+  cycleTextDisplayMode: () => void
   togglePresentationMode: () => void
   resetAnimatedJourney: (stageId: string) => void
 }
 
 
 const atlasLanguageStorageKey = 'packet-atlas-language'
+const atlasTextDisplayModeStorageKey = 'packet-atlas-text-display-mode'
 
 function readInitialLanguage(): AtlasLanguage {
   if (typeof window === 'undefined') return 'en'
@@ -56,6 +61,35 @@ function persistLanguage(language: AtlasLanguage) {
   }
 }
 
+
+function readInitialTextDisplayMode(): AtlasTextDisplayMode {
+  if (typeof window === 'undefined') return 'bilingual'
+
+  try {
+    const stored = window.localStorage.getItem(atlasTextDisplayModeStorageKey)
+    if (stored === 'translated' || stored === 'source') return stored
+    return 'bilingual'
+  } catch {
+    return 'bilingual'
+  }
+}
+
+function persistTextDisplayMode(mode: AtlasTextDisplayMode) {
+  if (typeof window === 'undefined') return
+
+  try {
+    window.localStorage.setItem(atlasTextDisplayModeStorageKey, mode)
+  } catch {
+    // Non-critical: text display mode still works for the current session.
+  }
+}
+
+function getNextTextDisplayMode(mode: AtlasTextDisplayMode): AtlasTextDisplayMode {
+  if (mode === 'translated') return 'bilingual'
+  if (mode === 'bilingual') return 'source'
+  return 'translated'
+}
+
 function rememberStage(stageId: string, visitedStageIds: string[]) {
   return visitedStageIds.includes(stageId)
     ? visitedStageIds
@@ -74,6 +108,7 @@ export const useAtlasStore = create<AtlasState>((set) => ({
   selectedBranchChoiceId: null,
   presentationMode: 'atlas',
   language: readInitialLanguage(),
+  textDisplayMode: readInitialTextDisplayMode(),
   setSelectedStageId: (stageId) =>
     set((state) => ({
       selectedStageId: stageId,
@@ -105,6 +140,16 @@ export const useAtlasStore = create<AtlasState>((set) => ({
       const language = state.language === 'pl' ? 'en' : 'pl'
       persistLanguage(language)
       return { language }
+    }),
+  setTextDisplayMode: (mode) => {
+    persistTextDisplayMode(mode)
+    set({ textDisplayMode: mode })
+  },
+  cycleTextDisplayMode: () =>
+    set((state) => {
+      const textDisplayMode = getNextTextDisplayMode(state.textDisplayMode)
+      persistTextDisplayMode(textDisplayMode)
+      return { textDisplayMode }
     }),
   togglePresentationMode: () =>
     set((state) => ({
