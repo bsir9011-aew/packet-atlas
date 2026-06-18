@@ -8147,3 +8147,82 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v17.0 Memory Drill END === */
+
+/* === Packet Atlas v18.0 Layer Ladder START === */
+
+.play-mode-layer-ladder {
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  border-radius: 24px;
+  margin: 18px 0;
+  padding: 18px;
+}
+
+.play-mode-layer-ladder__header {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.play-mode-layer-ladder__header span,
+.play-mode-layer-ladder__grid article > div span {
+  color: #86efac;
+  font-size: 0.74rem;
+  font-weight: 1000;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.play-mode-layer-ladder__header strong {
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+
+.play-mode-layer-ladder__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.play-mode-layer-ladder__grid article {
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.play-mode-layer-ladder__grid article[data-active='true'] {
+  background: rgba(20, 83, 45, 0.3);
+  border-color: rgba(134, 239, 172, 0.48);
+}
+
+.play-mode-layer-ladder__grid article > div {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.play-mode-layer-ladder__grid small {
+  border: 1px solid rgba(134, 239, 172, 0.26);
+  border-radius: 999px;
+  color: #bbf7d0;
+  font-size: 0.68rem;
+  font-weight: 900;
+  padding: 3px 7px;
+  text-transform: uppercase;
+}
+
+.play-mode-layer-ladder__grid strong {
+  color: #f8fafc;
+  line-height: 1.35;
+}
+
+.play-mode-layer-ladder__grid p {
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* === Packet Atlas v18.0 Layer Ladder END === */

@@ -66,6 +66,51 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const narratorBilingual = getScenarioTranslation(language, narrator.line, textDisplayMode)
   const displayScenarioText = (text: string) =>
     getScenarioTranslation(language, text, textDisplayMode).primary
+  const layerFocusSet = new Set<string>(stage.layerFocus)
+  const layerLadderItems = [
+    {
+      id: 'human',
+      label: 'Human lens',
+      role: 'User intent and visible result',
+      prompt: 'What does the user believe is happening?',
+    },
+    {
+      id: 'application',
+      label: 'Application lens',
+      role: 'Browser, URL, HTTP, DNS and app meaning',
+      prompt: 'What application meaning is being created or consumed?',
+    },
+    {
+      id: 'tls',
+      label: 'TLS lens',
+      role: 'Security boundary and encrypted content',
+      prompt: 'Is the content readable here or protected by encryption?',
+    },
+    {
+      id: 'transport',
+      label: 'Transport lens',
+      role: 'Ports, streams, connections and reliability',
+      prompt: 'Which ports and connection state identify this flow?',
+    },
+    {
+      id: 'network',
+      label: 'Network lens',
+      role: 'IP addressing, routing, NAT and TTL',
+      prompt: 'Which IP addresses and route decisions matter here?',
+    },
+    {
+      id: 'link',
+      label: 'Link lens',
+      role: 'MAC-to-MAC delivery on one local hop',
+      prompt: 'Which local MAC hop carries the frame right now?',
+    },
+    {
+      id: 'physical',
+      label: 'Physical lens',
+      role: 'Bits, symbols and medium-dependent signals',
+      prompt: 'What would this look like as bits or signals on the medium?',
+    },
+  ]
 
   const quickCheckpointCards = [
     {
@@ -217,6 +262,40 @@ export function PlayModeScreen({ scenario, stage }: Props) {
       </section>
 
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
+
+      <section
+        className="play-mode-layer-ladder"
+        aria-label={translateAtlasUi(language, 'play.layerLadder')}
+      >
+        <div className="play-mode-layer-ladder__header">
+          <span>{translateAtlasUi(language, 'play.layerLadder')}</span>
+          <strong>{translateAtlasUi(language, 'play.layerLadderPrompt')}</strong>
+        </div>
+
+        <div className="play-mode-layer-ladder__grid">
+          {layerLadderItems.map((item) => {
+            const active = layerFocusSet.has(item.id)
+
+            return (
+              <article
+                key={item.id}
+                data-active={active ? 'true' : 'false'}
+              >
+                <div>
+                  <span>{displayScenarioText(item.label)}</span>
+                  <small>
+                    {active
+                      ? translateAtlasUi(language, 'play.layerLadderActive')
+                      : translateAtlasUi(language, 'play.layerLadderQuiet')}
+                  </small>
+                </div>
+                <strong>{displayScenarioText(item.role)}</strong>
+                <p>{displayScenarioText(item.prompt)}</p>
+              </article>
+            )
+          })}
+        </div>
+      </section>
 
       <section
         className="play-mode-memory-drill"
