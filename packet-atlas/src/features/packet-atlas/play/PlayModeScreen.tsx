@@ -64,6 +64,47 @@ export function PlayModeScreen({ scenario, stage }: Props) {
     null
   const stageNameBilingual = getScenarioTranslation(language, stage.shortName, textDisplayMode)
   const narratorBilingual = getScenarioTranslation(language, narrator.line, textDisplayMode)
+  const displayScenarioText = (text: string) =>
+    getScenarioTranslation(language, text, textDisplayMode).primary
+
+  const quickCheckpointCards = [
+    {
+      id: 'user-view',
+      title: translateAtlasUi(language, 'play.quickUserView'),
+      body: displayScenarioText(stage.copy.whatUserSees),
+      prompt: displayScenarioText('Say the user-visible clue first.'),
+    },
+    {
+      id: 'network-reality',
+      title: translateAtlasUi(language, 'play.quickNetworkReality'),
+      body: displayScenarioText(stage.copy.whatReallyHappens),
+      prompt: displayScenarioText('Say what really changes in the network.'),
+    },
+    {
+      id: 'layer-lens',
+      title: translateAtlasUi(language, 'play.quickLayerLens'),
+      body: displayScenarioText(stage.copy.whichLayerLooksAtIt),
+      prompt: displayScenarioText('Name the layer that is most useful right now.'),
+    },
+    {
+      id: 'trap',
+      title: translateAtlasUi(language, 'play.quickTrap'),
+      body: displayScenarioText(stage.copy.easyToConfuse),
+      prompt: displayScenarioText('Name the trap that would mislead troubleshooting.'),
+    },
+    {
+      id: 'why',
+      title: translateAtlasUi(language, 'play.quickWhyItMatters'),
+      body: displayScenarioText(stage.copy.whyItMatters),
+      prompt: displayScenarioText('Explain why this boundary matters.'),
+    },
+    {
+      id: 'analogy',
+      title: translateAtlasUi(language, 'play.quickAnalogy'),
+      body: displayScenarioText(stage.copy.analogy),
+      prompt: displayScenarioText('Use the analogy to remember this stage.'),
+    },
+  ]
 
   const renderLearningText = (text: string) => {
     const translated = getScenarioTranslation(language, text, textDisplayMode)
@@ -143,7 +184,7 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         </div>
 
         <h1>
-          {translateScenarioText(language, summary.stepLabel)} — {stageNameBilingual.primary}
+          {displayScenarioText(summary.stepLabel)} — {stageNameBilingual.primary}
         </h1>
 
         {stageNameBilingual.secondary ? (
@@ -170,12 +211,33 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         </div>
 
         <small>
-          {translateScenarioText(language, narrator.pausePrompt)}{' '}
-          {translateScenarioText(language, narrator.handoff)}
+          {displayScenarioText(narrator.pausePrompt)}{' '}
+          {displayScenarioText(narrator.handoff)}
         </small>
       </section>
 
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
+
+
+      <section
+        className="play-mode-quick-checkpoints"
+        aria-label={translateAtlasUi(language, 'play.quickCheckpoint')}
+      >
+        <div className="play-mode-quick-checkpoints__header">
+          <span>🧠 {translateAtlasUi(language, 'play.quickCheckpoint')}</span>
+          <strong>{translateAtlasUi(language, 'play.quickCheckpointHint')}</strong>
+        </div>
+
+        <div className="play-mode-quick-checkpoints__grid">
+          {quickCheckpointCards.map((card) => (
+            <article key={card.id}>
+              <span>{card.title}</span>
+              <p>{card.body}</p>
+              <small>✍️ {card.prompt}</small>
+            </article>
+          ))}
+        </div>
+      </section>
 
 
       <section
@@ -251,22 +313,22 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         aria-label={translateAtlasUi(language, 'play.readStage')}
       >
         <div className="play-mode-coach__header">
-          <span>{translateScenarioText(language, coach.phaseLabel)}</span>
+          <span>{displayScenarioText(coach.phaseLabel)}</span>
           <strong>{translateAtlasUi(language, 'play.readStage')}</strong>
         </div>
 
         <div className="play-mode-coach__path">
           <article>
             <span>{translateAtlasUi(language, 'play.before')}</span>
-            <strong>{translateScenarioText(language, coach.beforeLabel)}</strong>
+            <strong>{displayScenarioText(coach.beforeLabel)}</strong>
           </article>
           <article data-current="true">
             <span>{translateAtlasUi(language, 'play.now')}</span>
-            <strong>{translateScenarioText(language, coach.nowLabel)}</strong>
+            <strong>{displayScenarioText(coach.nowLabel)}</strong>
           </article>
           <article>
             <span>{translateAtlasUi(language, 'play.next')}</span>
-            <strong>{translateScenarioText(language, coach.nextLabel)}</strong>
+            <strong>{displayScenarioText(coach.nextLabel)}</strong>
           </article>
         </div>
 
@@ -299,9 +361,9 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           <div>
             {vocabulary.map((item) => (
               <article key={item.term}>
-                <strong>{translateScenarioText(language, item.term)}</strong>
-                <p>{translateScenarioText(language, item.simpleMeaning)}</p>
-                <small>{translateScenarioText(language, item.doNotConfuseWith)}</small>
+                <strong>{displayScenarioText(item.term)}</strong>
+                <p>{displayScenarioText(item.simpleMeaning)}</p>
+                <small>{displayScenarioText(item.doNotConfuseWith)}</small>
               </article>
             ))}
           </div>
@@ -327,7 +389,7 @@ export function PlayModeScreen({ scenario, stage }: Props) {
                   onClick={() => setSelectedBranchChoiceId(choice.id)}
                   data-active={choice.id === selectedBranchChoiceId}
                 >
-                  {translateScenarioText(language, choice.label)}
+                  {displayScenarioText(choice.label)}
                 </button>
               ))}
             </div>
@@ -336,7 +398,7 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           {selectedBranch ? (
             <article className="play-mode-branch-preview">
               <div>
-                <strong>{translateScenarioText(language, selectedBranch.title)}</strong>
+                <strong>{displayScenarioText(selectedBranch.title)}</strong>
                 <button type="button" onClick={() => setSelectedBranchChoiceId(null)}>
                   {translateAtlasUi(language, 'play.clear')}
                 </button>
@@ -363,7 +425,7 @@ export function PlayModeScreen({ scenario, stage }: Props) {
           aria-label={translateAtlasUi(language, 'play.finalRecap')}
         >
           <span>{translateAtlasUi(language, 'play.finalRecap')}</span>
-          <h2>{translateScenarioText(language, finalRecap.title)}</h2>
+          <h2>{displayScenarioText(finalRecap.title)}</h2>
           <p>{renderLearningText(finalRecap.simpleStory)}</p>
           <ul>
             {finalRecap.checkpoints.map((checkpoint) => (

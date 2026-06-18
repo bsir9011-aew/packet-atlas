@@ -10,7 +10,6 @@ import {
   translateLayerLabel,
   translateMotionExplanation,
   translateMotionLabel,
-  translateScenarioText,
 } from '../i18n/atlasI18n'
 import type { JourneyScenario, JourneyStage } from '../schema/journeyScenarioSchema'
 import { useAtlasStore } from '../store/atlasStore'
@@ -36,6 +35,12 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
   const isFirst = previousStage.id === stage.id
   const isLast = nextStage.id === stage.id
   const currentStageName = getScenarioTranslation(language, stage.shortName, textDisplayMode)
+  const previousStageName = getScenarioTranslation(
+    language,
+    previousStage.shortName,
+    textDisplayMode,
+  )
+  const nextStageName = getScenarioTranslation(language, nextStage.shortName, textDisplayMode)
 
   return (
     <section
@@ -62,7 +67,7 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
           <strong>
             {isFirst
               ? translateAtlasUi(language, 'motion.beforeStart')
-              : translateScenarioText(language, previousStage.shortName)}
+              : previousStageName.primary}
           </strong>
         </article>
 
@@ -103,7 +108,7 @@ export function PlayMotionLayer({ scenario, stage, playing }: Props) {
           <strong>
             {isLast
               ? translateAtlasUi(language, 'motion.journeyEnd')
-              : translateScenarioText(language, nextStage.shortName)}
+              : nextStageName.primary}
           </strong>
         </article>
       </div>
