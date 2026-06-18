@@ -218,6 +218,48 @@ export function PlayModeScreen({ scenario, stage }: Props) {
 
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
 
+      <section
+        className="play-mode-memory-drill"
+        aria-label={translateAtlasUi(language, 'play.memoryDrill')}
+      >
+        <div className="play-mode-memory-drill__header">
+          <span>{translateAtlasUi(language, 'play.memoryDrill')}</span>
+          <strong>{translateAtlasUi(language, 'play.memoryDrillPrompt')}</strong>
+        </div>
+
+        <div className="play-mode-memory-drill__grid">
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryQuestion')}</span>
+            <p>{displayScenarioText('Which system is holding the packet now?')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryQuestion')}</span>
+            <p>{displayScenarioText('What changed compared with the previous boundary?')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryCheck')}</span>
+            <p>{displayScenarioText('What evidence would prove this stage happened?')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryCheck')}</span>
+            <p>{displayScenarioText('What should you not confuse this with?')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryAnswer')}</span>
+            <p>{displayScenarioText('Name the actor, the layer and the transformation.')}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.memoryMnemonic')}</span>
+            <p>{displayScenarioText('One packet journey, many lenses.')}</p>
+          </article>
+        </div>
+
+        <div className="play-mode-memory-drill__footer">
+          <strong>{translateAtlasUi(language, 'play.memoryOperatorMove')}</strong>
+          <p>{displayScenarioText('Say who owns the current boundary before naming protocols.')}</p>
+        </div>
+      </section>
+
 
       <section
         className="play-mode-quick-checkpoints"
