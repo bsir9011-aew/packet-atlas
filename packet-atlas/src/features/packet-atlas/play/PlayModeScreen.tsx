@@ -65,6 +65,22 @@ export function PlayModeScreen({ scenario, stage }: Props) {
   const stageNameBilingual = getScenarioTranslation(language, stage.shortName, textDisplayMode)
   const narratorBilingual = getScenarioTranslation(language, narrator.line, textDisplayMode)
 
+  const renderLearningText = (text: string) => {
+    const translated = getScenarioTranslation(language, text, textDisplayMode)
+
+    return (
+      <>
+        {translated.primary}
+        {translated.secondary ? (
+          <small className="play-mode-inline-source">
+            <span>EN</span>
+            {translated.secondary}
+          </small>
+        ) : null}
+      </>
+    )
+  }
+
   useEffect(() => {
     if (!playing) return
 
@@ -161,29 +177,71 @@ export function PlayModeScreen({ scenario, stage }: Props) {
 
       <PlayMotionLayer scenario={scenario} stage={stage} playing={playing} />
 
+
+      <section
+        className="play-mode-study-snapshot"
+        aria-label={translateAtlasUi(language, 'play.studySnapshot')}
+      >
+        <div className="play-mode-study-snapshot__header">
+          <span>🧠 {translateAtlasUi(language, 'play.studySnapshot')}</span>
+          <strong>{translateAtlasUi(language, 'play.learningEvidence')}</strong>
+        </div>
+
+        <div className="play-mode-study-snapshot__grid">
+          <article>
+            <span>{translateAtlasUi(language, 'play.userView')}</span>
+            <p>{renderLearningText(stage.copy.whatUserSees)}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.realProcess')}</span>
+            <p>{renderLearningText(stage.copy.whatReallyHappens)}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.layerLens')}</span>
+            <p>{renderLearningText(stage.copy.whichLayerLooksAtIt)}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.samePayload')}</span>
+            <p>{renderLearningText(stage.copy.samePayloadHereLooksLike)}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.commonTrap')}</span>
+            <p>{renderLearningText(stage.copy.easyToConfuse)}</p>
+          </article>
+          <article>
+            <span>{translateAtlasUi(language, 'play.whyItMatters')}</span>
+            <p>{renderLearningText(stage.copy.whyItMatters)}</p>
+          </article>
+          <article className="play-mode-study-snapshot__wide">
+            <span>{translateAtlasUi(language, 'play.analogy')}</span>
+            <p>{renderLearningText(stage.copy.analogy)}</p>
+          </article>
+        </div>
+      </section>
+
       <section
         className="play-mode-story"
         aria-label={translateAtlasUi(language, 'play.currentStageStory')}
       >
         <span>{translateAtlasUi(language, 'play.currentStageStory')}</span>
-        <p>{translateScenarioText(language, storyScript.spokenLine)}</p>
+        <p>{renderLearningText(storyScript.spokenLine)}</p>
 
         <div className="play-mode-story__grid">
           <article>
             <strong>{translateAtlasUi(language, 'play.mentalModel')}</strong>
-            <p>{translateScenarioText(language, storyScript.mentalModel)}</p>
+            <p>{renderLearningText(storyScript.mentalModel)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.evidenceQuestion')}</strong>
-            <p>{translateScenarioText(language, storyScript.evidenceQuestion)}</p>
+            <p>{renderLearningText(storyScript.evidenceQuestion)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.doNotJumpTo')}</strong>
-            <p>{translateScenarioText(language, storyScript.avoidJumpingTo)}</p>
+            <p>{renderLearningText(storyScript.avoidJumpingTo)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.handoff')}</strong>
-            <p>{translateScenarioText(language, storyScript.nextHandoff)}</p>
+            <p>{renderLearningText(storyScript.nextHandoff)}</p>
           </article>
         </div>
       </section>
@@ -215,19 +273,19 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         <div className="play-mode-coach__grid">
           <article>
             <strong>{translateAtlasUi(language, 'play.saySimply')}</strong>
-            <p>{translateScenarioText(language, coach.plainEnglish)}</p>
+            <p>{renderLearningText(coach.plainEnglish)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.whatToDoNow')}</strong>
-            <p>{translateScenarioText(language, coach.whatToDoNow)}</p>
+            <p>{renderLearningText(coach.whatToDoNow)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.proofQuestion')}</strong>
-            <p>{translateScenarioText(language, coach.proofQuestion)}</p>
+            <p>{renderLearningText(coach.proofQuestion)}</p>
           </article>
           <article>
             <strong>{translateAtlasUi(language, 'play.notebookLine')}</strong>
-            <p>{translateScenarioText(language, coach.notebookLine)}</p>
+            <p>{renderLearningText(coach.notebookLine)}</p>
           </article>
         </div>
       </section>
@@ -283,15 +341,15 @@ export function PlayModeScreen({ scenario, stage }: Props) {
                   {translateAtlasUi(language, 'play.clear')}
                 </button>
               </div>
-              <p>{translateScenarioText(language, selectedBranch.whatChanges)}</p>
+              <p>{renderLearningText(selectedBranch.whatChanges)}</p>
               <dl>
                 <dt>{translateAtlasUi(language, 'play.userSees')}</dt>
-                <dd>{translateScenarioText(language, selectedBranch.userSees)}</dd>
+                <dd>{renderLearningText(selectedBranch.userSees)}</dd>
                 <dt>{translateAtlasUi(language, 'play.networkEvidence')}</dt>
-                <dd>{translateScenarioText(language, selectedBranch.networkEvidence)}</dd>
+                <dd>{renderLearningText(selectedBranch.networkEvidence)}</dd>
                 <dt>{translateAtlasUi(language, 'play.nextDiagnosticStep')}</dt>
                 <dd>
-                  {translateScenarioText(language, selectedBranch.nextDiagnosticStep)}
+                  {renderLearningText(selectedBranch.nextDiagnosticStep)}
                 </dd>
               </dl>
             </article>
@@ -306,13 +364,13 @@ export function PlayModeScreen({ scenario, stage }: Props) {
         >
           <span>{translateAtlasUi(language, 'play.finalRecap')}</span>
           <h2>{translateScenarioText(language, finalRecap.title)}</h2>
-          <p>{translateScenarioText(language, finalRecap.simpleStory)}</p>
+          <p>{renderLearningText(finalRecap.simpleStory)}</p>
           <ul>
             {finalRecap.checkpoints.map((checkpoint) => (
-              <li key={checkpoint}>{translateScenarioText(language, checkpoint)}</li>
+              <li key={checkpoint}>{renderLearningText(checkpoint)}</li>
             ))}
           </ul>
-          <strong>{translateScenarioText(language, finalRecap.notebookLine)}</strong>
+          <strong>{renderLearningText(finalRecap.notebookLine)}</strong>
         </section>
       ) : null}
 

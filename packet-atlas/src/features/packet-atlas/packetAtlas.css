@@ -7928,3 +7928,91 @@ button:focus-visible,
 }
 
 /* === Packet Atlas v15.1 Text Display Modes END === */
+
+
+/* === Packet Atlas v16.0 Study Snapshot START === */
+
+.play-mode-study-snapshot {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 24px;
+  margin: 18px 0;
+  padding: 18px;
+}
+
+.play-mode-study-snapshot__header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.play-mode-study-snapshot__header span {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-weight: 1000;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.play-mode-study-snapshot__header strong {
+  color: #67e8f9;
+  font-size: 0.82rem;
+  font-weight: 1000;
+}
+
+.play-mode-study-snapshot__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.play-mode-study-snapshot article {
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  border-radius: 18px;
+  padding: 13px;
+}
+
+.play-mode-study-snapshot article span {
+  color: #bae6fd;
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 1000;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+
+.play-mode-study-snapshot article p {
+  color: #e2e8f0;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.play-mode-study-snapshot__wide {
+  grid-column: 1 / -1;
+}
+
+.play-mode-inline-source {
+  border-left: 2px solid rgba(103, 232, 249, 0.5);
+  color: #bae6fd;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-top: 8px;
+  padding-left: 8px;
+}
+
+.play-mode-inline-source span {
+  color: #67e8f9;
+  display: inline;
+  font-size: 0.7rem;
+  font-weight: 1000;
+  letter-spacing: 0.08em;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+/* === Packet Atlas v16.0 Study Snapshot END === */
